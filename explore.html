@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explore — Tiny Rogues Mod Data</title>
+<style>
+:root {
+  --base: #1e1e2e; --mantle: #181825; --surface0: #313244;
+  --surface1: #45475a; --surface2: #585b70;
+  --text: #cdd6f4; --subtext0: #a6adc8; --subtext1: #bac2de;
+  --overlay0: #6c7086;
+  --blue: #89b4fa; --lavender: #b4befe; --sapphire: #74c7ec;
+  --sky: #89dceb; --teal: #94e2d5; --green: #a6e3a1;
+  --yellow: #f9e2af; --peach: #fab387; --maroon: #eba0ac;
+  --red: #f38ba8; --mauve: #cba6f7; --pink: #f5c2e7;
+  --flamingo: #f2cdcd; --rosewater: #f5e0dc;
+  --font-ui: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+  --radius: 6px;
+  --nav-height: 44px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-ui); background: var(--base); color: var(--text); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+a { color: var(--blue); text-decoration: none; cursor: pointer; }
+a:hover { text-decoration: underline; }
+
+nav {
+  height: var(--nav-height);
+  background: var(--mantle);
+  border-bottom: 1px solid var(--surface1);
+  display: flex;
+  align-items: center;
+  padding: 0 1.25rem;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+nav .site-name { font-weight: 700; font-size: 0.85rem; margin-right: 1.25rem; color: var(--blue); }
+nav a {
+  padding: 0.35rem 0.65rem; border-radius: var(--radius); font-size: 0.8rem;
+  color: var(--subtext0); transition: background 0.15s, color 0.15s;
+}
+nav a:hover { background: var(--surface0); color: var(--text); text-decoration: none; }
+nav a.active { background: var(--surface0); color: var(--blue); font-weight: 700; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr 300px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.panel { overflow-y: auto; border-right: 1px solid var(--surface1); padding: 0.75rem; }
+.panel:last-child { border-right: none; }
+.panel h2 { font-size: 0.75rem; color: var(--overlay0); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.6rem; }
+
+/* Left panel - resource list */
+.search-input {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  background: var(--surface0);
+  border: 1px solid var(--surface1);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  margin-bottom: 0.6rem;
+}
+.search-input:focus { outline: none; border-color: var(--blue); }
+
+.type-group { margin-bottom: 0.75rem; }
+.type-label {
+  font-size: 0.7rem;
+  color: var(--overlay0);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid var(--surface1);
+  margin-bottom: 0.2rem;
+}
+.resource-item {
+  padding: 0.3rem 0.4rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.resource-item:hover { background: var(--surface0); }
+.resource-item.selected { background: var(--surface0); color: var(--blue); }
+.type-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Center panel - detail */
+.detail-header { margin-bottom: 1.25rem; }
+.detail-header h1 { font-size: 1.3rem; font-weight: 700; }
+.detail-iri { font-size: 0.75rem; color: var(--overlay0); word-break: break-all; }
+.detail-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+.badge {
+  display: inline-block;
+  padding: 0.12rem 0.45rem;
+  border-radius: var(--radius);
+  font-size: 0.7rem;
+  border: 1px solid var(--surface1);
+}
+.badge-type { border-color: var(--mauve); color: var(--mauve); }
+.badge-element { border-color: var(--peach); color: var(--peach); }
+.badge-scaling { border-color: var(--teal); color: var(--teal); }
+
+.section { margin-bottom: 1.25rem; }
+.section h3 {
+  font-size: 0.75rem;
+  color: var(--overlay0);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--surface1);
+}
+.dep-link {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  background: var(--surface0);
+  border: 1px solid var(--surface1);
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  margin: 0.12rem 0.12rem 0.12rem 0;
+}
+.dep-link:hover { border-color: var(--blue); text-decoration: none; }
+
+.prop-row { display: flex; justify-content: space-between; padding: 0.25rem 0; border-bottom: 1px solid var(--surface0); }
+.prop-label { font-size: 0.75rem; color: var(--subtext0); }
+.prop-value { font-size: 0.75rem; color: var(--blue); }
+
+/* Right panel - context */
+.stat-row { display: flex; justify-content: space-between; padding: 0.25rem 0; border-bottom: 1px solid var(--surface0); }
+.stat-label { font-size: 0.75rem; color: var(--subtext0); }
+.stat-value { font-size: 0.75rem; color: var(--blue); }
+.dep-tree { padding-left: 0.75rem; }
+.dep-tree-item { font-size: 0.75rem; padding: 0.12rem 0; }
+.dep-tree-item a { cursor: pointer; }
+.dep-tree-item::before { content: '\2192 '; color: var(--overlay0); }
+.dep-tree-root::before { content: '\25CF '; color: var(--green); }
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--overlay0);
+  font-size: 0.85rem;
+}
+
+.jsonld-meta { margin-top: 1.25rem; }
+.jsonld-meta pre {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: var(--subtext0);
+  background: var(--surface0);
+  border: 1px solid var(--surface1);
+  border-radius: var(--radius);
+  padding: 0.6rem;
+  overflow-x: auto;
+  max-height: 280px;
+}
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <span class="site-name">Tiny Rogues</span>
+  <a href="index.html">Graph</a>
+  <a href="editor.html">Editor</a>
+  <a href="explore.html" class="active">Explore</a>
+</nav>
+
+<div class="layout">
+  <!-- Left: resource list grouped by primary type -->
+  <div class="panel" id="left-panel">
+    <h2>Entities</h2>
+    <input type="text" class="search-input" id="search" placeholder="Filter entities...">
+    <div id="resource-list"></div>
+  </div>
+
+  <!-- Center: resource detail -->
+  <div class="panel" id="center-panel">
+    <div class="empty-state" id="empty-detail">Select an entity to explore</div>
+    <div id="detail" style="display:none"></div>
+  </div>
+
+  <!-- Right: graph context -->
+  <div class="panel" id="right-panel">
+    <h2>Graph Context</h2>
+    <div id="context-stats"></div>
+    <div id="dep-chain" style="margin-top:0.75rem"></div>
+    <div class="jsonld-meta" id="jsonld-section" style="display:none">
+      <h2>JSON-LD</h2>
+      <pre id="jsonld-raw"></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+(async function() {
+  var graphResp;
+  try {
+    var resp = await fetch('mod-data.json');
+    graphResp = await resp.json();
+  } catch (e) {
+    document.getElementById('empty-detail').textContent = 'Failed to load mod-data.json: ' + e.message;
+    return;
+  }
+  var graph = graphResp['@graph'] || [];
+  var context = graphResp['@context'] || {};
+
+  var TYPE_COLORS = {
+    StatusEffect: '#fab387', Weapon: '#89b4fa', Class: '#f9e2af',
+    Trait: '#94e2d5', Enchantment: '#cba6f7',
+    DoT: '#f38ba8', Debuff: '#eba0ac',
+    Melee: '#f38ba8', Ranged: '#a6e3a1', Magic: '#cba6f7',
+    STR: '#f38ba8', DEX: '#a6e3a1', INT: '#89b4fa', Hybrid: '#b4befe',
+    Strength: '#f38ba8', Dexterity: '#a6e3a1', Intelligence: '#89b4fa',
+    Positive: '#a6e3a1', Legendary: '#f9e2af', Special: '#f5c2e7',
+  };
+  function typeColor(t) { return TYPE_COLORS[t] || '#6c7086'; }
+
+  var byName = {};
+  graph.forEach(function(r) { byName[r.name] = r; });
+
+  var dependents = {};
+  graph.forEach(function(r) {
+    (r.depends_on || []).forEach(function(dep) {
+      if (!dependents[dep]) dependents[dep] = [];
+      dependents[dep].push(r.name);
+    });
+  });
+
+  var byType = {};
+  graph.forEach(function(r) {
+    var types = r['@type'] || [];
+    var primary = types[0] || 'Unknown';
+    if (!byType[primary]) byType[primary] = [];
+    byType[primary].push(r);
+  });
+
+  function renderList(filter) {
+    filter = filter || '';
+    var el = document.getElementById('resource-list');
+    el.innerHTML = '';
+    var lf = filter.toLowerCase();
+    var typeOrder = ['StatusEffect', 'Weapon', 'Class', 'Trait', 'Enchantment'];
+    typeOrder.filter(function(t) { return byType[t]; }).forEach(function(type) {
+      var resources = byType[type].filter(function(r) {
+        return !lf || r.name.toLowerCase().includes(lf) || type.toLowerCase().includes(lf) ||
+          (r.element || '').toLowerCase().includes(lf) ||
+          (r['@type'] || []).some(function(t) { return t.toLowerCase().includes(lf); });
+      });
+      if (!resources.length) return;
+      var group = document.createElement('div');
+      group.className = 'type-group';
+      var label = document.createElement('div');
+      label.className = 'type-label';
+      label.textContent = type + 's (' + resources.length + ')';
+      group.appendChild(label);
+      resources.sort(function(a,b) { return a.name.localeCompare(b.name); }).forEach(function(r) {
+        var item = document.createElement('div');
+        item.className = 'resource-item';
+        item.dataset.name = r.name;
+        var dot = document.createElement('span');
+        dot.className = 'type-dot';
+        dot.style.background = typeColor(type);
+        item.appendChild(dot);
+        item.appendChild(document.createTextNode(r.name));
+        item.addEventListener('click', function() { selectResource(r.name); });
+        group.appendChild(item);
+      });
+      el.appendChild(group);
+    });
+  }
+
+  function selectResource(name) {
+    var r = byName[name];
+    if (!r) return;
+    document.querySelectorAll('.resource-item').forEach(function(el) {
+      el.classList.toggle('selected', el.dataset.name === name);
+    });
+    document.getElementById('empty-detail').style.display = 'none';
+    var detail = document.getElementById('detail');
+    detail.style.display = '';
+    detail.innerHTML = '';
+    var types = r['@type'] || [];
+    var deps = r.depends_on || [];
+    var revDeps = dependents[name] || [];
+
+    var header = document.createElement('div');
+    header.className = 'detail-header';
+    var h1 = document.createElement('h1');
+    h1.textContent = r.name;
+    header.appendChild(h1);
+    var iri = document.createElement('div');
+    iri.className = 'detail-iri';
+    iri.textContent = r['@id'];
+    header.appendChild(iri);
+    var meta = document.createElement('div');
+    meta.className = 'detail-meta';
+    types.forEach(function(t) {
+      var badge = document.createElement('span');
+      badge.className = 'badge badge-type';
+      badge.style.borderColor = typeColor(t);
+      badge.style.color = typeColor(t);
+      badge.textContent = t;
+      meta.appendChild(badge);
+    });
+    if (r.element) {
+      var b = document.createElement('span');
+      b.className = 'badge badge-element';
+      b.textContent = r.element;
+      meta.appendChild(b);
+    }
+    if (r.scaling) {
+      var b2 = document.createElement('span');
+      b2.className = 'badge badge-scaling';
+      b2.textContent = r.scaling;
+      meta.appendChild(b2);
+    }
+    header.appendChild(meta);
+    detail.appendChild(header);
+
+    if (r.description) {
+      var sec = document.createElement('div');
+      sec.className = 'section';
+      var p = document.createElement('p');
+      p.style.cssText = 'color:var(--subtext0);font-size:0.85rem;line-height:1.5';
+      p.textContent = r.description;
+      sec.appendChild(p);
+      detail.appendChild(sec);
+    }
+
+    var skip = ['@id','@type','name','depends_on','description'];
+    var props = Object.entries(r).filter(function(e) { return skip.indexOf(e[0]) === -1; });
+    if (props.length) {
+      var sec = document.createElement('div');
+      sec.className = 'section';
+      var h3 = document.createElement('h3');
+      h3.textContent = 'Properties';
+      sec.appendChild(h3);
+      props.forEach(function(e) {
+        var row = document.createElement('div');
+        row.className = 'prop-row';
+        var lbl = document.createElement('span');
+        lbl.className = 'prop-label';
+        lbl.textContent = e[0].replace(/_/g, ' ');
+        var val = document.createElement('span');
+        val.className = 'prop-value';
+        val.textContent = typeof e[1] === 'object' ? JSON.stringify(e[1]) : e[1];
+        row.appendChild(lbl);
+        row.appendChild(val);
+        sec.appendChild(row);
+      });
+      detail.appendChild(sec);
+    }
+
+    function addDepSection(title, items) {
+      if (!items.length) return;
+      var sec = document.createElement('div');
+      sec.className = 'section';
+      var h3 = document.createElement('h3');
+      h3.textContent = title + ' (' + items.length + ')';
+      sec.appendChild(h3);
+      items.forEach(function(d) {
+        var link = document.createElement('a');
+        link.className = 'dep-link';
+        link.textContent = d;
+        link.addEventListener('click', function() { selectResource(d); });
+        sec.appendChild(link);
+      });
+      detail.appendChild(sec);
+    }
+    addDepSection('Depends On', deps);
+    addDepSection('Depended On By', revDeps);
+    renderContext(name, r, deps, revDeps);
+  }
+
+  function renderContext(name, r, deps, revDeps) {
+    var statsEl = document.getElementById('context-stats');
+    function bfs(startName, getNeighbors) {
+      var visited = new Set();
+      var queue = [startName];
+      while (queue.length) {
+        var n = queue.shift();
+        if (visited.has(n)) continue;
+        visited.add(n);
+        getNeighbors(n).forEach(function(d) { queue.push(d); });
+      }
+      visited.delete(startName);
+      return visited.size;
+    }
+    var transitiveDeps = bfs(name, function(n) { return dependents[n] || []; });
+    var transitiveAnc = bfs(name, function(n) { var res = byName[n]; return res ? (res.depends_on || []) : []; });
+
+    statsEl.innerHTML = '';
+    [['Primary Type', (r['@type']||[])[0] || '-'],
+     ['Element', r.element || '-'],
+     ['Direct Deps', deps.length],
+     ['Direct Dependents', revDeps.length],
+     ['Transitive Reach', transitiveDeps],
+     ['Transitive Ancestors', transitiveAnc]
+    ].forEach(function(s) {
+      var row = document.createElement('div');
+      row.className = 'stat-row';
+      var lbl = document.createElement('span');
+      lbl.className = 'stat-label';
+      lbl.textContent = s[0];
+      var val = document.createElement('span');
+      val.className = 'stat-value';
+      val.textContent = s[1];
+      if (s[0] === 'Transitive Reach') val.style.color = 'var(--peach)';
+      row.appendChild(lbl);
+      row.appendChild(val);
+      statsEl.appendChild(row);
+    });
+
+    var chain = document.getElementById('dep-chain');
+    chain.innerHTML = '';
+    var chainTitle = document.createElement('h2');
+    chainTitle.textContent = 'Dependency Chain';
+    chain.appendChild(chainTitle);
+    var tree = document.createElement('div');
+    tree.className = 'dep-tree';
+    var ancestors = new Set();
+    function collectAncestors(rname) {
+      var res = byName[rname];
+      if (!res) return;
+      (res.depends_on || []).forEach(function(d) {
+        if (!ancestors.has(d)) { ancestors.add(d); collectAncestors(d); }
+      });
+    }
+    collectAncestors(name);
+    var roots = graph.filter(function(r) { return !(r.depends_on || []).length; }).map(function(r) { return r.name; });
+    var relevantRoots = roots.filter(function(r) { return ancestors.has(r) || r === name; });
+    function renderChain(rname, depth) {
+      depth = depth || 0;
+      var item = document.createElement('div');
+      item.className = 'dep-tree-item';
+      item.style.paddingLeft = (depth * 0.8) + 'rem';
+      if (rname === name) {
+        var strong = document.createElement('strong');
+        strong.style.color = 'var(--blue)';
+        strong.textContent = rname;
+        item.appendChild(strong);
+      } else {
+        var a = document.createElement('a');
+        a.textContent = rname;
+        a.addEventListener('click', function() { selectResource(rname); });
+        item.appendChild(a);
+      }
+      tree.appendChild(item);
+      (dependents[rname] || []).filter(function(c) { return ancestors.has(c) || c === name; }).forEach(function(c) {
+        if (c !== rname) renderChain(c, depth + 1);
+      });
+    }
+    relevantRoots.forEach(function(r) { renderChain(r); });
+    if (!relevantRoots.length && name) {
+      var item = document.createElement('div');
+      item.className = 'dep-tree-item dep-tree-root';
+      var strong = document.createElement('strong');
+      strong.style.color = 'var(--blue)';
+      strong.textContent = name + ' (root)';
+      item.appendChild(strong);
+      tree.appendChild(item);
+    }
+    chain.appendChild(tree);
+    var jsonldSection = document.getElementById('jsonld-section');
+    jsonldSection.style.display = '';
+    document.getElementById('jsonld-raw').textContent = JSON.stringify(r, null, 2);
+  }
+
+  document.getElementById('search').addEventListener('input', function(e) { renderList(e.target.value); });
+  renderList();
+
+  var totalEdges = graph.reduce(function(sum, r) { return sum + (r.depends_on || []).length; }, 0);
+  var rootCount = graph.filter(function(r) { return !(r.depends_on || []).length; }).length;
+  var depCounts = {};
+  graph.forEach(function(r) {
+    (r.depends_on || []).forEach(function(d) { depCounts[d] = (depCounts[d] || 0) + 1; });
+  });
+  var depEntries = Object.entries(depCounts).sort(function(a,b) { return b[1] - a[1]; });
+  var topHub = depEntries[0];
+  var globalStats = document.getElementById('context-stats');
+  globalStats.innerHTML = '';
+  [['Total Entities', graph.length],
+   ['Total Edges', totalEdges],
+   ['Entity Types', Object.keys(byType).length],
+   ['Root Nodes', rootCount],
+   ['Top Hub', topHub ? topHub[0] + ' (' + topHub[1] + ')' : '-'],
+   ['JSON-LD Terms', Object.keys(context).length]
+  ].forEach(function(s) {
+    var row = document.createElement('div');
+    row.className = 'stat-row';
+    var lbl = document.createElement('span');
+    lbl.className = 'stat-label';
+    lbl.textContent = s[0];
+    var val = document.createElement('span');
+    val.className = 'stat-value';
+    val.textContent = s[1];
+    row.appendChild(lbl);
+    row.appendChild(val);
+    globalStats.appendChild(row);
+  });
+  var hash = window.location.hash.replace('#', '');
+  if (hash && byName[hash]) selectResource(hash);
+})();
+</script>
+</body>
+</html>

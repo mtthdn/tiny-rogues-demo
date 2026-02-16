@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data-Driven Development — From Schemas to the Semantic Web</title>
+  <style>
+    :root {
+      --base: #1e1e2e; --mantle: #181825; --surface0: #313244;
+      --surface1: #45475a; --surface2: #585b70;
+      --text: #cdd6f4; --subtext0: #a6adc8; --subtext1: #bac2de;
+      --overlay0: #6c7086;
+      --blue: #89b4fa; --lavender: #b4befe; --sapphire: #74c7ec;
+      --teal: #94e2d5; --green: #a6e3a1;
+      --yellow: #f9e2af; --peach: #fab387;
+      --red: #f38ba8; --mauve: #cba6f7;
+      --flamingo: #f2cdcd; --rosewater: #f5e0dc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+      background: var(--base); color: var(--text);
+      line-height: 1.8; font-size: 14px;
+    }
+    .container {
+      max-width: 780px; margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--surface1);
+    }
+    header h1 {
+      font-size: 22px; color: var(--blue); font-weight: 600;
+      line-height: 1.3; margin-bottom: 0.5rem;
+    }
+    header .subtitle {
+      font-size: 12px; color: var(--subtext0); font-style: italic;
+    }
+    header .nav-links {
+      margin-top: 0.8rem; font-size: 12px;
+    }
+    header .nav-links a {
+      color: var(--blue); text-decoration: none;
+      margin-right: 1rem;
+    }
+    header .nav-links a:hover { text-decoration: underline; }
+    h2 {
+      font-size: 18px; color: var(--lavender); font-weight: 600;
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--surface0);
+    }
+    h3 {
+      font-size: 15px; color: var(--sapphire); font-weight: 600;
+      margin: 1.8rem 0 0.8rem;
+    }
+    p { margin-bottom: 1rem; color: var(--subtext1); }
+    strong { color: var(--text); font-weight: 600; }
+    em { color: var(--subtext0); }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    blockquote {
+      border-left: 3px solid var(--mauve);
+      padding: 0.6rem 1rem;
+      margin: 1rem 0;
+      background: var(--mantle);
+      border-radius: 0 4px 4px 0;
+      color: var(--subtext1);
+    }
+    ul, ol {
+      margin: 0.8rem 0 1rem 1.5rem;
+      color: var(--subtext1);
+    }
+    li { margin-bottom: 0.3rem; }
+    pre {
+      background: var(--mantle);
+      border: 1px solid var(--surface0);
+      border-radius: 6px;
+      padding: 1rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    code {
+      font-family: inherit;
+      color: var(--green);
+    }
+    pre code { color: var(--text); }
+    .keyword { color: var(--mauve); }
+    .string { color: var(--green); }
+    .comment { color: var(--overlay0); }
+    .field { color: var(--blue); }
+    .type { color: var(--yellow); }
+    table {
+      width: 100%; border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 13px;
+    }
+    th {
+      text-align: left; padding: 0.5rem 0.8rem;
+      background: var(--surface0);
+      color: var(--lavender); font-weight: 600;
+      border-bottom: 1px solid var(--surface1);
+    }
+    td {
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px solid var(--surface0);
+      color: var(--subtext1);
+    }
+    .ascii-diagram {
+      background: var(--mantle);
+      border: 1px solid var(--surface0);
+      border-radius: 6px;
+      padding: 1rem;
+      margin: 1rem 0;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--sapphire);
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .tldr {
+      background: var(--surface0);
+      border: 1px solid var(--surface1);
+      border-radius: 6px;
+      padding: 1.2rem;
+      margin: 2rem 0;
+    }
+    .tldr h2 { margin-top: 0; border: none; padding: 0; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--surface0);
+      margin: 2.5rem 0;
+    }
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--surface0);
+      font-size: 11px;
+      color: var(--overlay0);
+      text-align: center;
+    }
+    .footer a { color: var(--overlay0); }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Data-Driven Development</h1>
+  <div class="subtitle">From "What Is a Schema?" to the Semantic Web &mdash; using Tiny Rogues modding and quicue.ca as running examples.</div>
+  <div class="nav-links">
+    <a href="index.html">Graph Explorer</a>
+    <a href="editor.html">Mod Editor</a>
+    <a href="explore.html">JSON-LD Navigator</a>
+    <a href="screenshots.html">Screenshots</a>
+  </div>
+</header>
+
+<!-- Section 1 -->
+<h2>1. What Is a Schema?</h2>
+
+<p>A schema is the <strong>shape</strong> of your data &mdash; not the data itself. It says what fields exist, what types they are, and what values are allowed.</p>
+
+<p>You already make schemas every time you define a data structure. You just don't call it that.</p>
+
+<p>Here's a Tiny Rogues weapon, the actual data:</p>
+
+<pre><code>{
+  <span class="field">"name"</span>: <span class="string">"Flameberge"</span>,
+  <span class="field">"category"</span>: <span class="string">"Melee"</span>,
+  <span class="field">"damage_type"</span>: <span class="string">"Fire"</span>,
+  <span class="field">"damage_min"</span>: <span class="type">130</span>,
+  <span class="field">"damage_max"</span>: <span class="type">180</span>,
+  <span class="field">"scaling"</span>: <span class="string">"B+/&mdash;/&mdash;"</span>,
+  <span class="field">"status_effect"</span>: <span class="string">"Burn"</span>,
+  <span class="field">"description"</span>: <span class="string">"Heavy fire sword. All fire damage is elemental and inflicts Burn."</span>
+}</code></pre>
+
+<p>And here's the <strong>schema</strong> &mdash; the shape that all weapons must follow:</p>
+
+<pre><code><span class="type">weapon</span>:
+  <span class="field">name</span>:          <span class="type">string</span>                                        <span class="comment"># required</span>
+  <span class="field">category</span>:      <span class="string">"Melee"</span> | <span class="string">"Ranged"</span> | <span class="string">"Magic"</span>                 <span class="comment"># one of three</span>
+  <span class="field">damage_type</span>:   <span class="string">"Fire"</span> | <span class="string">"Physical"</span> | <span class="string">"Cold"</span> | <span class="string">"Lightning"</span>   <span class="comment"># one of four</span>
+  <span class="field">damage_min</span>:    <span class="type">integer</span>                                       <span class="comment"># number</span>
+  <span class="field">damage_max</span>:    <span class="type">integer</span>                                       <span class="comment"># must be >= damage_min</span>
+  <span class="field">scaling</span>:       <span class="type">string</span>                                        <span class="comment"># "STR/DEX/INT" format</span>
+  <span class="field">status_effect</span>: <span class="string">"Burn"</span> | <span class="string">"Chill"</span> | <span class="string">"Shock"</span> | <span class="string">"Bleed"</span> | <span class="string">"None"</span>
+  <span class="field">description</span>:   <span class="type">string</span></code></pre>
+
+<p>The schema tells a machine (or another developer) three things:</p>
+
+<ol>
+  <li><strong>What fields exist</strong> &mdash; a weapon has <code>name</code>, <code>category</code>, <code>damage_min</code>, etc.</li>
+  <li><strong>What types they are</strong> &mdash; <code>name</code> is text, <code>damage_min</code> is a number, <code>category</code> is one of three specific strings</li>
+  <li><strong>What constraints apply</strong> &mdash; <code>damage_max</code> must be >= <code>damage_min</code>, <code>category</code> can only be Melee/Ranged/Magic</li>
+</ol>
+
+<p>The schema is the contract. The data is an instance of that contract.</p>
+
+<h3>Why This Matters for Modding</h3>
+
+<p>Without a schema, two mods that both touch the Flameberge might:</p>
+<ul>
+  <li>Mod A sets <code>damage_max: 200</code></li>
+  <li>Mod B sets <code>damage_max: "very high"</code></li>
+</ul>
+
+<p>One is a number. One is a string. Without a schema, you won't know this is broken until the game crashes. With a schema, the mod loader rejects Mod B immediately: "damage_max must be an integer, got string."</p>
+
+<p><strong>Schema = rules that catch mistakes before they become bugs.</strong></p>
+
+<hr>
+
+<!-- Section 2 -->
+<h2>2. From Flat Data to a Graph</h2>
+
+<p>Here's a fact about Tiny Rogues that a flat weapon list can't express:</p>
+
+<blockquote>The Flameberge inflicts <strong>Burn</strong>. Burn is a StatusEffect. The trait <strong>Fire and Blood</strong> lets Burn stack 3 times. The Pyromancer class starts with a weapon that inflicts Burn and has the Combustion trait that makes Burn explode.</blockquote>
+
+<p>This is a <strong>graph</strong> &mdash; things connected to other things:</p>
+
+<div class="ascii-diagram">Flameberge ──inflicts──→ Burn
+Pyromancy Orb ──inflicts──→ Burn
+Fire and Blood ──enhances──→ Burn
+Combustion ──enhances──→ Burn
+Pyromancer ──starts with──→ Pyromancy Orb
+Pyromancer ──has trait──→ Combustion
+Pyromancer ──has trait──→ Fire and Blood</div>
+
+<p>Click on "Burn" and you see <strong>everything that depends on it</strong>: 5 weapons, 3 traits, 4 enchantments, 3 classes. That's not a list &mdash; it's a web of dependencies.</p>
+
+<p>A schema for this graph needs to express not just "what fields does a weapon have" but "what can a weapon connect to." This is where <code>depends_on</code> comes in:</p>
+
+<pre><code>{
+  <span class="field">"name"</span>: <span class="string">"Flameberge"</span>,
+  <span class="field">"@type"</span>: [<span class="string">"Weapon"</span>, <span class="string">"Melee"</span>],
+  <span class="field">"damage"</span>: <span class="string">"130-180"</span>,
+  <span class="field">"status_effect"</span>: <span class="string">"Burn"</span>,
+  <span class="field">"depends_on"</span>: [<span class="string">"Burn"</span>]
+}</code></pre>
+
+<p>The <code>depends_on</code> field says: "this thing references that thing." Now a tool can follow the link from Flameberge &rarr; Burn &rarr; Fire and Blood &rarr; Pyromancer and show you the entire dependency chain.</p>
+
+<p><strong>This is the graph that the <a href="editor.html">editor</a> visualizes.</strong> Every node is an entity. Every line is a <code>depends_on</code> relationship. Click a node, see everything connected.</p>
+
+<hr>
+
+<!-- Section 3 -->
+<h2>3. What Is the Open Web?</h2>
+
+<p>The web runs on three ideas:</p>
+
+<ol>
+  <li><strong>URIs</strong> (Uniform Resource Identifiers) &mdash; every thing gets a unique address</li>
+  <li><strong>HTTP</strong> &mdash; you can ask for any URI and get something back</li>
+  <li><strong>Links</strong> &mdash; things point to other things</li>
+</ol>
+
+<p>When you visit <code>https://quique.ca/tiny-rogues-demo/editor.html</code>, you're using all three: the URI identifies the page, HTTP fetches it, and the page contains links to other pages.</p>
+
+<p>The key insight: <strong>URIs don't have to point to web pages.</strong> They can identify <em>anything</em> &mdash; a weapon, a status effect, a class, a concept. The URI <code>https://quique.ca/tiny-rogues-demo/vocab/burn</code> doesn't have to be a page you visit. It's a <strong>name</strong> &mdash; a globally unique identifier for the concept "Burn status effect in Tiny Rogues."</p>
+
+<p>This is the foundation of everything that follows.</p>
+
+<hr>
+
+<!-- Section 4 -->
+<h2>4. What Is Linked Data?</h2>
+
+<p>Linked Data is the idea that <strong>data should work like the web</strong>: every thing has a URI, things link to other things, and you can follow the links.</p>
+
+<p>Here's the Tiny Rogues mod data in <strong>JSON-LD</strong> (JSON for Linked Data):</p>
+
+<pre><code>{
+  <span class="field">"@context"</span>: {
+    <span class="field">"game"</span>: <span class="string">"https://quique.ca/tiny-rogues-demo/vocab/"</span>,
+    <span class="field">"name"</span>: <span class="string">"game:name"</span>,
+    <span class="field">"depends_on"</span>: { <span class="field">"@id"</span>: <span class="string">"game:dependsOn"</span>, <span class="field">"@type"</span>: <span class="string">"@id"</span> }
+  },
+  <span class="field">"@graph"</span>: [
+    {
+      <span class="field">"@id"</span>: <span class="string">"game:flameberge"</span>,
+      <span class="field">"@type"</span>: [<span class="string">"Weapon"</span>, <span class="string">"Melee"</span>],
+      <span class="field">"name"</span>: <span class="string">"Flameberge"</span>,
+      <span class="field">"damage"</span>: <span class="string">"130-180"</span>,
+      <span class="field">"depends_on"</span>: [<span class="string">"Burn"</span>]
+    },
+    {
+      <span class="field">"@id"</span>: <span class="string">"game:burn"</span>,
+      <span class="field">"@type"</span>: [<span class="string">"StatusEffect"</span>, <span class="string">"DoT"</span>],
+      <span class="field">"name"</span>: <span class="string">"Burn"</span>,
+      <span class="field">"element"</span>: <span class="string">"Fire"</span>,
+      <span class="field">"tick_damage"</span>: <span class="string">"90-125"</span>
+    }
+  ]
+}</code></pre>
+
+<p>Four special fields make this Linked Data:</p>
+
+<table>
+  <tr><th>Field</th><th>What it does</th><th>Example</th></tr>
+  <tr>
+    <td><code>@context</code></td>
+    <td>Maps short names to full URIs</td>
+    <td><code>"game"</code> &rarr; <code>"https://quique.ca/tiny-rogues-demo/vocab/"</code></td>
+  </tr>
+  <tr>
+    <td><code>@id</code></td>
+    <td>Gives this thing a globally unique name</td>
+    <td><code>"game:flameberge"</code> &rarr; the full URI</td>
+  </tr>
+  <tr>
+    <td><code>@type</code></td>
+    <td>Says what kind of thing this is</td>
+    <td><code>["Weapon", "Melee"]</code></td>
+  </tr>
+  <tr>
+    <td><code>@graph</code></td>
+    <td>Contains a list of connected things</td>
+    <td>The whole dataset</td>
+  </tr>
+</table>
+
+<p><strong>Why this matters:</strong></p>
+
+<ul>
+  <li><code>@id</code> means any tool anywhere can refer to the Flameberge unambiguously &mdash; there's only one <code>game:flameberge</code> in the universe</li>
+  <li><code>@type</code> means a tool can filter "show me all Weapons" without knowing anything else about Tiny Rogues</li>
+  <li><code>@context</code> means you can use short names (<code>"Burn"</code>) but machines resolve them to full URIs</li>
+  <li><code>depends_on</code> with <code>"@type": "@id"</code> means the values are <strong>links</strong>, not just strings</li>
+</ul>
+
+<p><strong>Linked Data = data with web-style links built in. Any tool that understands JSON-LD can navigate your data like a browser navigates web pages.</strong></p>
+
+<hr>
+
+<!-- Section 5 -->
+<h2>5. What Is the Semantic Web?</h2>
+
+<p>The Semantic Web is Linked Data scaled up: instead of every game inventing its own vocabulary (<code>damage_min</code>, <code>tick_speed</code>, <code>status_effect</code>), communities agree on <strong>shared vocabularies</strong> so data from different sources can interoperate.</p>
+
+<p>Real-world shared vocabularies:</p>
+
+<table>
+  <tr><th>Vocabulary</th><th>What it describes</th><th>Used by</th></tr>
+  <tr><td><strong>Schema.org</strong></td><td>Products, events, people, places</td><td>Google, Bing, every website with structured data</td></tr>
+  <tr><td><strong>PROV-O</strong></td><td>Who made what, when, how</td><td>Scientific datasets, audit trails</td></tr>
+  <tr><td><strong>DCAT</strong></td><td>Datasets and catalogs</td><td>Government open data portals worldwide</td></tr>
+  <tr><td><strong>Dublin Core</strong></td><td>Title, creator, date, subject</td><td>Every library catalog on earth</td></tr>
+</table>
+
+<p>The pattern: instead of inventing <code>"author"</code>, <code>"creator"</code>, <code>"made_by"</code>, and <code>"written_by"</code> in four different games, everyone agrees to use <code>dcterms:creator</code>. Now a tool that understands Dublin Core can read metadata from <em>any</em> source that uses it.</p>
+
+<p>For game modding, the Semantic Web pattern means:</p>
+
+<ol>
+  <li><strong>Tiny Rogues</strong> defines <code>game:dependsOn</code> for its dependency relationships</li>
+  <li><strong>quicue.ca</strong> defines <code>viz:node</code> and <code>viz:edge</code> for graph visualization</li>
+  <li>A mod tool that understands both vocabularies can take Tiny Rogues data, follow the <code>depends_on</code> links, and render it as a graph &mdash; <strong>without knowing anything specific about Tiny Rogues</strong></li>
+</ol>
+
+<p>The tool doesn't need a Tiny Rogues plugin. It just needs to understand the vocabularies.</p>
+
+<hr>
+
+<!-- Section 6 -->
+<h2>6. How quicue.ca Ties It All Together</h2>
+
+<h3>Layer 1: CUE Schemas (the rules)</h3>
+
+<pre><code><span class="comment">// The shape of a visualization node</span>
+<span class="keyword">#VizNode</span>: {
+    <span class="field">id</span>:         <span class="type">string</span>
+    <span class="field">name</span>:       <span class="type">string</span>
+    <span class="field">types</span>:      [...<span class="type">string</span>]     <span class="comment">// what kind of thing</span>
+    <span class="field">depth</span>:      <span class="type">int</span>             <span class="comment">// how deep in the dependency tree</span>
+    <span class="field">dependents</span>: <span class="type">int</span>             <span class="comment">// how many things depend on this</span>
+}
+
+<span class="comment">// The shape of an edge (dependency)</span>
+<span class="keyword">#VizEdge</span>: {
+    <span class="field">source</span>: <span class="type">string</span>   <span class="comment">// thing that is depended ON</span>
+    <span class="field">target</span>: <span class="type">string</span>   <span class="comment">// thing that DEPENDS on source</span>
+}
+
+<span class="comment">// The complete visualization payload</span>
+<span class="keyword">#VizData</span>: {
+    <span class="field">nodes</span>:   [...<span class="keyword">#VizNode</span>]
+    <span class="field">edges</span>:   [...<span class="keyword">#VizEdge</span>]
+    <span class="field">metrics</span>: { <span class="field">total</span>: <span class="type">int</span>, <span class="field">maxDepth</span>: <span class="type">int</span>, <span class="field">edges</span>: <span class="type">int</span> }
+}</code></pre>
+
+<p>This is the schema for <strong>any graph visualization</strong>. It doesn't know about weapons or status effects. It knows about nodes, edges, depth, and dependency counts. Any dataset that can express "things that depend on other things" can be visualized with this schema.</p>
+
+<h3>Layer 2: JSON-LD Data (the content)</h3>
+
+<p>The Tiny Rogues mod data (shown above) is JSON-LD with <code>@type</code>, <code>@id</code>, and <code>depends_on</code>. The quicue.ca tools read this data and produce a <code>#VizData</code> payload:</p>
+
+<pre><code>{
+  <span class="field">"nodes"</span>: [
+    { <span class="field">"id"</span>: <span class="string">"burn"</span>, <span class="field">"name"</span>: <span class="string">"Burn"</span>, <span class="field">"types"</span>: [<span class="string">"StatusEffect"</span>, <span class="string">"DoT"</span>], <span class="field">"depth"</span>: <span class="type">0</span>, <span class="field">"dependents"</span>: <span class="type">12</span> },
+    { <span class="field">"id"</span>: <span class="string">"flameberge"</span>, <span class="field">"name"</span>: <span class="string">"Flameberge"</span>, <span class="field">"types"</span>: [<span class="string">"Weapon"</span>, <span class="string">"Melee"</span>], <span class="field">"depth"</span>: <span class="type">1</span>, <span class="field">"dependents"</span>: <span class="type">0</span> }
+  ],
+  <span class="field">"edges"</span>: [
+    { <span class="field">"source"</span>: <span class="string">"burn"</span>, <span class="field">"target"</span>: <span class="string">"flameberge"</span> }
+  ],
+  <span class="field">"metrics"</span>: { <span class="field">"total"</span>: <span class="type">52</span>, <span class="field">"maxDepth"</span>: <span class="type">3</span>, <span class="field">"edges"</span>: <span class="type">87</span> }
+}</code></pre>
+
+<h3>Layer 3: D3.js Visualization (the display)</h3>
+
+<p>The <code>#VizData</code> JSON feeds directly into a D3.js force-directed graph. Nodes are circles. Edges are lines. Click a node, highlight its dependencies. Filter by type. Search by name.</p>
+
+<p><strong>The key: the visualization tool knows nothing about Tiny Rogues.</strong> It consumes <code>#VizData</code> &mdash; nodes and edges. You could feed it infrastructure dependencies, university course prerequisites, recipe ingredient trees, or any other graph. Same tool, different data.</p>
+
+<h3>Layer 4: Constraint Validation (the safety net)</h3>
+
+<p>When two mods both modify the same entity, the constraint engine checks:</p>
+
+<ol>
+  <li><strong>Type compatibility</strong>: Both mods agree on <code>@type</code>? Proceed.</li>
+  <li><strong>Field merging</strong>: Non-overlapping fields merge cleanly.</li>
+  <li><strong>Conflict detection</strong>: Same field, different values? Specific error: "Mod A sets Flameberge.damage to '130-180', Mod B sets it to '200-250'. Resolve conflict."</li>
+</ol>
+
+<p>No silent breakage. No load-order bugs. If two mods are compatible, they merge. If they conflict, you get a clear error pointing at the exact field on the exact entity.</p>
+
+<p>This is what CUE's <strong>unification</strong> does: <code>{a: 1} &amp; {b: 2} = {a: 1, b: 2}</code> (merge). <code>{a: 1} &amp; {a: 2} = error</code> (conflict). The schema defines what can merge and what can't.</p>
+
+<hr>
+
+<!-- Section 7 -->
+<h2>7. The Whole Picture</h2>
+
+<div class="ascii-diagram">Game Data (XML, JSON, spreadsheets)
+        &darr; import
+Schema Validation (CUE: type-check every field)
+        &darr; validated
+Linked Data (JSON-LD: @id, @type, depends_on)
+        &darr; transform
+Visualization Contract (#VizData: nodes + edges)
+        &darr; render
+Interactive Graph (D3.js: click, explore, filter)</div>
+
+<p>Each layer is independent:</p>
+
+<ul>
+  <li><strong>Change the game?</strong> Swap the schema and data. Visualization still works.</li>
+  <li><strong>Change the visualization?</strong> Swap the renderer. Data still validates.</li>
+  <li><strong>Add a mod?</strong> Merge it with the base data. Conflicts caught automatically.</li>
+  <li><strong>Share with another tool?</strong> It reads JSON-LD natively. No export plugin needed.</li>
+</ul>
+
+<h3>What Ruby Dev's XML Becomes</h3>
+
+<p>If Tiny Rogues exports weapon data as XML:</p>
+
+<pre><code><span class="keyword">&lt;weapon</span> <span class="field">name</span>=<span class="string">"Flameberge"</span> <span class="field">category</span>=<span class="string">"Melee"</span> <span class="field">element</span>=<span class="string">"Fire"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;damage</span> <span class="field">min</span>=<span class="string">"130"</span> <span class="field">max</span>=<span class="string">"180"</span><span class="keyword">/&gt;</span>
+  <span class="keyword">&lt;scaling</span> <span class="field">str</span>=<span class="string">"B+"</span> <span class="field">dex</span>=<span class="string">"-"</span> <span class="field">int</span>=<span class="string">"-"</span><span class="keyword">/&gt;</span>
+  <span class="keyword">&lt;status_effect&gt;</span>Burn<span class="keyword">&lt;/status_effect&gt;</span>
+<span class="keyword">&lt;/weapon&gt;</span></code></pre>
+
+<p>The pipeline reads it, validates it against the weapon schema, converts it to JSON-LD with <code>@id</code> and <code>depends_on</code>, runs the constraint engine to merge with mod data, and outputs <code>#VizData</code> for the interactive graph.</p>
+
+<p>The format doesn't matter. XML, JSON, YAML, CSV &mdash; it all flows through the same pipeline. The <strong>schema</strong> is what makes it work, because the schema is the contract that every format must satisfy.</p>
+
+<hr>
+
+<!-- TL;DR -->
+<div class="tldr">
+<h2>TL;DR</h2>
+<table>
+  <tr><th>Concept</th><th>One-liner</th></tr>
+  <tr><td><strong>Schema</strong></td><td>The shape your data must follow &mdash; fields, types, constraints</td></tr>
+  <tr><td><strong>Graph</strong></td><td>Things connected to other things via relationships</td></tr>
+  <tr><td><strong>Open Web</strong></td><td>Every thing gets a URI, things link to other things</td></tr>
+  <tr><td><strong>Linked Data</strong></td><td>Data with web-style links built in (JSON-LD: @id, @type, @context)</td></tr>
+  <tr><td><strong>Semantic Web</strong></td><td>Shared vocabularies so different datasets can interoperate</td></tr>
+  <tr><td><strong>CUE</strong></td><td>A language that defines schemas AND validates data AND merges cleanly</td></tr>
+  <tr><td><strong>quicue.ca</strong></td><td>CUE schemas + JSON-LD + D3.js visualization = data-driven everything</td></tr>
+</table>
+</div>
+
+<p>A schema is just the rules. Once you have the rules, machines can validate, merge, visualize, and reason about your data &mdash; whether it's game mods, infrastructure, or knowledge graphs. Same tools, different schemas.</p>
+
+<div class="footer">
+  <a href="index.html">Tiny Rogues Data Graph</a> &middot; Built with <a href="https://quicue.ca">quicue.ca</a>
+</div>
+
+</div>
+</body>
+</html>

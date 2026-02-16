@@ -1,0 +1,1508 @@
+[
+  {
+    "name": "Bleed Bleed Damage",
+    "category": "Ailments",
+    "description": "Bleed Bleed Damage: 105 to 150 Physical Damage Scaling:  0/40\u00a0: 0/40\u00a0: 0/40 Maximum Stacks: 1 Tick Speed: 2 Duration: 8 seconds [Damage Over Time] [Ailment] [Tick]",
+    "source": "Category:Bleed"
+  },
+  {
+    "name": "Burn Burn Damage",
+    "category": "Ailments",
+    "description": "Burn Burn Damage: 90 to 125 Fire Damage Scaling:  0/40\u00a0: 0/40\u00a0: 0/40 Maximum Stacks: 1 Tick Speed: 2 Duration: 8 seconds [Damage Over Time] [Ailment] [Elemental] [Tick]",
+    "source": "Category:Burn"
+  },
+  {
+    "name": "Chill Chill",
+    "category": "Ailments",
+    "description": "Chill Chill -20% Movement Speed Duration: 8 seconds Max Stacks: 1 [Ailment]",
+    "source": "Category:Chill"
+  },
+  {
+    "name": "Corruption Corruption",
+    "category": "Ailments",
+    "description": "Corruption Corruption x1.25 Dark Damage Taken Duration: 4 seconds Max Stacks: 1 [Ailment]",
+    "source": "Category:Corruption"
+  },
+  {
+    "name": "Diffusion Diffusion",
+    "category": "Ailments",
+    "description": "Diffusion Diffusion is a stackable energy ailment that consumes all stacks to deal 100% of accumulated energy infliction damage as energy damage upon reaching 4 stacks. A stack lasts 4 seconds.",
+    "source": "Category:Diffusion"
+  },
+  {
+    "name": "Disintegration Red Disintegration",
+    "category": "Ailments",
+    "description": "Disintegration Red Disintegration is a stackable energy damage over time ailment that deals 25% of energy infliction damage as energy damage 2 times per second. Stacks last 4 seconds decaying at the same time. Stacks up to 5 times.",
+    "source": "Category:Disintegration"
+  },
+  {
+    "name": "Frostbite Frostbite",
+    "category": "Ailments",
+    "description": "Frostbite Frostbite x1.25 Cold Damage Taken Duration: 4 seconds Max Stacks: 1 [Ailment]",
+    "source": "Category:Frostbite"
+  },
+  {
+    "name": "Glitter Glitter",
+    "category": "Ailments",
+    "description": "Glitter Glitter +5% Damage Taken from Lucky Hits  Duration: 4 seconds Max Stacks: 10 [Ailment]",
+    "source": "Category:Glitter"
+  },
+  {
+    "name": "Gloom Gloom",
+    "category": "Ailments",
+    "description": "Gloom Gloom +10% Damage Taken from Cursed Hits  Duration: 4 seconds Max Stacks: 10 [Ailment]",
+    "source": "Category:Gloom"
+  },
+  {
+    "name": "Judgement Judgement",
+    "category": "Ailments",
+    "description": "Judgement Judgement x1.25 Radiant Damage Taken Duration: 4 seconds Max Stacks: 1 [Ailment]",
+    "source": "Category:Judgement"
+  },
+  {
+    "name": "Necrosis Necrosis Damage",
+    "category": "Ailments",
+    "description": "Necrosis Necrosis Damage: 150 to 225 Necrotic Damage Scaling:  0/40\u00a0: 0/40\u00a0: 0/40 Maximum Stacks: 1 Tick Speed: 2 Duration: 8 seconds [Damage Over Time] [Ailment] [Tick]",
+    "source": "Category:Necrosis"
+  },
+  {
+    "name": "Nettles Nettles Deals",
+    "category": "Ailments",
+    "description": "Nettles Nettles Deals 5 to 10 Nature Damage when target takes damage Damage Scaling:  0/40\u00a0: 0/40\u00a0: 0/40 Maximum Stacks: 5 Duration: 4 seconds [Ailment]",
+    "source": "Category:Nettles"
+  },
+  {
+    "name": "Poison Poison Damage",
+    "category": "Ailments",
+    "description": "Poison Poison Damage: 10 to 20 Poison Damage Scaling:  0/40\u00a0: 0/40\u00a0: 0/40 Maximum Stacks: infinite Tick Speed: 2 Duration: 4 seconds [Damage Over Time] [Ailment] [Elemental] [Tick]",
+    "source": "Category:Poison"
+  },
+  {
+    "name": "Rupture Rupture",
+    "category": "Ailments",
+    "description": "Rupture Rupture x1.25 Physical Damage Taken Duration: 4 seconds Max Stacks: 1 [Ailment]",
+    "source": "Category:Rupture"
+  },
+  {
+    "name": "Scorch Scorch",
+    "category": "Ailments",
+    "description": "Scorch Scorch x1.25 Fire Damage Taken Duration: 4 seconds Max Stacks: 1 [Ailment]",
+    "source": "Category:Scorch"
+  },
+  {
+    "name": "Shock Shock",
+    "category": "Ailments",
+    "description": "Shock Shock x1.04 Damage Taken Duration: 4 seconds Maximum Stacks: 5 [Ailment]",
+    "source": "Category:Shock"
+  },
+  {
+    "name": "Toxic Toxic",
+    "category": "Ailments",
+    "description": "Toxic Toxic x1.25 Poison Damage Taken Duration: 4 seconds Max Stacks: 1 [Ailment]",
+    "source": "Category:Toxic"
+  },
+  {
+    "name": "Zap Zap",
+    "category": "Ailments",
+    "description": "Zap Zap x1.25 Lightning Damage Taken Duration: 4 seconds Max Stacks: 1 [Ailment]",
+    "source": "Category:Zap"
+  },
+  {
+    "name": "Blue Spice Blue Spice",
+    "category": "Infusions",
+    "description": "Blue Spice Blue Spice is a cold infusion buff that permanently grants 15 to 35 cold damage.",
+    "source": "Blue Spice"
+  },
+  {
+    "name": "Cold Infusion Temporary Fresh Crystal Pine Resin",
+    "category": "Infusions",
+    "description": "Cold Infusion Temporary Fresh Crystal Pine Resin is a cold infusion buff that grants 45 to 60 cold damage and lasts 20 rooms. Crystal Pine Resin is a cold infusion buff that grants 15 to 35 cold damage and lasts 10 rooms.",
+    "source": "Fresh Crystal Pine Resin  Crystal Pine Resin"
+  },
+  {
+    "name": "Red Spice Red Spice",
+    "category": "Infusions",
+    "description": "Red Spice Red Spice is a fire infusion buff that permanently grants 10 to 40 fire damage.",
+    "source": "Red Spice"
+  },
+  {
+    "name": "Fire Infusion Temporary Fresh Charcoal Pine Resin",
+    "category": "Infusions",
+    "description": "Fire Infusion Temporary Fresh Charcoal Pine Resin is a fire infusion buff that grants 30 to 70 fire damage and lasts 20 rooms. Charcoal Pine Resin is a fire infusion buff that grants 10 to 40 fire damage and lasts 10 rooms.",
+    "source": "Fresh Charcoal Pine Resin  Charcoal Pine Resin"
+  },
+  {
+    "name": "Yellow Spice Yellow Spice",
+    "category": "Infusions",
+    "description": "Yellow Spice Yellow Spice is a lightning infusion buff that permanently grants 5 to 50 lightning damage.",
+    "source": "Yellow Spice"
+  },
+  {
+    "name": "Lightning Infusion Temporary Fresh Gold Pine Resin",
+    "category": "Infusions",
+    "description": "Lightning Infusion Temporary Fresh Gold Pine Resin is a lightning infusion buff that grants 5 to 100 lightning damage and lasts 20 rooms. Gold Pine Resin is a lightning infusion buff that grants 5 to 50 lightning damage and lasts 10 rooms.",
+    "source": "Fresh Gold Pine Resin  Gold Pine Resin"
+  },
+  {
+    "name": "Maple Pine Resin Maple Pine Resin",
+    "category": "Infusions",
+    "description": "Maple Pine Resin Maple Pine Resin is a nature infusion buff that grants 15 to 35 nature damage and lasts 10 rooms.",
+    "source": "Maple Pine Resin"
+  },
+  {
+    "name": "Minor Cold Infusion",
+    "category": "Infusions",
+    "description": "Minor Cold Infusion +10 to 15 All cold damage is elemental damage and inflicts Chill.",
+    "source": "Mystical Wrappings"
+  },
+  {
+    "name": "Minor Fire Infusion",
+    "category": "Infusions",
+    "description": "Minor Fire Infusion +5 to 20 All fire damage is elemental damage and inflicts Burn.",
+    "source": "Mystical Wrappings"
+  },
+  {
+    "name": "Minor Lightning Infusion",
+    "category": "Infusions",
+    "description": "Minor Lightning Infusion +5 to 30 All lightning damage is elemental damage and inflicts Shock.",
+    "source": "Mystical Wrappings"
+  },
+  {
+    "name": "Minor Poison Infusion",
+    "category": "Infusions",
+    "description": "Minor Poison Infusion +10 to 15 All poison damage is elemental damage and inflicts Poison.",
+    "source": "Mystical Wrappings"
+  },
+  {
+    "name": "Green Spice Green Spice",
+    "category": "Infusions",
+    "description": "Green Spice Green Spice is a poison infusion buff that permanently grants 20 to 30 poison damage.",
+    "source": "Green Spice"
+  },
+  {
+    "name": "Spore Pine Resin Spore Pine Resin",
+    "category": "Infusions",
+    "description": "Spore Pine Resin Spore Pine Resin is a poison infusion buff that grants 25 to 30 poison damage and lasts 10 rooms.",
+    "source": "Spore Pine Resin"
+  },
+  {
+    "name": "Holy Water Holy Water",
+    "category": "Infusions",
+    "description": "Holy Water Holy Water is a radiant infusion buff that grants 25 to 50 radiant damage and lasts 10 rooms.",
+    "source": "Holy Water"
+  },
+  {
+    "name": "Fairy Pine Resin Fairy Pine Resin",
+    "category": "Infusions",
+    "description": "Fairy Pine Resin Fairy Pine Resin is a infusion buff that makes weapons drain 0.2 mana and lasts 10 rooms.",
+    "source": "Fairy Pine Resin"
+  },
+  {
+    "name": "Dexterity Growth Dexterity Growth",
+    "category": "Consumables",
+    "description": "Dexterity Growth Dexterity Growth is a status effect that uses a stack to increase dexterity gained from a pickup by 1.",
+    "source": "Calcium"
+  },
+  {
+    "name": "Fish Bones Fish Bones Power",
+    "category": "Consumables",
+    "description": "Fish Bones Fish Bones Power is a buff that grants 20% increased damage dealt to bosses and lasts 1 room.",
+    "source": "Fish Bones"
+  },
+  {
+    "name": "Frost Flounder Frost Flounder Power",
+    "category": "Consumables",
+    "description": "Frost Flounder Frost Flounder Power is a buff that grants 20% increased cold damage and lasts 1 room.",
+    "source": "Frost Flounder"
+  },
+  {
+    "name": "Oceans Bounty Oceans Bounty",
+    "category": "Consumables",
+    "description": "Oceans Bounty Oceans Bounty is a buff that grants 10% increased damage, 5% increased attack speed and  5% increased movement speed and lasts  20 rooms.",
+    "source": "Tuna  Anchovy"
+  },
+  {
+    "name": "Strength Growth Strength Growth",
+    "category": "Consumables",
+    "description": "Strength Growth Strength Growth is a status effect that uses a stack to increase strength gained from a pickup by 1.",
+    "source": "Protein"
+  },
+  {
+    "name": "Rainbow Trout Rainbow Trout Power",
+    "category": "Consumables",
+    "description": "Rainbow Trout Rainbow Trout Power is a buff that grants 20% increased elemental damage and lasts 1 room.",
+    "source": "Rainbow Trout"
+  },
+  {
+    "name": "Shellfish Surge Shellfish Surge",
+    "category": "Consumables",
+    "description": "Shellfish Surge Shellfish Surge is a buff that grants +5% critical hit chance, 15% increased stamina recovery speed and 20% increased mana regeneration rate and lasts 20 rooms.",
+    "source": "Lobster Crab"
+  },
+  {
+    "name": "Summoned Storm Summoned Storm",
+    "category": "Consumables",
+    "description": "Summoned Storm Summoned Storm is a status effect that periodically triggers a lightning strike that deals 5 to 500 lightning damage 4 times per second. Lasts 10 rooms.",
+    "source": "Storm In A Bottle"
+  },
+  {
+    "name": "Swordfish Swordfish Power",
+    "category": "Consumables",
+    "description": "Swordfish Swordfish Power is a buff that grants 20% increased physical damage and lasts 1 room.",
+    "source": "Swordfish"
+  },
+  {
+    "name": "Intelligence Growth Intelligence Growth",
+    "category": "Consumables",
+    "description": "Intelligence Growth Intelligence Growth is a status effect that uses a stack to increase intelligence gained from a pickup by 1.",
+    "source": "Zinc"
+  },
+  {
+    "name": "Agility Potion Agility Potion",
+    "category": "Potions",
+    "description": "Agility Potion Agility Potion is a potion buff that increases movement speed by 20% and lasts 10 rooms.",
+    "source": "Agility Potion"
+  },
+  {
+    "name": "Berserker Potion Berserker Potion",
+    "category": "Potions",
+    "description": "Berserker Potion Berserker Potion is a potion buff that increases attack speed by 10% and lasts 10 rooms. Tooltip in-game is currently bugged v0.2.3",
+    "source": "Berserker Potion"
+  },
+  {
+    "name": "Gulp Potion Gulp Potion",
+    "category": "Potions",
+    "description": "Gulp Potion Gulp Potion is a potion buff that grants 50% faster flask drink speed and lasts 10 rooms.",
+    "source": "Gulp Potion"
+  },
+  {
+    "name": "Lethality Potion Lethality Potion",
+    "category": "Potions",
+    "description": "Lethality Potion Lethality Potion is a potion buff that grants 75% critical hit multiplier and lasts 10 rooms.",
+    "source": "Lethality Potion"
+  },
+  {
+    "name": "Luck Potion Luck Potion",
+    "category": "Potions",
+    "description": "Luck Potion Luck Potion is a potion buff that grants +1 luck and lasts 10 rooms.",
+    "source": "Luck Potion"
+  },
+  {
+    "name": "Mana Potion Mana Potion",
+    "category": "Potions",
+    "description": "Mana Potion Mana Potion is a potion buff that grants +15% mana drain refund and lasts 10 rooms. Mana Elixir is a potion buff that grants +20% mana drain refund and lasts forever. (Uses the same icon)",
+    "source": "Mana Potion Mana Elixir"
+  },
+  {
+    "name": "Mundane Potion Mundane Potion",
+    "category": "Potions",
+    "description": "Mundane Potion Mundane Potion is a potion buff that does nothing and lasts 10 rooms.",
+    "source": "Mundane Potion"
+  },
+  {
+    "name": "Power Potion Power Potion",
+    "category": "Potions",
+    "description": "Power Potion Power Potion is a potion buff that grants +20 power and lasts 10 rooms.",
+    "source": "Power Potion"
+  },
+  {
+    "name": "Retaliation Potion Retaliation Potion",
+    "category": "Potions",
+    "description": "Retaliation Potion Retaliation Potion is a potion buff that grants +4 seconds of invincibility after taking damage and lasts 10 rooms.",
+    "source": "Retaliation Potion"
+  },
+  {
+    "name": "Stamina Potion Stamina Potion",
+    "category": "Potions",
+    "description": "Stamina Potion Stamina Potion is a potion buff that grants 30% faster stamina recovery rate and lasts 10 rooms.",
+    "source": "Stamina Potion"
+  },
+  {
+    "name": "Recovery Potion Recovery Potion",
+    "category": "Potions",
+    "description": "Recovery Potion Recovery Potion is a potion buff that recovers 1/2 heart on completing a combat encounter. Lasts 10 rooms.",
+    "source": "Recovery Potion"
+  },
+  {
+    "name": "Inferno Potion Inferno Potion",
+    "category": "Potions",
+    "description": "Inferno Potion Inferno Potion is a potion buff that grants an inferno orbital that deals fire damage and inflicts burn. Lasts 10 rooms. Icon in-game is currently bugged and shows the potion where the buff should be v0.2.3",
+    "source": "Inferno Potion"
+  },
+  {
+    "name": "Unknown",
+    "category": "Potions",
+    "description": "Unknown 32 May be the intended icon for Retaliation Potion?",
+    "source": ""
+  },
+  {
+    "name": "Bartering Potion Bartering Potion",
+    "category": "Potions",
+    "description": "Bartering Potion Bartering Potion is a potion buff that adds +3 gold to resell value of items and lasts 10 rooms. Icon in-game is currently bugged and shows the potion where the buff should be v0.2.3",
+    "source": "Bartering Potion"
+  },
+  {
+    "name": "Wrath Potion Wrath Potion",
+    "category": "Potions",
+    "description": "Wrath Potion Wrath Potion is a potion buff that grants +10% critical hit chance and lasts 10 rooms.",
+    "source": "Wrath Potion"
+  },
+  {
+    "name": "Beer Beer",
+    "category": "Booze",
+    "description": "Beer Beer is a stackable booze buff that grants 10% increased damage and adds +1 tipsiness per stack.",
+    "source": "Beer"
+  },
+  {
+    "name": "Champagne Champagne",
+    "category": "Booze",
+    "description": "Champagne Champagne is a stackable booze buff that grants 10% increased companion damage per stack.",
+    "source": "Champagne"
+  },
+  {
+    "name": "Mead Mead",
+    "category": "Booze",
+    "description": "Mead Mead is a stackable booze buff that grants 10% increased melee attack speed and adds +1 tipsiness per stack.",
+    "source": "Mead"
+  },
+  {
+    "name": "Rum Rum",
+    "category": "Booze",
+    "description": "Rum Rum is a stackable booze buff that grants +5% lucky hit chance and adds +1 tipsiness per stack.",
+    "source": "Rum"
+  },
+  {
+    "name": "Sake Sake",
+    "category": "Booze",
+    "description": "Sake Sake is a stackable booze buff that grants +5% melee critical strike chance and adds +1 tipsiness per stack.",
+    "source": "Sake"
+  },
+  {
+    "name": "Tequila Tequila",
+    "category": "Booze",
+    "description": "Tequila Tequila is a stackable booze buff that grants +25% critical hit multiplier and adds +1 tipsiness per stack.",
+    "source": "Tequila"
+  },
+  {
+    "name": "Whiskey Whiskey",
+    "category": "Booze",
+    "description": "Whiskey Whiskey is a stackable booze buff that grants 5% increased attack speed and adds +1 tipsiness per stack.",
+    "source": "Whiskey"
+  },
+  {
+    "name": "Wine Wine",
+    "category": "Booze",
+    "description": "Wine Wine is a stackable booze buff that grants 25% increased damage over time and adds +1 tipsiness per stack.",
+    "source": "Wine"
+  },
+  {
+    "name": "Tipsiness Displays",
+    "category": "Booze",
+    "description": "Tipsiness Displays the amount of booze buffs you can have active at once, with the default maximum being 3 stacks. You gain 1 Tipsiness stack for each Booze item you drink, with stacks lasting 10 rooms. When a stack expires, the oldest booze buff is removed. If you go over your maximum Tipsiness, th",
+    "source": "Drinking any Booze item."
+  },
+  {
+    "name": "Webbed",
+    "category": "Enemy",
+    "description": "Webbed  Webbed is a status effect that gives you 50% less movement speed.",
+    "source": "Web Enchantment, Spider Queen"
+  },
+  {
+    "name": "Poison",
+    "category": "Enemy",
+    "description": "Poison  Poison is a status effect that reduces the amount of Hearts  recovered by your flask by 50% and lasts 10 rooms.",
+    "source": "Enemy Poison Projectiles"
+  },
+  {
+    "name": "Wither",
+    "category": "Enemy",
+    "description": "Wither  Wither is a stackable status effect that reduces movement speed by -1% per stack. Stacks last 0.3 seconds decaying one after another. Up to 25 stacks.",
+    "source": "Skull Lord?"
+  },
+  {
+    "name": "Petrified",
+    "category": "Enemy",
+    "description": "Petrified  Petrified is a status effect that slows Stamina Stamina  takes 3 seconds to start recovery (stamina recovery speed) and 0.5 seconds to regenerate per point (stamina regeneration speed). recovery speed by 50% and slows movement speed by 25% and lasts until room completion.",
+    "source": "Serpent Basilisk"
+  },
+  {
+    "name": "Imminent Death Imminent Death",
+    "category": "Enemy",
+    "description": "Imminent Death Imminent Death is a status effect that will kill you upon reaching 3 stacks.",
+    "source": "Grandfather Clock"
+  },
+  {
+    "name": "Binding Chains",
+    "category": "Enemy",
+    "description": "Binding Chains  Binding Chains is a status effect that makes you unable to dash and lasts 7.5 seconds.",
+    "source": "Amon"
+  },
+  {
+    "name": "Archon Archon",
+    "category": "Weapon",
+    "description": "Archon Archon is a stackable status effect that grants +3 intelligence per stack. Stacks last 1 second decaying one after another. Up to 10 stacks.",
+    "source": "Archon Scepter"
+  },
+  {
+    "name": "Aurora Aurora",
+    "category": "Weapon",
+    "description": "Aurora Aurora is a radiant damage over time status effect that deals 250% of radiant infliction damage as radiant damage 2 times per second for 10 seconds.",
+    "source": "Aurora Scroll"
+  },
+  {
+    "name": "Locust Locustis",
+    "category": "Weapon",
+    "description": "Locust Locustis a status effect that spawns up to 3 beetle when the affected target dies. Each stack lasts 4 seconds.",
+    "source": "Beetle Wand"
+  },
+  {
+    "name": "Bola Bola",
+    "category": "Weapon",
+    "description": "Bola Bola is a stackable status effect that after not refreshing it for 1 seconds, consumes all stacks to deal 100% of accumulated infliction damage as explosion damage. Up to 5 stacks.",
+    "source": "Bola Crossbow"
+  },
+  {
+    "name": "Cha",
+    "category": "Weapon",
+    "description": "Cha-Cha-Cha Cha-Cha-Cha is a stackable buff that grants 20% increased periodical rate per stack. Stacks last 4 seconds decaying one after another. Up to 3 stacks.",
+    "source": "Maracas"
+  },
+  {
+    "name": "Chrono Shift Chrono Shift",
+    "category": "Weapon",
+    "description": "Chrono Shift Chrono Shift is a debuff that reduces movement speed by up to 30% and lasts 4 seconds.",
+    "source": "Chrono Staff"
+  },
+  {
+    "name": "Clack Clack",
+    "category": "Weapon",
+    "description": "Clack Clack is a stackable damage over time status effect that deals 50% of infliction damage as striking damage 2 times per second. Stacks last 4 seconds decaying at the same time. Stacks up to 5 times.",
+    "source": "Skull Wand"
+  },
+  {
+    "name": "Drain Drain",
+    "category": "Weapon",
+    "description": "Drain Drain is a debuff that reduces movement speed by up to 25% and lasts 4 seconds.",
+    "source": "Drain Scepter"
+  },
+  {
+    "name": "En Garde En Garde",
+    "category": "Weapon",
+    "description": "En Garde En Garde is a buff that grants 20% increased attack speed and lasts 8 seconds.",
+    "source": "Rapier"
+  },
+  {
+    "name": "Grapple Grapple",
+    "category": "Weapon",
+    "description": "Grapple Grapple is a debuff that makes the target take 30% more damage and move 30% slower and lasts 1 second.",
+    "source": "Kraken"
+  },
+  {
+    "name": "Haunt Haunt",
+    "category": "Weapon",
+    "description": "Haunt Haunt is a status effect that spawns up to 1 ghost when the affected target dies. Lasts 10 seconds.",
+    "source": "Spirit Wand"
+  },
+  {
+    "name": "Invigorate Invigorate",
+    "category": "Weapon",
+    "description": "Invigorate Invigorate is a buff that grants 25% increased movement speed and lasts 25% seconds.",
+    "source": "Drain Scepter"
+  },
+  {
+    "name": "Limit Break Limit Break",
+    "category": "Weapon",
+    "description": "Limit Break Limit Break is a status effect that grants +100% critical hit The damage from critical hits  is multiplied with your critical hit  multiplier. chance with this weapon and lasts 1 room.",
+    "source": "Buster Blade"
+  },
+  {
+    "name": "Limited Power Limited Power",
+    "category": "Weapon",
+    "description": "Limited Power Limited Power is a stackable status effect that grants +10 power per stack. Stacks last 1 second decaying one after another. Up to 10 stacks.",
+    "source": "Staff of Unlimited Power"
+  },
+  {
+    "name": "Paper Bomb Paper Bomb",
+    "category": "Weapon",
+    "description": "Paper Bomb Paper Bomb is a stackable status effect that after not refreshing it for 1 seconds, consumes all stacks to deal 200% of accumulated infliction damage as explosion damage. Up to 5 stacks.",
+    "source": "Paper Bomb Kunai"
+  },
+  {
+    "name": "Piranha Bites Piranha Bites",
+    "category": "Weapon",
+    "description": "Piranha Bites Piranha Bites is a status effect that deals 200% of infliction damage as thrusting damage 2 times per second for 4 seconds.",
+    "source": "Piranha Gun"
+  },
+  {
+    "name": "Shiver Shiver",
+    "category": "Weapon",
+    "description": "Shiver Shiver is a cold damage over time status effect that deals 400% of cold infliction damage as cold damage 2 times per second for 10 seconds.",
+    "source": "Spirit Wand"
+  },
+  {
+    "name": "Shriek Shriek",
+    "category": "Weapon",
+    "description": "Shriek Shriek is a physical damage over time status effect that deals 100% of physical infliction damage as wound damage 2 times per second for 8 seconds.",
+    "source": "Ghost Javelins"
+  },
+  {
+    "name": "Silver Bolt Silver Bolt",
+    "category": "Weapon",
+    "description": "Silver Bolt Silver Bolt is a stackable status effect that consumes all stacks to deal 100% of accumulated infliction damage as wound damage upon reaching 3 stacks. A stack lasts 4 seconds.",
+    "source": "Relic Crossbow"
+  },
+  {
+    "name": "Snow Brand Snow Brand",
+    "category": "Weapon",
+    "description": "Snow Brand Snow Brand is a cold damage over time status effect that deals 100% of cold  infliction damage as fire damage 2 times per second. Lasts 4 seconds.",
+    "source": "Snow Angel"
+  },
+  {
+    "name": "Sugar Rush Sugar Rush",
+    "category": "Weapon",
+    "description": "Sugar Rush Sugar Rush is a stackable buff that grants 10% increased attack and movement speed per stack. Stacks last 1 second decaying one after another. Up to 5 stacks.",
+    "source": "Candy Scroll"
+  },
+  {
+    "name": "Supersonic Supersonic",
+    "category": "Weapon",
+    "description": "Supersonic Supersonic is a status effect that doubles the attack speed of this weapon and lasts 4 seconds.",
+    "source": "Vorpal Blade"
+  },
+  {
+    "name": "Virus Virus",
+    "category": "Weapon",
+    "description": "Virus Virus is a damage over time status effect that deals 100% of infliction damage as energy damage 1 time per second for 8 seconds.",
+    "source": "Matrix Bible"
+  },
+  {
+    "name": "Dark Aura Dark Aura Damage Scaling",
+    "category": "Auras",
+    "description": "Dark Aura Dark Aura Damage Scaling:  0/40\u00a0: 0/40\u00a0: 0/40 Inflicts: Gloom [Tick] [Aura] [Damage Over Time]",
+    "source": "Abyss Cloak"
+  },
+  {
+    "name": "Burn Aura Inflicts Burn",
+    "category": "Auras",
+    "description": "Burn Aura Inflicts Burn to enemies in radius, 4 times per second. Assumes 250 infliction damage.",
+    "source": "Burn Aura"
+  },
+  {
+    "name": "Holy Aura Holy Aura Damage Scaling",
+    "category": "Auras",
+    "description": "Holy Aura Holy Aura Damage Scaling:  0/40\u00a0: 0/40\u00a0: 0/40 Inflicts: Glitter [Tick] [Aura] [Damage Over Time]",
+    "source": "Holy Armor"
+  },
+  {
+    "name": "Shock Aura Inflicts Shock",
+    "category": "Auras",
+    "description": "Shock Aura Inflicts Shock to enemies in radius, 5 times per second.",
+    "source": "Shock Aura"
+  },
+  {
+    "name": "Poison Aura Inflicts Poison",
+    "category": "Auras",
+    "description": "Poison Aura Inflicts Poison to enemies in radius, 5 times per second. Assumes 250 infliction damage.",
+    "source": "Poison Aura"
+  },
+  {
+    "name": "Acceptance Acceptance",
+    "category": "Emotions",
+    "description": "Acceptance Acceptance is a status effect that grants 100% increased effects of emotion buffs and lasts 4 seconds.",
+    "source": "Bard song"
+  },
+  {
+    "name": "Arrogance Arrogance",
+    "category": "Emotions",
+    "description": "Arrogance Arrogance is a emotion buff that grants 100% increased damage with non-crits and lasts 8 seconds.",
+    "source": "Arrogance"
+  },
+  {
+    "name": "Berserk Berserk",
+    "category": "Emotions",
+    "description": "Berserk Berserk x1.30 Attack Speed x1.30 Movement Speed Duration: 10 seconds Max Stacks: 1 [Emotion] [Buff]",
+    "source": "Berserking"
+  },
+  {
+    "name": "Charm Charm",
+    "category": "Emotions",
+    "description": "Charm Charm x1.25 Damage Taken at Far Range  Duration: 8 seconds Max Stacks: 1 [Emotion] [Debuff]",
+    "source": "Bard song, Category:Charm"
+  },
+  {
+    "name": "Concentration Concentration",
+    "category": "Emotions",
+    "description": "Concentration Concentration is a buff that grants 100% increased effects of infusion buffs and lasts 1 room. Concentration is lost when you take damage.",
+    "source": "Turban"
+  },
+  {
+    "name": "Confusion Confusion",
+    "category": "Emotions",
+    "description": "Confusion Confusion is a status effect that doubles the effect of debuffs on the target and lasts 8 seconds.",
+    "source": "Mind Control, Bard song, Category:Confusion"
+  },
+  {
+    "name": "Demon Rage Demon Rage",
+    "category": "Emotions",
+    "description": "Demon Rage Demon Rage is a buff that grants 100% increased attack speed with the Demon Blade and lasts 4 seconds.",
+    "source": "Demon Blade"
+  },
+  {
+    "name": "Empathy Empathy",
+    "category": "Emotions",
+    "description": "Empathy Empathy is an emotion buff that grants 100% increased stats granted by companions and lasts 4 seconds.",
+    "source": "Bard song"
+  },
+  {
+    "name": "Fear Fear",
+    "category": "Emotions",
+    "description": "Fear Fear +50% to Damage Taken Roll Duration: 8 seconds Max Stacks: 1 [Emotion] [Debuff]",
+    "source": "Near Death Experience, Bard song"
+  },
+  {
+    "name": "Fury Fury",
+    "category": "Emotions",
+    "description": "Fury Fury +4% Attack Damage Duration: 4 seconds Max Stacks: 10 [Emotion] [Buff]",
+    "source": "Bard song"
+  },
+  {
+    "name": "Glee Glee",
+    "category": "Emotions",
+    "description": "Glee Glee is an emotion buff that grants 20% increased movement speed and lasts 4 seconds.",
+    "source": "Bard song"
+  },
+  {
+    "name": "Horror Horror",
+    "category": "Emotions",
+    "description": "Horror Horror is a emotion debuff that adds +200% to minimum damage taken roll and counts as Fear and lasts 8 seconds.",
+    "source": "Eldritch Bible"
+  },
+  {
+    "name": "Hunger Hunger",
+    "category": "Emotions",
+    "description": "Hunger Hunger is a buff that grants +300% critical hit\u2757 multiplier with The Hungry Blade and lasts 4 seconds.",
+    "source": "The Hungry Blade"
+  },
+  {
+    "name": "Intimidate Intimidate",
+    "category": "Emotions",
+    "description": "Intimidate Intimidate x1.25 Melee Damage Taken Duration: 8 seconds Max Stacks: 1 [Emotion] [Debuff]",
+    "source": "Bard song, Category:Intimidate"
+  },
+  {
+    "name": "Joy Joy",
+    "category": "Emotions",
+    "description": "Joy Joy is an emotion buff that grants +20% lucky hit chance and lasts 4 seconds.",
+    "source": "Bard song"
+  },
+  {
+    "name": "Pride Pride",
+    "category": "Emotions",
+    "description": "Pride Pride is an emotion buff that grants 100% increased effects of status effects inflicted by auras and lasts 4 seconds.",
+    "source": "Bard song"
+  },
+  {
+    "name": "Rage Rage",
+    "category": "Emotions",
+    "description": "Rage Rage +4% Attack Speed Duration: 4 seconds Max Stacks: 10 [Emotion] [Buff]",
+    "source": "Rage"
+  },
+  {
+    "name": "Raised Morale Morale",
+    "category": "Emotions",
+    "description": "Raised Morale Morale is a stackable buff that permanently grants +10 power per stack. Stacks up to 10 times. Stacks halve when you take damage.",
+    "source": "Raised Morale"
+  },
+  {
+    "name": "Taunt Taunt",
+    "category": "Emotions",
+    "description": "Taunt Taunt x1.35 Damage Taken at Close Range  Duration: 8 seconds Max Stacks: 1 [Emotion] [Debuff]",
+    "source": "War Cry"
+  },
+  {
+    "name": "Trigger Mania Trigger Mania",
+    "category": "Emotions",
+    "description": "Trigger Mania Trigger Mania is an emotion buff that grants 1% increased attack speed. Stacks last 1 second decaying one after another. Up to 10 stacks.",
+    "source": "Trigger Maniac"
+  },
+  {
+    "name": "Architect",
+    "category": "Events",
+    "description": "Architect's Game Upon reaching 3 stacks, grants Architect's Power",
+    "source": "Architect's Boots"
+  },
+  {
+    "name": "Architect Power",
+    "category": "Events",
+    "description": "Architect Power 1 100% more attack speed [8s]",
+    "source": "Architect's Boots"
+  },
+  {
+    "name": "Architect Power",
+    "category": "Events",
+    "description": "Architect Power 2 Periodically triggersTrigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit, trigger...Trigger damage scales with each point of EXP, up to 7x damage at level 6. multiple random damaging effects, 8 times per second. [3s]",
+    "source": "Architect's Gloves"
+  },
+  {
+    "name": "Architect Power",
+    "category": "Events",
+    "description": "Architect Power 3 +100% Critical Hit The damage from critical hits  is multiplied with your critical hit  multiplier. chance",
+    "source": "Architect's Hat"
+  },
+  {
+    "name": "Dexterity Growth Gain",
+    "category": "Events",
+    "description": "Dexterity Growth Gain +1 DexterityDexterity increases damage dealt by weapons that scale off dexterity. Additionally dexterity grants attack speed, movement speed and potentially other stats. from pickups. [x5]",
+    "source": "Green Jungle Berry"
+  },
+  {
+    "name": "Intelligence Growth Gain",
+    "category": "Events",
+    "description": "Intelligence Growth Gain +1 IntelligenceIntelligence increases damage dealt by weapons that scale off intelligence. Additionally intelligence grants critical hit\u2757 chance, mana \u272f regeneration and potentially other stats. from pickups. [x5]",
+    "source": "Blue Jungle Berry"
+  },
+  {
+    "name": "Strength Growth Gain",
+    "category": "Events",
+    "description": "Strength Growth Gain +1 StrengthStrength increases damage dealt by weapons that scale off strength. Additionally strength grants more damage dealt, equip load capacity and potentially other stats. from pickups. [x5]",
+    "source": "Red Jungle Berry"
+  },
+  {
+    "name": "Dragon Fever",
+    "category": "Events",
+    "description": "Dragon Fever 100% increased damage [10 rooms]",
+    "source": "Dragon Eye Charm"
+  },
+  {
+    "name": "Fairy Blessing On",
+    "category": "Events",
+    "description": "Fairy Blessing On entering a floor, if you don't have a Soul Heart  already, gain one.",
+    "source": "Fairy Spring event"
+  },
+  {
+    "name": "Moonlight",
+    "category": "Events",
+    "description": "Moonlight's Path 50% reduced chance of Curse Cursed Hits  have x0.50 chance for Hit Effects to happen. taking effect. Currently bugged(?), does not display an icon for the effect",
+    "source": "Sin Goddess event"
+  },
+  {
+    "name": "Relaxed",
+    "category": "Events",
+    "description": "Relaxed 25% increased Stamina Stamina  takes 3 seconds to start recovery (stamina recovery speed) and 0.5 seconds to regenerate per point (stamina regeneration speed). recovery speed",
+    "source": "Oasis event"
+  },
+  {
+    "name": "Sunlight",
+    "category": "Events",
+    "description": "Sunlight's Path Permanently prevents Curse Cursed Hits  have x0.50 chance for Hit Effects to happen.ed room rewards from appearing.",
+    "source": "Sunlight Altar event"
+  },
+  {
+    "name": "Wart Reduces",
+    "category": "Events",
+    "description": "Wart Reduces the chance of   Luck   Lucky Hits have x2.00 chance for Hit Effects to happen.   Luck Chance For: \u21b3Upgrading Room Reward \u21b3Win in Arcade \u21b3Extra Trait offered \u21b3Roll lowest price in Shop Grants Lucky Hit Chance.  taking effect by 50% [30 rooms].",
+    "source": "Frog Princess event"
+  },
+  {
+    "name": "Adrenaline Adrenaline",
+    "category": "Generic",
+    "description": "Adrenaline Adrenaline is a buff that grants 100% increased damage and lasts 1 room.",
+    "source": "Adrenaline"
+  },
+  {
+    "name": "Ambush Ambush",
+    "category": "Generic",
+    "description": "Ambush Ambush is a buff that grants 20% increased damage and 10% increased movement speed and lasts 8 seconds.",
+    "source": "Bandit Armor"
+  },
+  {
+    "name": "Armor Break Armor Break Breaks Armor",
+    "category": "Generic",
+    "description": "Armor Break Armor Break Breaks Armor  on max stacks. Duration: 4 seconds Max Stacks: 5",
+    "source": "Category:Armor Break"
+  },
+  {
+    "name": "Atonement Atonement",
+    "category": "Generic",
+    "description": "Atonement Atonement is a buff that grants 100% increased attack speed and lasts 4 seconds.",
+    "source": "Raven Talisman"
+  },
+  {
+    "name": "Attack",
+    "category": "Generic",
+    "description": "Attack of Opportunity Opportunity is a buff that grants 20% more attack speed. Bonus doubles for melee weapons and lasts 8 seconds.",
+    "source": "Attack Of Opportunity"
+  },
+  {
+    "name": "Battle Rush Battle Rush",
+    "category": "Generic",
+    "description": "Battle Rush Battle Rush is a stackable buff that grants 3% increased damage and movement speed per stack. Stacks last 1 second decaying one after another, up to 10 stacks.",
+    "source": "Battle Rush"
+  },
+  {
+    "name": "Blood Rush Blood Rush",
+    "category": "Generic",
+    "description": "Blood Rush Blood Rush is a status effect that grants +100% critical hit The damage from critical hits  is multiplied with your critical hit  multiplier. chance with the Reaper's Toll and lasts 5 seconds.",
+    "source": "Reaper's Toll"
+  },
+  {
+    "name": "Bone Splinter Bone Splinter",
+    "category": "Generic",
+    "description": "Bone Splinter Bone Splinter is a stackable status effect that consumes one stack on primary attack to launch a bone spear projectile.",
+    "source": "Bone Crusher Bone Scythe"
+  },
+  {
+    "name": "Cactus Prickles Cactus Prickles",
+    "category": "Generic",
+    "description": "Cactus Prickles Cactus Prickles is a stackable debuff that adds +5 to 10 to physical damage taken per stack. Stacks last 2 seconds decaying one after another. Up to 10 stacks.",
+    "source": "Cactus Flail"
+  },
+  {
+    "name": "Cheap Shot Cheap Shot",
+    "category": "Generic",
+    "description": "Cheap Shot Cheap Shot is a buff that 100% increased trigger damage and lasts 4 seconds.",
+    "source": "Cheap Shoth"
+  },
+  {
+    "name": "Cold Elementalist Cold Elementalist",
+    "category": "Generic",
+    "description": "Cold Elementalist Cold Elementalist is a buff that grants 100% increased cold damage and lasts 4 seconds.",
+    "source": "Elementalist Robe"
+  },
+  {
+    "name": "Combat Bravery Combat Bravery",
+    "category": "Generic",
+    "description": "Combat Bravery Combat Bravery x1.20 Melee Damage Duration: 8 seconds Max Stacks: 1 [Emotion] [Buff]",
+    "source": "Dragonscale Greaves"
+  },
+  {
+    "name": "Companion Sign Companion Sign",
+    "category": "Generic",
+    "description": "Companion Sign Companion Sign is a debuff that makes the target take 50% increased damage from companions  and lasts 4 seconds.",
+    "source": "Spider Summon Tome Toad Plague Scroll Fiend Commander Codex"
+  },
+  {
+    "name": "Corrosion Corrosion",
+    "category": "Generic",
+    "description": "Corrosion Corrosion is a stackable debuff that makes the target take 20% more damage to armor per stack. Stacks last 8 seconds decaying at the same time. Up to 5 stacks.",
+    "source": "Hand Of Acid"
+  },
+  {
+    "name": "Crystal Surge Crystal Surge",
+    "category": "Generic",
+    "description": "Crystal Surge Crystal Surge is a buff that grants 100% increased primary attack damage and lasts 8 seconds.",
+    "source": "Crystal Bracelet"
+  },
+  {
+    "name": "Doom Doom",
+    "category": "Generic",
+    "description": "Doom Doom is a stackable status effect that consumes all stacks to deal 100% of accumulated infliction damage as wound damage upon reaching 2 stacks. A stack lasts 4 seconds.",
+    "source": "Category:Doom"
+  },
+  {
+    "name": "Drizzle Drizzle",
+    "category": "Generic",
+    "description": "Drizzle Drizzle is a buff that grants 25% increased stamina  recovery speed and lasts 4 seconds.",
+    "source": "Raincoat"
+  },
+  {
+    "name": "Elemental Balance Cold Cold Balance",
+    "category": "Generic",
+    "description": "Elemental Balance Cold Cold Balance is a buff that grants 100% increased cold damage and lasts 4 seconds.",
+    "source": "Elemental Balance"
+  },
+  {
+    "name": "Elemental Balance Fire Fire Balance",
+    "category": "Generic",
+    "description": "Elemental Balance Fire Fire Balance is a buff that grants 100% increased fire damage and lasts 4 seconds.",
+    "source": "Elemental Balance"
+  },
+  {
+    "name": "Elemental Balance Lightning Lightning Balance",
+    "category": "Generic",
+    "description": "Elemental Balance Lightning Lightning Balance is a buff that grants 100% increased lightning damage and lasts 4 seconds.",
+    "source": "Elemental Balance"
+  },
+  {
+    "name": "Fatigue Fatigue",
+    "category": "Generic",
+    "description": "Fatigue Fatigue is a debuff that reduces movement speed by up to 25% and increases damage taken from critical hits\u2757 by 50% and lasts 4 seconds.",
+    "source": "Opportunistic"
+  },
+  {
+    "name": "Fire Elementalist Fire Elementalist",
+    "category": "Generic",
+    "description": "Fire Elementalist Fire Elementalist is a buff that grants 100% increased fire damage and lasts 4 seconds.",
+    "source": "Elementalist Robe"
+  },
+  {
+    "name": "Focus Focus",
+    "category": "Generic",
+    "description": "Focus Focus is a buff that grants 25% increased attack speed and lasts 1 room.",
+    "source": "Focus Sash"
+  },
+  {
+    "name": "Fragility Fragility",
+    "category": "Generic",
+    "description": "Fragility Fragility x1.30 Damage Over Time Taken Duration: 4 seconds Max Stacks: 1 [Hex] [Debuff]",
+    "source": "Category:Fragility"
+  },
+  {
+    "name": "Harmony Harmony",
+    "category": "Generic",
+    "description": "Harmony Harmony is a buff that grants 40% more attack speed.",
+    "source": "Harmony"
+  },
+  {
+    "name": "Haste Haste",
+    "category": "Generic",
+    "description": "Haste Haste +10% Movement Speed +10% Attack Speed Duration: 4 seconds Max Stacks: 1 [Buff]",
+    "source": "Geta Hide Boots Rubber Boots"
+  },
+  {
+    "name": "Hemorrage Hemorrhage",
+    "category": "Generic",
+    "description": "Hemorrage Hemorrhage is a stackable debuff that makes the target take 10% more damage to health per stack. Stacks last 8 seconds decaying at the same time. Up to 5 stacks.",
+    "source": "Hand Of Blood"
+  },
+  {
+    "name": "Hex Hex Debuffs",
+    "category": "Generic",
+    "description": "Hex Hex Debuffs are Vulnerability, Fragility and Instability.",
+    "source": "Hex Touch"
+  },
+  {
+    "name": "Holy Fire Holy Fire",
+    "category": "Generic",
+    "description": "Holy Fire Holy Fire is a fire buff that grants +75 to 150 fire damage and lasts 8 seconds.",
+    "source": "Holy Fire"
+  },
+  {
+    "name": "Instability Instability",
+    "category": "Generic",
+    "description": "Instability Instability x1.40 Top End Damage Taken Duration: 4 seconds Max Stacks: 1 [Hex] [Debuff]",
+    "source": "Category:Instability"
+  },
+  {
+    "name": "Ki Boost Ki",
+    "category": "Generic",
+    "description": "Ki Boost Ki-Boost is a buff that grants 50% increased attack speed and lasts 8 seconds.",
+    "source": "Spirit Wraps"
+  },
+  {
+    "name": "Ki",
+    "category": "Generic",
+    "description": "Ki-Charge Ki-Charge is a stackable buff that adds +5 to +10 damage to body damage and 2% increased movement speed per stack. Up to 10 stacks.",
+    "source": "Monk"
+  },
+  {
+    "name": "Ki",
+    "category": "Generic",
+    "description": "Ki-Flow Ki-Flow is a stackable buff that grants 20% more attack speed per stack. Stacks last 1 second decaying one after another. Up to 10 stacks.",
+    "source": "Monk"
+  },
+  {
+    "name": "Lightning Elementalist Lightning Elementalist",
+    "category": "Generic",
+    "description": "Lightning Elementalist Lightning Elementalist is a buff that grants 100% increased lightning damage and lasts 4 seconds.",
+    "source": "Elementalist Robe"
+  },
+  {
+    "name": "Mana Flux Mana Flux",
+    "category": "Generic",
+    "description": "Mana Flux Mana Flux is a mana star buff that grants 25% more attack speed and 25% mana drain refund and lasts 4 seconds.",
+    "source": "Category:Mana Flux"
+  },
+  {
+    "name": "Momentum Momentum",
+    "category": "Generic",
+    "description": "Momentum Momentum is a stackable buff that grants 5% increased movement speed per stack. Stacks up to 5 times. Momentum is lost when you take damage.",
+    "source": "Running Shoes"
+  },
+  {
+    "name": "Poison Elementalist Poison Elementalist",
+    "category": "Generic",
+    "description": "Poison Elementalist Poison Elementalist is a buff that grants 100% increased poison damage and lasts 4 seconds.",
+    "source": "Elementalist Robe"
+  },
+  {
+    "name": "Power Flow Power Flow",
+    "category": "Generic",
+    "description": "Power Flow Power Flow is a stackable status effect that grants +5 power per stack. Stacks last 1.1 seconds decaying one after another. Up to 10 stacks.",
+    "source": "Channeler Gauntlets"
+  },
+  {
+    "name": "Puncture Puncture",
+    "category": "Generic",
+    "description": "Puncture Puncture +10 to 30 Physical Damage Taken  Duration: 4 seconds Max Stacks: 5 [Debuff]",
+    "source": "Bramble Growth Pointy End Staple Gun"
+  },
+  {
+    "name": "Pursuit Pursuit",
+    "category": "Generic",
+    "description": "Pursuit Pursuit is a buff that grants 20% increased attack- and 10% movement speed and lasts 8 seconds.",
+    "source": "Helsing's Boots"
+  },
+  {
+    "name": "Resolve Resolve",
+    "category": "Generic",
+    "description": "Resolve Resolve is a buff that grants 30% increased primary attack damage and lasts 4 seconds.",
+    "source": "Dojo Sash"
+  },
+  {
+    "name": "Retribution Retribution Deals",
+    "category": "Generic",
+    "description": "Retribution Retribution Deals 60 to 115 Physical Damage per stack after not being refreshed for 1 second. Damage Scaling:  0/50\u00a0: 0/50\u00a0: 0/50 Inflicts: Bleed Bonus Effect: +10% Damage per stack Duration: Permanent Max Stacks: 10",
+    "source": "Samurai"
+  },
+  {
+    "name": "Revenant Revenant",
+    "category": "Generic",
+    "description": "Revenant Revenant is a buff that grants 100% increased attack speed and lasts 1 room.",
+    "source": "Lich Robe"
+  },
+  {
+    "name": "Rhythm Rhythm",
+    "category": "Generic",
+    "description": "Rhythm Rhythm is a buff that reduces all tally requirements by 1 and lasts 4 seconds.",
+    "source": "Rhythm Bracelets Rhythm Anklets"
+  },
+  {
+    "name": "Satellite Support Satellite Support",
+    "category": "Generic",
+    "description": "Satellite Support Satellite Support is a stackable buff that grants 20% increased damage per stack. Stacks last 5 seconds decaying at the same time. Up to 5 stacks.",
+    "source": "Satellite Dish"
+  },
+  {
+    "name": "Second Wind Second Wind",
+    "category": "Generic",
+    "description": "Second Wind Second Wind is a buff that grants 50% increased attack-, movement- and orbital speed and lasts 1 room.",
+    "source": "Sylph Gloves"
+  },
+  {
+    "name": "Speed Boost Speed Boost",
+    "category": "Generic",
+    "description": "Speed Boost Speed Boost +100% Movement Speed Duration: 8 seconds Max Stacks: 1 Stacks decay one after another. [Buff]",
+    "source": "Hermes Sandals Rocket Boots Sprinting Shoes"
+  },
+  {
+    "name": "Stamina Surge Stamina Surge",
+    "category": "Generic",
+    "description": "Stamina Surge Stamina Surge is a buff that grants +1 stamina  and lasts 1 room.",
+    "source": "Green Blossom"
+  },
+  {
+    "name": "Stealth Stealth",
+    "category": "Generic",
+    "description": "Stealth Stealth +10% Critical Hit Chance  Duration: 8 seconds Max Stacks: 1 [Buff]",
+    "source": "Rogue Boots"
+  },
+  {
+    "name": "Sticky Goo Sticky Goo",
+    "category": "Generic",
+    "description": "Sticky Goo Sticky Goo x0.75 Movement Speed Duration: 4 seconds Max Stacks: 1 [Debuff]",
+    "source": "Slime Wand Slime Orb Jar of Goo"
+  },
+  {
+    "name": "Swiftness Swiftness",
+    "category": "Generic",
+    "description": "Swiftness Swiftness +20% Movement Speed Duration: 8 seconds Max Stacks: 1 [Buff]",
+    "source": "Category:Swiftness"
+  },
+  {
+    "name": "Tailwind Tailwind",
+    "category": "Generic",
+    "description": "Tailwind Tailwind x1.05 Attack Speed x1.05 Movement Speed x1.05 Orbital Speed x1.05 Tick Speed Duration: 8 seconds Max Stacks: 4 [Buff]",
+    "source": "Step Of The Wind"
+  },
+  {
+    "name": "Tiny Dancer Tiny Dancer",
+    "category": "Generic",
+    "description": "Tiny Dancer Tiny Dancer is a buff that grants +10 dexterity and lasts 4 seconds.",
+    "source": "Ballet Shoes"
+  },
+  {
+    "name": "Volt Surge Volt Surge",
+    "category": "Generic",
+    "description": "Volt Surge Volt Surge is a stackable buff that adds 10% to minimum lightning damage roll per stack. Stacks last 8 seconds decaying at the same time. Up to 10 stacks.",
+    "source": "Storm Crow"
+  },
+  {
+    "name": "Vulnerability Vulnerability",
+    "category": "Generic",
+    "description": "Vulnerability Vulnerability x1.20 Damage Taken Duration: 4 seconds Max Stacks: 1 [Hex] [Debuff]",
+    "source": "Category:Vulnerability"
+  },
+  {
+    "name": "Tropical Fish",
+    "category": "Generic",
+    "description": "Tropical Fish +0.5s to bonus invincibility time after dash.",
+    "source": "no longer in the game"
+  },
+  {
+    "name": "Kelp Effect",
+    "category": "Generic",
+    "description": "Kelp Effect ???",
+    "source": "now just grants +1 stanmina Kelp"
+  },
+  {
+    "name": "Goldfish Effect",
+    "category": "Generic",
+    "description": "Goldfish Effect ???",
+    "source": "now grants gold Goldfish"
+  },
+  {
+    "name": "Jellyfish Effect",
+    "category": "Generic",
+    "description": "Jellyfish Effect ???",
+    "source": "changed to a companion Jellyfishing Net"
+  },
+  {
+    "name": "Sea Urgent Effect",
+    "category": "Generic",
+    "description": "Sea Urgent Effect ???",
+    "source": "changed to an offhand Sea Urchin Orb"
+  },
+  {
+    "name": "Single Out",
+    "category": "Generic",
+    "description": "Single Out 25% more damage while fighting exactly 1 enemy.",
+    "source": "Old Single Out trait. Trait no longer shows the status effect."
+  },
+  {
+    "name": "Curse Old",
+    "category": "Generic",
+    "description": "Curse Old cursed icon",
+    "source": "Enemies attacks that curse you or Cinder modifiers."
+  },
+  {
+    "name": "Curse Immunity Full",
+    "category": "Generic",
+    "description": "Curse Immunity Full curse immunity.",
+    "source": "Old goddess statue event buff (Grants 3 Absolution now)"
+  },
+  {
+    "name": "Poison Resistance Immune",
+    "category": "Generic",
+    "description": "Poison Resistance Immune to poison",
+    "source": "Old Poison antidote"
+  },
+  {
+    "name": "Amaterasu Deals",
+    "category": "Generic",
+    "description": "Amaterasu Deals 100% of infliction DMG per second and lasts forever.",
+    "source": "Dark Wand"
+  },
+  {
+    "name": "Swagger",
+    "category": "Generic",
+    "description": "Swagger \tEvery 5th primary attack will be a guaranteed critical hit.",
+    "source": "Swagger"
+  },
+  {
+    "name": "Ruthless Every",
+    "category": "Generic",
+    "description": "Ruthless Every 3rd primary attack deals double damage.",
+    "source": "Ruthless"
+  },
+  {
+    "name": "Power Shrine",
+    "category": "Generic",
+    "description": "Power Shrine25% more damage dealt. Luck Shrine+1 Luck Frenzy Shrine25% more attack speed",
+    "source": "Replaced with Blessings"
+  },
+  {
+    "name": "Cursed Sunder Shrine",
+    "category": "Generic",
+    "description": "Cursed Sunder Shrine+10% defense penetration Cursed Energy Shrine+1 Stamina  Cursed Deadly Shrine+10% critical hit chance Cursed Fortune Shrine+1 luck",
+    "source": "Replaced with Blessings"
+  },
+  {
+    "name": "Versatility",
+    "category": "Generic",
+    "description": "Versatility 30% increased damage 30%increased attack speed",
+    "source": "Item reworked Green Hoodie"
+  },
+  {
+    "name": "Blood Focus",
+    "category": "Generic",
+    "description": "Blood Focus +125% increased hit multiplier +20% critical hit chance",
+    "source": "Item reworked Red Hoodie"
+  },
+  {
+    "name": "Misfit",
+    "category": "Generic",
+    "description": "Misfit's Delight Your are invulnerable to enemies.",
+    "source": "Item reworked Misfit's Sword"
+  },
+  {
+    "name": "Demon Scourge",
+    "category": "Generic",
+    "description": "Demon Scourge +1 Heart  damage taken",
+    "source": "Item rewored Demon Shell"
+  },
+  {
+    "name": "Determination You",
+    "category": "Generic",
+    "description": "Determination You are filled with determination. You deal 10% more damage.",
+    "source": "Hero Grave Event now grants 1 heart"
+  },
+  {
+    "name": "Jungle Power You",
+    "category": "Generic",
+    "description": "Jungle Power You are blessed by the jungle pylon. Shrine effects last +10 rooms",
+    "source": "Jungle Pylon Event now grants magic find"
+  },
+  {
+    "name": "Wishing Well",
+    "category": "Generic",
+    "description": "Wishing Well +1 Luck",
+    "source": "Wishing Well Event"
+  },
+  {
+    "name": "Panda Cunning",
+    "category": "Generic",
+    "description": "Panda Cunning +15 Intelligence",
+    "source": "Panda Mask"
+  },
+  {
+    "name": "Panda Reflexes",
+    "category": "Generic",
+    "description": "Panda Reflexes +15 Dexterity",
+    "source": "Panda Mask"
+  },
+  {
+    "name": "Panda Strength",
+    "category": "Generic",
+    "description": "Panda Strength +15 Strength",
+    "source": "Panda Mask"
+  },
+  {
+    "name": "Panda Luck",
+    "category": "Generic",
+    "description": "Panda Luck +1 Luck",
+    "source": "Panda Mask"
+  },
+  {
+    "name": "Endurance Potion Defy",
+    "category": "Generic",
+    "description": "Endurance Potion Defy death +1 more times",
+    "source": "no longer in the game"
+  },
+  {
+    "name": "Green Blossom",
+    "category": "Generic",
+    "description": "Green Blossom +1 Stamina",
+    "source": "Green Blossom no longer shows the buff icon"
+  },
+  {
+    "name": "Holy Infusion Weapons",
+    "category": "Generic",
+    "description": "Holy Infusion Weapons deal holy damage and inflict Judgement",
+    "source": "Holy Water now uses a new icon and name"
+  },
+  {
+    "name": "Strength Growth",
+    "category": "Generic",
+    "description": "Strength Growth +1 Strength gained from Strength pickups",
+    "source": "Protein icon updated"
+  },
+  {
+    "name": "Dexterity Growth",
+    "category": "Generic",
+    "description": "Dexterity Growth +1 Dexterity gained from Dexterity pickups",
+    "source": "Calcium icon updated"
+  },
+  {
+    "name": "Intelligence Growth",
+    "category": "Generic",
+    "description": "Intelligence Growth +1 Intelligence gained from Intelligence pickups",
+    "source": "Zinc icon updated"
+  },
+  {
+    "name": "Song",
+    "category": "Generic",
+    "description": "Song of the Coward Deal 25% more damage at far range.",
+    "source": "Random song buff from Bard"
+  },
+  {
+    "name": "Song",
+    "category": "Generic",
+    "description": "Song of Focus Gain +5% critical hit chance per second, up to 30%. Accumulated amount resets when you dash.",
+    "source": "Random song buff from Bard"
+  },
+  {
+    "name": "Song",
+    "category": "Generic",
+    "description": "Song of the Right Path Gain 5 gold any time you go through the right door.",
+    "source": "Random song buff from Bard"
+  },
+  {
+    "name": "Song",
+    "category": "Generic",
+    "description": "Song of the Careful If you don't take damage this floor, gain +1 Heart ,",
+    "source": "Random song buff from Bard"
+  },
+  {
+    "name": "Song",
+    "category": "Generic",
+    "description": "Song of the Dancer Gains 30% increased attack speed if you have dashed in the past 4 seconds.",
+    "source": "Random song buff from Bard"
+  },
+  {
+    "name": "Song",
+    "category": "Generic",
+    "description": "Song of Celebration Grants a Gift Box when you gain a new trait",
+    "source": "Random song buff from Bard"
+  },
+  {
+    "name": "Song",
+    "category": "Generic",
+    "description": "Song of Bravery Deal 30% more damage at close range.",
+    "source": "Random song buff from Bard"
+  },
+  {
+    "name": "Song",
+    "category": "Generic",
+    "description": "Song of Growth +1 Intelligence gained from Intelligence pickups +1 Strength gained from Strength pickups +1 Dexterity gained from Dexterity pickups",
+    "source": "Random song buff from Bard"
+  },
+  {
+    "name": "Song",
+    "category": "Generic",
+    "description": "Song of Humility If you don't acquire a new trait this floor gain a Power Gem",
+    "source": "Random song buff from Bard"
+  },
+  {
+    "name": "Song",
+    "category": "Generic",
+    "description": "Song of the South Gain +1 all proficiency while in the bottom half of the room",
+    "source": "Random song buff from Bard"
+  },
+  {
+    "name": "Inspired Focus",
+    "category": "Generic",
+    "description": "Inspired Focus +5% critical hit chance per stack",
+    "source": "From Song of Focus buff"
+  },
+  {
+    "name": "Bone Shatter Reduces",
+    "category": "Generic",
+    "description": "Bone Shatter Reduces defense by 5% per stack. Up to 5 stacks.",
+    "source": "Boneforce"
+  },
+  {
+    "name": "Death",
+    "category": "Generic",
+    "description": "Death's Mark Doubles Health  damage taken",
+    "source": "Mega Death, old Cinder Modifier"
+  },
+  {
+    "name": "Pure Power Grants",
+    "category": "Generic",
+    "description": "Pure Power Grants a stack of Pure Power on hit. Each stack of Pure Power grants +1 intelligence, up to 30 stacks",
+    "source": "Archon Scepter effect updated"
+  },
+  {
+    "name": "From",
+    "category": "Generic",
+    "description": "From the Shadows You deal 100% more damage for 4 seconds after your next attack.",
+    "source": "Shadowsneak Dagger weapon reworked"
+  },
+  {
+    "name": "Ambush",
+    "category": "Generic",
+    "description": "Ambush 5% increased damage per stack",
+    "source": "Starting blessing buff removed"
+  },
+  {
+    "name": "Monkey Power",
+    "category": "Generic",
+    "description": "Monkey Power +1 to all proficiency",
+    "source": "Monkey Shrine Event no longer used"
+  },
+  {
+    "name": "Quick Cast",
+    "category": "Generic",
+    "description": "Quick Cast 1% increased attack speed per stack",
+    "source": "removed trait Quick Cast Trait"
+  },
+  {
+    "name": "Assassin",
+    "category": "Generic",
+    "description": "Assassin's Grace +10% critical hit chance",
+    "source": "item removed:Thieves Boots"
+  },
+  {
+    "name": "Finesse",
+    "category": "Generic",
+    "description": "Finesse 5% increased attack speed per stack",
+    "source": "old Starting blessing"
+  },
+  {
+    "name": "Decay",
+    "category": "Generic",
+    "description": "Decay 10% increased DoT damage per stack [Max 20 stacks]",
+    "source": "removed trait Decay Trait"
+  },
+  {
+    "name": "Trick Shot Deal",
+    "category": "Generic",
+    "description": "Trick Shot Deal 50% more damage",
+    "source": "Gunslinger ability reworked"
+  },
+  {
+    "name": "Dynamo",
+    "category": "Generic",
+    "description": "Dynamo 1% increased damage dealt per stack",
+    "source": "trait reworked: [[Traits|Dynamo}}"
+  },
+  {
+    "name": "Blood Lust",
+    "category": "Generic",
+    "description": "Blood Lust 30% increased attack speed",
+    "source": "effect changed The Hand Of Blood"
+  },
+  {
+    "name": "Tiny Dancer",
+    "category": "Generic",
+    "description": "Tiny Dancer +10 Dex",
+    "source": "icon updated Ballet Shoes"
+  },
+  {
+    "name": "Hidden Hornet Technique",
+    "category": "Generic",
+    "description": "Hidden Hornet Technique +125 bonus damage dealt",
+    "source": "effect reworked Hornet Ring"
+  },
+  {
+    "name": "Disarm Disarmed",
+    "category": "Generic",
+    "description": "Disarm Disarmed enemies deal 50% less damage.",
+    "source": "Innate ability for Soldier. Inflicted using 2H melee weapons.-Ability reworked"
+  },
+  {
+    "name": "Elite Gunner Your",
+    "category": "Generic",
+    "description": "Elite Gunner Your weapon deals 100% more damage.",
+    "source": "effect reworked:Golden Desert Eagle"
+  },
+  {
+    "name": "Shrine",
+    "category": "Generic",
+    "description": "Shrine shrine buff icon",
+    "source": "not currently used"
+  },
+  {
+    "name": "Opportunistic",
+    "category": "Generic",
+    "description": "Opportunistic old trait icon",
+    "source": "removed from Opportunistic"
+  },
+  {
+    "name": "Unknown",
+    "category": "Generic",
+    "description": "Unknown 22 check",
+    "source": "old trait or item?"
+  }
+]

@@ -1,0 +1,16 @@
+{
+    "data_model": "Fire Mage Build — Data Dependencies",
+    "game": "Tiny Rogues",
+    "total_entries": 13,
+    "foundation_types": 2,
+    "leaf_outcomes": 5,
+    "dependency_layers": 5,
+    "dependency_links": 11,
+    "spof_count": 6,
+    "graph_valid": true,
+    "validation_issues": {
+        "missing_dependencies": [],
+        "self_references": [],
+        "empty_types": []
+    }
+}

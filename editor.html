@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiny Rogues — Mod Data Editor</title>
+  <style>
+    :root {
+      --base: #1e1e2e; --mantle: #181825; --crust: #11111b;
+      --surface0: #313244; --surface1: #45475a; --surface2: #585b70;
+      --text: #cdd6f4; --subtext0: #a6adc8; --subtext1: #bac2de;
+      --overlay0: #6c7086;
+      --blue: #89b4fa; --lavender: #b4befe; --sapphire: #74c7ec;
+      --sky: #89dceb; --teal: #94e2d5; --green: #a6e3a1;
+      --yellow: #f9e2af; --peach: #fab387; --maroon: #eba0ac;
+      --red: #f38ba8; --mauve: #cba6f7; --pink: #f5c2e7;
+      --flamingo: #f2cdcd; --rosewater: #f5e0dc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+      background: var(--base); color: var(--text); height: 100vh;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+
+    /* ── Header ── */
+    header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px; background: var(--mantle);
+      border-bottom: 1px solid var(--surface1); flex-shrink: 0;
+    }
+    header h1 { font-size: 15px; color: var(--blue); font-weight: 600; margin-right: 12px; }
+    .add-btn {
+      background: var(--surface0); color: var(--subtext1); border: 1px solid var(--surface1);
+      padding: 5px 12px; font-size: 12px; cursor: pointer; border-radius: 4px;
+      font-family: inherit; transition: all 0.15s;
+    }
+    .add-btn:hover { background: var(--surface1); color: var(--text); }
+    .add-btn.weapon { border-left: 3px solid var(--blue); }
+    .add-btn.trait { border-left: 3px solid var(--teal); }
+    .add-btn.enchantment { border-left: 3px solid var(--mauve); }
+    .add-btn.effect { border-left: 3px solid var(--peach); }
+    .add-btn.cls { border-left: 3px solid var(--yellow); }
+    .spacer { flex: 1; }
+    .mode-btn {
+      background: var(--surface0); color: var(--subtext0); border: 1px solid var(--surface1);
+      padding: 5px 12px; font-size: 12px; cursor: pointer; border-radius: 4px;
+      font-family: inherit; transition: all 0.15s;
+    }
+    .mode-btn:hover { color: var(--text); }
+    .mode-btn.active { background: var(--yellow); color: var(--crust); border-color: var(--yellow); }
+    .export-btn {
+      background: var(--green); color: var(--crust); border: none;
+      padding: 5px 14px; font-size: 12px; cursor: pointer; border-radius: 4px;
+      font-family: inherit; font-weight: 600;
+    }
+    .export-btn:hover { filter: brightness(1.1); }
+
+    /* ── Layout ── */
+    .container { display: flex; flex: 1; overflow: hidden; }
+    .entity-list {
+      width: 240px; flex-shrink: 0; background: var(--crust);
+      border-right: 1px solid var(--surface1); overflow-y: auto; padding: 8px;
+    }
+    .entity-list h3 {
+      font-size: 11px; color: var(--overlay0); text-transform: uppercase;
+      letter-spacing: 0.5px; padding: 6px 4px 4px; margin-top: 8px;
+    }
+    .entity-list h3:first-child { margin-top: 0; }
+    .graph-area { flex: 1; position: relative; }
+    svg { width: 100%; height: 100%; }
+    .detail-panel {
+      width: 300px; flex-shrink: 0; background: var(--mantle);
+      border-left: 1px solid var(--surface1); overflow-y: auto; padding: 12px;
+    }
+
+    /* ── Mini Card (entity list) ── */
+    .mini-card {
+      background: var(--surface0); border-radius: 4px; padding: 6px 8px;
+      margin-bottom: 4px; cursor: pointer; transition: all 0.15s;
+      border-left: 3px solid var(--overlay0); font-size: 11px;
+    }
+    .mini-card:hover { background: var(--surface1); }
+    .mini-card.selected { border-color: var(--yellow); background: var(--surface1); }
+    .mini-card .mc-name { color: var(--text); font-weight: 500; }
+    .mini-card .mc-sub { color: var(--subtext0); font-size: 10px; }
+    .mini-card .mc-delete {
+      float: right; color: var(--overlay0); cursor: pointer; font-size: 10px;
+    }
+    .mini-card .mc-delete:hover { color: var(--red); }
+
+    /* ── D3 Graph ── */
+    .edge { stroke: var(--surface2); stroke-width: 1.5; fill: none; }
+    .edge.highlighted { stroke: var(--yellow); stroke-width: 2.5; }
+    .edge.linking { stroke: var(--green); stroke-width: 2; stroke-dasharray: 6 3; }
+    .node-circle { stroke-width: 2; cursor: pointer; transition: r 0.15s; }
+    .node-circle:hover { r: 14; }
+    .node-circle.selected { stroke: var(--yellow) !important; stroke-width: 3; }
+    .node-circle.link-source { stroke: var(--green) !important; stroke-width: 3; stroke-dasharray: 4 2; }
+    .node-label {
+      font-size: 10px; fill: var(--subtext1); pointer-events: none;
+      text-anchor: middle; dominant-baseline: middle;
+    }
+    marker path { fill: var(--surface2); }
+
+    /* ── Detail Panel / Card View ── */
+    .card-view {
+      background: var(--surface0); border-radius: 6px; padding: 12px;
+      border: 1px solid var(--surface1);
+    }
+    .card-view .cv-name {
+      font-size: 16px; color: var(--yellow); font-weight: 600; margin-bottom: 4px;
+    }
+    .card-view .cv-type {
+      display: inline-block; font-size: 10px; padding: 2px 8px;
+      border-radius: 3px; margin-bottom: 8px;
+    }
+    .card-view .cv-damage {
+      font-size: 22px; font-weight: 700; color: var(--text); margin: 6px 0;
+    }
+    .card-view .cv-damage .cv-dmg-type { font-size: 12px; color: var(--subtext0); font-weight: 400; }
+    .card-view .cv-scaling {
+      display: flex; gap: 8px; margin: 8px 0;
+    }
+    .cv-scale-box {
+      background: var(--crust); padding: 4px 8px; border-radius: 3px;
+      text-align: center; font-size: 12px; min-width: 40px;
+    }
+    .cv-scale-box .grade { font-size: 16px; font-weight: 700; }
+    .cv-scale-box .stat-label { font-size: 9px; }
+    .str { color: var(--red); } .dex { color: var(--green); } .int { color: var(--blue); }
+    .card-view .cv-desc { color: var(--subtext0); font-size: 11px; margin-top: 8px; line-height: 1.5; }
+    .card-view .cv-field { margin-top: 4px; font-size: 11px; }
+    .card-view .cv-field-label { color: var(--overlay0); }
+    .detail-panel .section-title {
+      font-size: 11px; color: var(--overlay0); text-transform: uppercase;
+      letter-spacing: 0.5px; margin: 14px 0 6px; padding-top: 10px;
+      border-top: 1px solid var(--surface0);
+    }
+    .detail-panel .dep-link {
+      color: var(--blue); cursor: pointer; font-size: 12px;
+    }
+    .detail-panel .dep-link:hover { text-decoration: underline; }
+    .detail-panel .empty { color: var(--overlay0); font-style: italic; font-size: 11px; }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-overlay.hidden { display: none; }
+    .modal {
+      background: var(--mantle); border: 1px solid var(--surface1);
+      border-radius: 8px; padding: 20px; width: 420px; max-height: 80vh;
+      overflow-y: auto;
+    }
+    .modal h2 { font-size: 16px; color: var(--text); margin-bottom: 12px; }
+    .modal label {
+      display: block; font-size: 11px; color: var(--subtext0);
+      margin: 8px 0 3px; text-transform: uppercase; letter-spacing: 0.3px;
+    }
+    .modal input, .modal select, .modal textarea {
+      width: 100%; background: var(--surface0); color: var(--text);
+      border: 1px solid var(--surface1); border-radius: 4px;
+      padding: 6px 8px; font-family: inherit; font-size: 13px;
+    }
+    .modal input:focus, .modal select:focus, .modal textarea:focus {
+      outline: none; border-color: var(--blue);
+    }
+    .modal textarea { resize: vertical; min-height: 60px; }
+    .modal .row { display: flex; gap: 8px; }
+    .modal .row > * { flex: 1; }
+    .modal .scaling-row { display: flex; gap: 8px; margin-top: 4px; }
+    .modal .scaling-row > div { flex: 1; text-align: center; }
+    .modal .scaling-row label { text-align: center; }
+    .modal-actions { display: flex; gap: 8px; margin-top: 16px; justify-content: flex-end; }
+    .modal-actions button {
+      padding: 6px 16px; border-radius: 4px; font-family: inherit;
+      font-size: 13px; cursor: pointer; border: none;
+    }
+    .btn-create { background: var(--green); color: var(--crust); font-weight: 600; }
+    .btn-cancel { background: var(--surface1); color: var(--text); }
+    .modal .dep-section { margin-top: 12px; }
+    .modal .dep-check { display: flex; align-items: center; gap: 6px; font-size: 12px; margin: 2px 0; }
+    .modal .dep-check input { width: auto; }
+
+    /* ── Import button ── */
+    .import-btn {
+      background: var(--surface0); color: var(--subtext1); border: 1px solid var(--surface1);
+      padding: 5px 12px; font-size: 12px; cursor: pointer; border-radius: 4px;
+      font-family: inherit; transition: all 0.15s;
+    }
+    .import-btn:hover { background: var(--surface1); color: var(--text); }
+
+    /* ── Export Modal ── */
+    .export-tabs {
+      display: flex; gap: 2px; margin-bottom: 8px; flex-wrap: wrap;
+    }
+    .export-tabs button {
+      background: var(--surface0); color: var(--subtext0); border: 1px solid var(--surface1);
+      padding: 4px 10px; font-size: 11px; cursor: pointer; border-radius: 3px;
+      font-family: inherit; transition: all 0.15s;
+    }
+    .export-tabs button:hover { color: var(--text); }
+    .export-tabs button.active { background: var(--blue); color: var(--crust); border-color: var(--blue); }
+    .export-filename {
+      font-size: 11px; color: var(--overlay0); margin-bottom: 4px; font-style: italic;
+    }
+    .export-area {
+      background: var(--crust); border: 1px solid var(--surface1);
+      border-radius: 4px; padding: 10px; font-size: 11px;
+      max-height: 400px; overflow-y: auto; white-space: pre-wrap;
+      word-break: break-all; color: var(--subtext1);
+    }
+    .link-hint {
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      background: var(--yellow); color: var(--crust); padding: 4px 14px;
+      border-radius: 4px; font-size: 12px; font-weight: 600; z-index: 10;
+      pointer-events: none;
+    }
+    .link-hint.hidden { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="index.html" style="color:var(--blue);text-decoration:none">Tiny Rogues</a> / Editor</h1>
+    <button class="add-btn weapon" onclick="showModal('weapon')">+ Weapon</button>
+    <button class="add-btn trait" onclick="showModal('trait')">+ Trait</button>
+    <button class="add-btn enchantment" onclick="showModal('enchantment')">+ Enchant</button>
+    <button class="add-btn effect" onclick="showModal('effect')">+ Effect</button>
+    <button class="add-btn cls" onclick="showModal('cls')">+ Class</button>
+    <span class="spacer"></span>
+    <button class="import-btn" onclick="document.getElementById('import-file').click()">Import</button>
+    <input type="file" id="import-file" accept=".json,.xml" style="display:none" onchange="importFile(this)">
+    <button class="mode-btn" id="link-btn" onclick="toggleLinkMode()">Link Mode</button>
+    <button class="export-btn" onclick="showExport()">Export</button>
+  </header>
+
+  <div class="container">
+    <div class="entity-list" id="entity-list"></div>
+    <div class="graph-area">
+      <div class="link-hint hidden" id="link-hint">Click source node, then target node</div>
+      <svg id="graph-svg"></svg>
+    </div>
+    <div class="detail-panel" id="detail">
+      <p style="color:var(--subtext0);font-size:12px;margin-top:20px">
+        Add entities using the buttons above. Click nodes to inspect. Use Link Mode to connect dependencies.
+      </p>
+    </div>
+  </div>
+
+  <!-- Create/Edit Modal -->
+  <div class="modal-overlay hidden" id="create-modal">
+    <div class="modal" id="modal-content"></div>
+  </div>
+
+  <!-- Export Modal -->
+  <div class="modal-overlay hidden" id="export-modal" onclick="if(event.target===this)this.classList.add('hidden')">
+    <div class="modal" style="width:620px">
+      <h2>Export — Mod Package</h2>
+      <p style="font-size:12px;color:var(--subtext0);margin-bottom:10px">
+        Split by entity type, like a real mod directory. Each tab is a separate file.
+      </p>
+      <div class="export-tabs" id="export-tabs"></div>
+      <div class="export-filename" id="export-filename"></div>
+      <pre class="export-area" id="export-json"></pre>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="document.getElementById('export-modal').classList.add('hidden')">Close</button>
+        <button class="btn-cancel" onclick="downloadAll()">Download Zip</button>
+        <button class="btn-create" onclick="copyExport()">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script>
+    // ═══════════════════════════════════════════════════════════════
+    // SCHEMAS
+    // ═══════════════════════════════════════════════════════════════
+
+    const GRADES = ['-','E','E+','D','D+','C','C+','B','B+','A','A+','S','S+'];
+    const ELEMENTS = ['Physical','Fire','Cold','Lightning','Poison','Necrotic','Radiant'];
+    const EFFECTS = ['None','Burn','Bleed','Poison','Necrosis','Chill','Shock','Frostbite','Scorch','Zap','Toxic'];
+
+    const TYPE_COLORS = {
+      weapon: '#89b4fa', trait: '#94e2d5', enchantment: '#cba6f7',
+      effect: '#fab387', cls: '#f9e2af'
+    };
+    const TYPE_LABELS = {
+      weapon: 'Weapon', trait: 'Trait', enchantment: 'Enchantment',
+      effect: 'Status Effect', cls: 'Class'
+    };
+
+    // ═══════════════════════════════════════════════════════════════
+    // STATE
+    // ═══════════════════════════════════════════════════════════════
+
+    let entities = [];
+    let connections = []; // {source: id, target: id}
+    let nextId = 1;
+    let selectedId = null;
+    let linkMode = false;
+    let linkSource = null;
+    let simulation = null;
+
+    // ═══════════════════════════════════════════════════════════════
+    // SVG SETUP
+    // ═══════════════════════════════════════════════════════════════
+
+    const svg = d3.select('#graph-svg');
+    const defs = svg.append('defs');
+    defs.append('marker').attr('id','arrow').attr('viewBox','0 0 10 6')
+      .attr('refX',10).attr('refY',3).attr('markerWidth',8).attr('markerHeight',6)
+      .attr('orient','auto').append('path').attr('d','M0,0 L10,3 L0,6 Z');
+    defs.append('marker').attr('id','arrow-hl').attr('viewBox','0 0 10 6')
+      .attr('refX',10).attr('refY',3).attr('markerWidth',8).attr('markerHeight',6)
+      .attr('orient','auto').append('path').attr('d','M0,0 L10,3 L0,6 Z').attr('fill','#f9e2af');
+    const svgG = svg.append('g');
+    const linkG = svgG.append('g');
+    const nodeG = svgG.append('g');
+    const labelG = svgG.append('g');
+    svg.call(d3.zoom().scaleExtent([0.3,4]).on('zoom', e => svgG.attr('transform', e.transform)));
+
+    // ═══════════════════════════════════════════════════════════════
+    // MODAL — Form Generation
+    // ═══════════════════════════════════════════════════════════════
+
+    function showModal(type) {
+      const m = document.getElementById('modal-content');
+      let html = `<h2>New ${TYPE_LABELS[type]}</h2>`;
+      html += `<input type="hidden" id="f-type" value="${type}">`;
+      html += field('name', 'Name', 'text');
+
+      if (type === 'weapon') {
+        html += `<div class="row">${sel('category','Category',['Melee','Ranged','Magic'])}${sel('damage_type','Element',ELEMENTS)}</div>`;
+        html += `<div class="row">${field('damage_min','DMG Min','number')}${field('damage_max','DMG Max','number')}</div>`;
+        html += `<label>SCALING</label><div class="scaling-row">`;
+        html += scaleSel('scaling_str','STR','str');
+        html += scaleSel('scaling_dex','DEX','dex');
+        html += scaleSel('scaling_int','INT','int');
+        html += `</div>`;
+        html += sel('status_effect','Status Effect',EFFECTS);
+      } else if (type === 'trait') {
+        html += sel('trait_cat','Category',['Strength','Dexterity','Intelligence','General']);
+        html += field('effect','Effect','textarea');
+      } else if (type === 'enchantment') {
+        html += sel('ench_cat','Category',['Positive','Negative','Legendary','Special']);
+        html += field('effect','Effect','textarea');
+      } else if (type === 'effect') {
+        html += sel('effect_type','Type',['DoT','Debuff','Trigger','Buff']);
+        html += sel('element','Element',ELEMENTS);
+        html += `<div class="row">${field('tick_damage','Tick DMG','number')}${field('duration','Duration (s)','number')}</div>`;
+        html += `<div class="row">${field('tick_speed','Tick Speed','number')}${field('max_stacks','Max Stacks','number')}</div>`;
+      } else if (type === 'cls') {
+        html += `<div class="row">${field('base_str','Base STR','number')}${field('base_dex','Base DEX','number')}${field('base_int','Base INT','number')}</div>`;
+        html += field('passive','Passive Ability','textarea');
+        html += field('starting_weapon','Starting Weapon','text');
+      }
+
+      html += field('description','Description','textarea');
+
+      // Dependency checkboxes (existing entities)
+      if (entities.length > 0) {
+        html += `<div class="dep-section"><label>DEPENDS ON</label>`;
+        entities.forEach(e => {
+          html += `<div class="dep-check"><input type="checkbox" value="${e.id}" class="dep-cb"> <span style="color:${TYPE_COLORS[e.type]}">[${TYPE_LABELS[e.type]}]</span> ${e.data.name}</div>`;
+        });
+        html += `</div>`;
+      }
+
+      html += `<div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-create" onclick="createEntity()">Create</button>
+      </div>`;
+
+      m.innerHTML = html;
+      document.getElementById('create-modal').classList.remove('hidden');
+      document.getElementById('f-name')?.focus();
+    }
+
+    function field(id, label, type) {
+      if (type === 'textarea') return `<label>${label}</label><textarea id="f-${id}"></textarea>`;
+      return `<div><label>${label}</label><input type="${type}" id="f-${id}"></div>`;
+    }
+    function sel(id, label, opts) {
+      let h = `<div><label>${label}</label><select id="f-${id}">`;
+      opts.forEach(o => h += `<option value="${o}">${o}</option>`);
+      return h + `</select></div>`;
+    }
+    function scaleSel(id, label, cls) {
+      let h = `<div><label class="${cls}">${label}</label><select id="f-${id}" style="text-align:center">`;
+      GRADES.forEach(g => h += `<option value="${g}">${g}</option>`);
+      return h + `</select></div>`;
+    }
+    function closeModal() { document.getElementById('create-modal').classList.add('hidden'); }
+
+    // ═══════════════════════════════════════════════════════════════
+    // CREATE ENTITY
+    // ═══════════════════════════════════════════════════════════════
+
+    function createEntity() {
+      const type = document.getElementById('f-type').value;
+      const data = { name: val('name') || `Unnamed ${nextId}` };
+
+      if (type === 'weapon') {
+        Object.assign(data, {
+          category: val('category'), damage_type: val('damage_type'),
+          damage_min: numVal('damage_min'), damage_max: numVal('damage_max'),
+          scaling_str: val('scaling_str'), scaling_dex: val('scaling_dex'),
+          scaling_int: val('scaling_int'), status_effect: val('status_effect')
+        });
+      } else if (type === 'trait') {
+        Object.assign(data, { trait_category: val('trait_cat'), effect: val('effect') });
+      } else if (type === 'enchantment') {
+        Object.assign(data, { enchant_category: val('ench_cat'), effect: val('effect') });
+      } else if (type === 'effect') {
+        Object.assign(data, {
+          effect_type: val('effect_type'), element: val('element'),
+          tick_damage: numVal('tick_damage'), duration: numVal('duration'),
+          tick_speed: numVal('tick_speed'), max_stacks: numVal('max_stacks')
+        });
+      } else if (type === 'cls') {
+        Object.assign(data, {
+          base_str: numVal('base_str'), base_dex: numVal('base_dex'),
+          base_int: numVal('base_int'), passive: val('passive'),
+          starting_weapon: val('starting_weapon')
+        });
+      }
+      data.description = val('description');
+
+      const id = nextId++;
+      const svgEl = document.getElementById('graph-svg');
+      const entity = {
+        id, type, data,
+        x: svgEl.clientWidth / 2 + (Math.random() - 0.5) * 200,
+        y: svgEl.clientHeight / 2 + (Math.random() - 0.5) * 200
+      };
+      entities.push(entity);
+
+      // Add dependencies from checkboxes
+      document.querySelectorAll('.dep-cb:checked').forEach(cb => {
+        connections.push({ source: parseInt(cb.value), target: id });
+      });
+
+      closeModal();
+      renderAll();
+      selectEntity(id);
+    }
+
+    function val(id) { const el = document.getElementById('f-' + id); return el ? el.value : ''; }
+    function numVal(id) { const v = parseFloat(val(id)); return isNaN(v) ? 0 : v; }
+
+    // ═══════════════════════════════════════════════════════════════
+    // DELETE ENTITY
+    // ═══════════════════════════════════════════════════════════════
+
+    function deleteEntity(id) {
+      entities = entities.filter(e => e.id !== id);
+      connections = connections.filter(c => c.source !== id && c.target !== id);
+      if (selectedId === id) selectedId = null;
+      renderAll();
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // LINK MODE
+    // ═══════════════════════════════════════════════════════════════
+
+    function toggleLinkMode() {
+      linkMode = !linkMode;
+      linkSource = null;
+      document.getElementById('link-btn').classList.toggle('active', linkMode);
+      document.getElementById('link-hint').classList.toggle('hidden', !linkMode);
+      renderGraph();
+    }
+
+    function handleNodeClick(entity) {
+      if (linkMode) {
+        if (!linkSource) {
+          linkSource = entity.id;
+          renderGraph();
+        } else if (linkSource !== entity.id) {
+          // Check duplicate
+          const exists = connections.some(c => c.source === linkSource && c.target === entity.id);
+          if (!exists) {
+            connections.push({ source: linkSource, target: entity.id });
+          }
+          linkSource = null;
+          renderAll();
+        }
+      } else {
+        selectEntity(entity.id);
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // SELECT & RENDER
+    // ═══════════════════════════════════════════════════════════════
+
+    function selectEntity(id) {
+      selectedId = id;
+      renderEntityList();
+      renderGraph();
+      showDetail(id);
+    }
+
+    function renderAll() {
+      renderEntityList();
+      renderGraph();
+    }
+
+    function renderEntityList() {
+      const list = document.getElementById('entity-list');
+      const groups = {};
+      entities.forEach(e => {
+        if (!groups[e.type]) groups[e.type] = [];
+        groups[e.type].push(e);
+      });
+
+      let html = '';
+      for (const [type, ents] of Object.entries(groups)) {
+        html += `<h3>${TYPE_LABELS[type]}s</h3>`;
+        ents.forEach(e => {
+          const sel = e.id === selectedId ? ' selected' : '';
+          html += `<div class="mini-card${sel}" style="border-left-color:${TYPE_COLORS[type]}" onclick="selectEntity(${e.id})">
+            <span class="mc-delete" onclick="event.stopPropagation();deleteEntity(${e.id})">x</span>
+            <div class="mc-name">${e.data.name}</div>
+            <div class="mc-sub">${cardSubtitle(e)}</div>
+          </div>`;
+        });
+      }
+      if (!entities.length) html = '<p style="color:var(--overlay0);font-size:11px;padding:12px">No entities yet. Use the buttons above to add weapons, traits, effects, and classes.</p>';
+      list.innerHTML = html;
+    }
+
+    function cardSubtitle(e) {
+      if (e.type === 'weapon') return `${e.data.category || ''} · ${e.data.damage_min}-${e.data.damage_max} ${e.data.damage_type || ''}`;
+      if (e.type === 'trait') return e.data.trait_category || '';
+      if (e.type === 'enchantment') return e.data.enchant_category || '';
+      if (e.type === 'effect') return `${e.data.effect_type || ''} · ${e.data.element || ''}`;
+      if (e.type === 'cls') return `STR ${e.data.base_str} DEX ${e.data.base_dex} INT ${e.data.base_int}`;
+      return '';
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // GRAPH RENDERING
+    // ═══════════════════════════════════════════════════════════════
+
+    function renderGraph() {
+      const svgEl = document.getElementById('graph-svg');
+      const w = svgEl.clientWidth, h = svgEl.clientHeight;
+      const R = 10;
+
+      if (simulation) simulation.stop();
+
+      // Edges
+      const edgeData = connections.map(c => ({
+        source: entities.find(e => e.id === c.source),
+        target: entities.find(e => e.id === c.target)
+      })).filter(e => e.source && e.target);
+
+      const links = linkG.selectAll('line').data(edgeData, d => d.source.id + '-' + d.target.id);
+      links.exit().remove();
+      const linksE = links.enter().append('line').attr('class', 'edge').attr('marker-end', 'url(#arrow)');
+      const allLinks = linksE.merge(links);
+
+      // Nodes
+      const circles = nodeG.selectAll('circle').data(entities, d => d.id);
+      circles.exit().remove();
+      const circlesE = circles.enter().append('circle')
+        .attr('r', R).attr('class', 'node-circle')
+        .call(d3.drag()
+          .on('start', (ev, d) => { if (!linkMode) { if (simulation) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; }})
+          .on('drag', (ev, d) => { if (!linkMode) { d.fx = ev.x; d.fy = ev.y; }})
+          .on('end', (ev, d) => { if (!linkMode) { if (simulation) simulation.alphaTarget(0); d.fx = null; d.fy = null; }})
+        )
+        .on('click', (ev, d) => handleNodeClick(d));
+      const allCircles = circlesE.merge(circles)
+        .attr('fill', d => TYPE_COLORS[d.type])
+        .attr('stroke', d => d3.color(TYPE_COLORS[d.type]).darker(0.5))
+        .classed('selected', d => d.id === selectedId)
+        .classed('link-source', d => d.id === linkSource);
+
+      // Labels
+      const labels = labelG.selectAll('text').data(entities, d => d.id);
+      labels.exit().remove();
+      const labelsE = labels.enter().append('text')
+        .attr('class', 'node-label').attr('dy', R + 14);
+      const allLabels = labelsE.merge(labels).text(d => d.data.name);
+
+      // Highlight connections for selected node
+      if (selectedId && !linkMode) {
+        const connIds = new Set([selectedId]);
+        connections.forEach(c => {
+          if (c.source === selectedId || c.target === selectedId) {
+            connIds.add(c.source); connIds.add(c.target);
+          }
+        });
+        allLinks.each(function(d) {
+          const isConn = d.source.id === selectedId || d.target.id === selectedId;
+          d3.select(this)
+            .attr('class', isConn ? 'edge highlighted' : 'edge')
+            .attr('marker-end', isConn ? 'url(#arrow-hl)' : 'url(#arrow)');
+        });
+      }
+
+      // Force simulation
+      const nCount = entities.length;
+      if (nCount === 0) return;
+
+      const simEdges = connections.map(c => ({ source: c.source, target: c.target }));
+
+      simulation = d3.forceSimulation(entities)
+        .force('link', d3.forceLink(simEdges).id(d => d.id).distance(100))
+        .force('charge', d3.forceManyBody().strength(-300))
+        .force('collide', d3.forceCollide(R + 20))
+        .force('center', d3.forceCenter(w / 2, h / 2))
+        .on('tick', () => {
+          allLinks
+            .attr('x1', d => d.source.x)
+            .attr('y1', d => d.source.y)
+            .attr('x2', d => {
+              const dx = d.target.x - d.source.x, dy = d.target.y - d.source.y;
+              const dist = Math.sqrt(dx*dx+dy*dy)||1;
+              return d.target.x - (dx/dist)*(R+6);
+            })
+            .attr('y2', d => {
+              const dx = d.target.x - d.source.x, dy = d.target.y - d.source.y;
+              const dist = Math.sqrt(dx*dx+dy*dy)||1;
+              return d.target.y - (dy/dist)*(R+6);
+            });
+          allCircles.attr('cx', d => d.x).attr('cy', d => d.y);
+          allLabels.attr('x', d => d.x).attr('y', d => d.y);
+        });
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // DETAIL PANEL — Card View
+    // ═══════════════════════════════════════════════════════════════
+
+    function showDetail(id) {
+      const e = entities.find(x => x.id === id);
+      if (!e) return;
+      const panel = document.getElementById('detail');
+      let html = '<div class="card-view">';
+
+      // Name + type badge
+      html += `<div class="cv-name">${e.data.name}</div>`;
+      html += `<span class="cv-type" style="background:${TYPE_COLORS[e.type]}33;color:${TYPE_COLORS[e.type]}">${TYPE_LABELS[e.type]}</span>`;
+
+      // Weapon-specific card rendering
+      if (e.type === 'weapon') {
+        if (e.data.damage_min || e.data.damage_max) {
+          const dtColor = {Fire:'var(--red)',Cold:'var(--sapphire)',Lightning:'var(--yellow)',Poison:'var(--green)',Necrotic:'var(--mauve)',Physical:'var(--text)'}[e.data.damage_type] || 'var(--text)';
+          html += `<div class="cv-damage" style="color:${dtColor}">${e.data.damage_min} — ${e.data.damage_max} <span class="cv-dmg-type">${e.data.damage_type} DMG</span></div>`;
+        }
+        html += `<div class="cv-scaling">`;
+        html += scaleBox(e.data.scaling_str, 'STR', 'str');
+        html += scaleBox(e.data.scaling_dex, 'DEX', 'dex');
+        html += scaleBox(e.data.scaling_int, 'INT', 'int');
+        html += `</div>`;
+        if (e.data.category) html += `<div class="cv-field"><span class="cv-field-label">Category:</span> ${e.data.category}</div>`;
+        if (e.data.status_effect && e.data.status_effect !== 'None') html += `<div class="cv-field"><span class="cv-field-label">Applies:</span> ${e.data.status_effect}</div>`;
+      }
+
+      // Trait
+      if (e.type === 'trait') {
+        if (e.data.trait_category) html += `<div class="cv-field"><span class="cv-field-label">Category:</span> ${e.data.trait_category}</div>`;
+        if (e.data.effect) html += `<div class="cv-field"><span class="cv-field-label">Effect:</span> ${e.data.effect}</div>`;
+      }
+
+      // Enchantment
+      if (e.type === 'enchantment') {
+        if (e.data.enchant_category) html += `<div class="cv-field"><span class="cv-field-label">Category:</span> ${e.data.enchant_category}</div>`;
+        if (e.data.effect) html += `<div class="cv-field"><span class="cv-field-label">Effect:</span> ${e.data.effect}</div>`;
+      }
+
+      // Effect
+      if (e.type === 'effect') {
+        if (e.data.effect_type) html += `<div class="cv-field"><span class="cv-field-label">Type:</span> ${e.data.effect_type}</div>`;
+        if (e.data.element) html += `<div class="cv-field"><span class="cv-field-label">Element:</span> ${e.data.element}</div>`;
+        if (e.data.tick_damage) html += `<div class="cv-field"><span class="cv-field-label">Tick DMG:</span> ${e.data.tick_damage}</div>`;
+        if (e.data.tick_speed) html += `<div class="cv-field"><span class="cv-field-label">Tick Speed:</span> ${e.data.tick_speed}s</div>`;
+        if (e.data.duration) html += `<div class="cv-field"><span class="cv-field-label">Duration:</span> ${e.data.duration}s</div>`;
+        if (e.data.max_stacks) html += `<div class="cv-field"><span class="cv-field-label">Max Stacks:</span> ${e.data.max_stacks}</div>`;
+      }
+
+      // Class
+      if (e.type === 'cls') {
+        html += `<div class="cv-scaling">`;
+        html += `<div class="cv-scale-box"><div class="grade str">${e.data.base_str}</div><div class="stat-label str">STR</div></div>`;
+        html += `<div class="cv-scale-box"><div class="grade dex">${e.data.base_dex}</div><div class="stat-label dex">DEX</div></div>`;
+        html += `<div class="cv-scale-box"><div class="grade int">${e.data.base_int}</div><div class="stat-label int">INT</div></div>`;
+        html += `</div>`;
+        if (e.data.passive) html += `<div class="cv-field"><span class="cv-field-label">Passive:</span> ${e.data.passive}</div>`;
+        if (e.data.starting_weapon) html += `<div class="cv-field"><span class="cv-field-label">Starting Weapon:</span> ${e.data.starting_weapon}</div>`;
+      }
+
+      if (e.data.description) html += `<div class="cv-desc">${e.data.description}</div>`;
+      html += '</div>';
+
+      // Dependencies
+      const deps = connections.filter(c => c.target === id);
+      const dependents = connections.filter(c => c.source === id);
+
+      html += '<div class="section-title">Depends On</div>';
+      if (deps.length) {
+        deps.forEach(c => {
+          const src = entities.find(x => x.id === c.source);
+          if (src) html += `<div><span class="dep-link" onclick="selectEntity(${src.id})">${src.data.name}</span></div>`;
+        });
+      } else {
+        html += '<div class="empty">No dependencies (root node)</div>';
+      }
+
+      html += '<div class="section-title">Dependents</div>';
+      if (dependents.length) {
+        dependents.forEach(c => {
+          const tgt = entities.find(x => x.id === c.target);
+          if (tgt) html += `<div><span class="dep-link" onclick="selectEntity(${tgt.id})">${tgt.data.name}</span></div>`;
+        });
+      } else {
+        html += '<div class="empty">No dependents (leaf node)</div>';
+      }
+
+      panel.innerHTML = html;
+    }
+
+    function scaleBox(grade, label, cls) {
+      if (!grade || grade === '-') return `<div class="cv-scale-box"><div class="grade" style="color:var(--overlay0)">—</div><div class="stat-label ${cls}">${label}</div></div>`;
+      return `<div class="cv-scale-box"><div class="grade ${cls}">${grade}</div><div class="stat-label ${cls}">${label}</div></div>`;
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // EXPORT — Split by type + graph manifest
+    // ═══════════════════════════════════════════════════════════════
+
+    let exportFiles = {};
+    let activeExportTab = null;
+
+    function buildExportFiles() {
+      exportFiles = {};
+      const toId = name => name.toLowerCase().replace(/\s+/g, '-');
+      const depsFor = id => connections.filter(c => c.target === id)
+        .map(c => entities.find(x => x.id === c.source)?.data.name).filter(Boolean);
+
+      // Split entities by type
+      const groups = { weapon: [], trait: [], enchantment: [], effect: [], cls: [] };
+      entities.forEach(e => { if (groups[e.type]) groups[e.type].push(e); });
+
+      // weapons.json
+      exportFiles['weapons.json'] = groups.weapon.map(e => ({
+        id: toId(e.data.name), ...e.data,
+        depends_on: depsFor(e.id)
+      }));
+
+      // effects.json
+      exportFiles['effects.json'] = groups.effect.map(e => ({
+        id: toId(e.data.name), ...e.data,
+        depends_on: depsFor(e.id)
+      }));
+
+      // classes.json
+      exportFiles['classes.json'] = groups.cls.map(e => ({
+        id: toId(e.data.name), ...e.data,
+        depends_on: depsFor(e.id)
+      }));
+
+      // traits.json
+      exportFiles['traits.json'] = groups.trait.map(e => ({
+        id: toId(e.data.name), ...e.data,
+        depends_on: depsFor(e.id)
+      }));
+
+      // enchantments.json
+      exportFiles['enchantments.json'] = groups.enchantment.map(e => ({
+        id: toId(e.data.name), ...e.data,
+        depends_on: depsFor(e.id)
+      }));
+
+      // graph.json — dependency manifest
+      const nodes = entities.map(e => ({
+        id: toId(e.data.name), name: e.data.name, type: TYPE_LABELS[e.type]
+      }));
+      const edges = connections.map(c => {
+        const src = entities.find(x => x.id === c.source);
+        const tgt = entities.find(x => x.id === c.target);
+        return src && tgt ? { source: toId(src.data.name), target: toId(tgt.data.name) } : null;
+      }).filter(Boolean);
+
+      // Hub analysis
+      const depCount = {};
+      edges.forEach(e => { depCount[e.source] = (depCount[e.source] || 0) + 1; });
+      const hubs = Object.entries(depCount).sort((a,b) => b[1] - a[1]).slice(0, 5)
+        .map(([id, count]) => ({ id, dependents: count }));
+
+      exportFiles['graph.json'] = {
+        nodes, edges,
+        stats: {
+          total_nodes: nodes.length, total_edges: edges.length,
+          by_type: { weapons: groups.weapon.length, effects: groups.effect.length,
+            classes: groups.cls.length, traits: groups.trait.length,
+            enchantments: groups.enchantment.length },
+          top_hubs: hubs
+        }
+      };
+
+      // mod.json — full bundle (importable)
+      exportFiles['mod.json'] = {
+        weapons: exportFiles['weapons.json'],
+        effects: exportFiles['effects.json'],
+        classes: exportFiles['classes.json'],
+        traits: exportFiles['traits.json'],
+        enchantments: exportFiles['enchantments.json'],
+        graph: exportFiles['graph.json'],
+        metadata: {
+          exported: new Date().toISOString(),
+          entity_count: entities.length,
+          connection_count: connections.length,
+          tool: 'quicue.ca mod-data-editor'
+        }
+      };
+    }
+
+    function showExport() {
+      buildExportFiles();
+      const tabOrder = ['weapons.json','effects.json','classes.json','traits.json','enchantments.json','graph.json','mod.json'];
+      const tabsEl = document.getElementById('export-tabs');
+      tabsEl.innerHTML = '';
+      tabOrder.forEach(name => {
+        const btn = document.createElement('button');
+        btn.textContent = name.replace('.json','');
+        btn.onclick = () => showExportTab(name);
+        tabsEl.appendChild(btn);
+      });
+      showExportTab('graph.json');
+      document.getElementById('export-modal').classList.remove('hidden');
+    }
+
+    function showExportTab(name) {
+      activeExportTab = name;
+      document.getElementById('export-filename').textContent = name;
+      document.getElementById('export-json').textContent = JSON.stringify(exportFiles[name], null, 2);
+      document.querySelectorAll('#export-tabs button').forEach(b =>
+        b.classList.toggle('active', b.textContent === name.replace('.json',''))
+      );
+    }
+
+    function copyExport() {
+      const text = document.getElementById('export-json').textContent;
+      navigator.clipboard.writeText(text);
+    }
+
+    async function downloadAll() {
+      const zip = new JSZip();
+      const folder = zip.folder('mod-data');
+      Object.entries(exportFiles).forEach(([name, data]) => {
+        folder.file(name, JSON.stringify(data, null, 2));
+      });
+      const blob = await zip.generateAsync({ type: 'blob' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'tiny-rogues-mod-data.zip';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // IMPORT — Load from exported mod.json or individual type files
+    // ═══════════════════════════════════════════════════════════════
+
+    function importFile(input) {
+      const file = input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const text = e.target.result;
+        if (file.name.endsWith('.xml')) {
+          try {
+            const data = parseXMLImport(text);
+            loadImportedData(data);
+          } catch (err) {
+            alert('XML parse error: ' + err.message);
+          }
+        } else {
+          try {
+            const data = JSON.parse(text);
+            loadImportedData(data);
+          } catch (err) {
+            alert('Invalid JSON: ' + err.message);
+          }
+        }
+      };
+      reader.readAsText(file);
+      input.value = '';
+    }
+
+    // ── XML Import ──
+    // Parses game data XML into the same format loadImportedData expects.
+    // Handles common patterns: <weapons><weapon name="...">...</weapon></weapons>
+    // Auto-detects entity types from tag names.
+    function parseXMLImport(xmlText) {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(xmlText, 'text/xml');
+      const parseErr = doc.querySelector('parsererror');
+      if (parseErr) throw new Error(parseErr.textContent.slice(0, 200));
+
+      // Tag name → internal type mapping
+      const TYPE_MAP = {
+        weapon: 'weapon', weapons: 'weapon', item: 'weapon',
+        effect: 'effect', effects: 'effect', ailment: 'effect', ailments: 'effect',
+        statuseffect: 'effect', statuseffects: 'effect', status_effect: 'effect',
+        'class': 'cls', classes: 'cls', character: 'cls', characters: 'cls',
+        trait: 'trait', traits: 'trait', perk: 'trait', perks: 'trait',
+        enchantment: 'enchantment', enchantments: 'enchantment', enchant: 'enchantment',
+      };
+
+      function guessType(tagName) {
+        return TYPE_MAP[tagName.toLowerCase()] || null;
+      }
+
+      // Extract properties from an XML element (attributes + child text nodes)
+      function extractProps(el) {
+        const props = {};
+        // Attributes first
+        for (const attr of el.attributes) {
+          props[attr.name] = isNaN(attr.value) ? attr.value : Number(attr.value);
+        }
+        // Child elements with text content
+        for (const child of el.children) {
+          if (child.children.length === 0) {
+            const val = child.textContent.trim();
+            props[child.tagName] = isNaN(val) || val === '' ? val : Number(val);
+          }
+        }
+        // Use tag-specific name fields if 'name' not found
+        if (!props.name && (props.id || props.Name || props.ID)) {
+          props.name = props.Name || props.id || props.ID;
+        }
+        return props;
+      }
+
+      const result = { weapons: [], effects: [], classes: [], traits: [], enchantments: [] };
+      const typeToKey = { weapon: 'weapons', effect: 'effects', cls: 'classes', trait: 'traits', enchantment: 'enchantments' };
+
+      // Strategy 1: Look for container elements (e.g. <weapons><weapon>...</weapon></weapons>)
+      const root = doc.documentElement;
+      let found = false;
+
+      for (const container of root.children) {
+        const containerType = guessType(container.tagName);
+        if (containerType && container.children.length > 0) {
+          // This is a container like <weapons>
+          for (const entity of container.children) {
+            const props = extractProps(entity);
+            if (props.name) {
+              result[typeToKey[containerType]].push(props);
+              found = true;
+            }
+          }
+        } else {
+          // Maybe the root children ARE the entities (no container wrapper)
+          const entityType = guessType(container.tagName);
+          if (entityType) {
+            const props = extractProps(container);
+            if (props.name) {
+              result[typeToKey[entityType]].push(props);
+              found = true;
+            }
+          }
+        }
+      }
+
+      // Strategy 2: If nothing matched, try to treat all children as a flat list
+      if (!found) {
+        for (const el of root.children) {
+          const props = extractProps(el);
+          if (!props.name) continue;
+          // Try to guess type from properties
+          if (props.damage || props.damage_type || props.damage_min || props.scaling) {
+            result.weapons.push(props);
+          } else if (props.effect_type || props.tick_damage || props.duration) {
+            result.effects.push(props);
+          } else if (props.passive || props.base_str !== undefined || props.starting_weapon) {
+            result.classes.push(props);
+          } else if (props.trait_category || props.category === 'Strength' || props.category === 'Dexterity' || props.category === 'Intelligence') {
+            result.traits.push(props);
+          } else if (props.enchant_category || props.category === 'Positive' || props.category === 'Legendary' || props.category === 'Special') {
+            result.enchantments.push(props);
+          } else {
+            // Default: add as effect
+            result.effects.push(props);
+          }
+          found = true;
+        }
+      }
+
+      if (!found) throw new Error('Could not find any recognizable entities in the XML');
+
+      const total = result.weapons.length + result.effects.length + result.classes.length + result.traits.length + result.enchantments.length;
+      console.log('XML import: ' + total + ' entities parsed', result);
+      return result;
+    }
+
+    function loadImportedData(data) {
+      // Clear current state
+      entities = [];
+      connections = [];
+      nextId = 1;
+      selectedId = null;
+
+      const svgEl = document.getElementById('graph-svg');
+      const cx = (svgEl.clientWidth || 900) / 2, cy = (svgEl.clientHeight || 600) / 2;
+      const jitter = () => (Math.random() - 0.5) * 200;
+
+      // Detect format: full mod.json bundle vs single type array
+      let weapons = [], effects = [], classes = [], traits = [], enchantments = [];
+
+      if (data.weapons && data.effects) {
+        // Full mod.json bundle
+        weapons = data.weapons || [];
+        effects = data.effects || [];
+        classes = data.classes || [];
+        traits = data.traits || [];
+        enchantments = data.enchantments || [];
+      } else if (Array.isArray(data)) {
+        // Single type array — detect by fields
+        if (data[0]?.damage_type) weapons = data;
+        else if (data[0]?.effect_type) effects = data;
+        else if (data[0]?.passive || data[0]?.base_str !== undefined) classes = data;
+        else if (data[0]?.trait_category) traits = data;
+        else if (data[0]?.enchant_category) enchantments = data;
+      }
+
+      // Add entities
+      function addAll(arr, type) {
+        arr.forEach(d => {
+          const clean = { ...d };
+          delete clean.id; delete clean.depends_on;
+          entities.push({ id: nextId++, type, data: clean, x: cx + jitter(), y: cy + jitter() });
+        });
+      }
+      addAll(effects, 'effect');
+      addAll(weapons, 'weapon');
+      addAll(classes, 'cls');
+      addAll(traits, 'trait');
+      addAll(enchantments, 'enchantment');
+
+      // Rebuild connections from depends_on arrays
+      const byName = {};
+      entities.forEach(e => byName[e.data.name] = e.id);
+      const allImported = [...effects, ...weapons, ...classes, ...traits, ...enchantments];
+      allImported.forEach(d => {
+        if (!d.depends_on || !d.name) return;
+        const tgtId = byName[d.name];
+        if (!tgtId) return;
+        d.depends_on.forEach(depName => {
+          const srcId = byName[depName];
+          if (srcId) connections.push({ source: srcId, target: tgtId });
+        });
+      });
+
+      renderAll();
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // SAMPLE DATA — Real Tiny Rogues content
+    // ═══════════════════════════════════════════════════════════════
+
+    function loadSampleData() {
+      // ── Status Effects (10 ailments from wiki) ──
+      const effects = [
+        { name: 'Burn', effect_type: 'DoT', element: 'Fire', tick_damage: '90-125', tick_speed: 2, duration: 8, max_stacks: 1, description: 'Fire damage over time. All fire damage inflicts Burn.' },
+        { name: 'Bleed', effect_type: 'DoT', element: 'Physical', tick_damage: '105-150', tick_speed: 2, duration: 8, max_stacks: 1, description: 'Physical damage over time.' },
+        { name: 'Poison', effect_type: 'DoT', element: 'Poison', tick_damage: '10-20', tick_speed: 2, duration: 4, max_stacks: 'infinite', description: 'Poison damage over time. Stacks infinitely.' },
+        { name: 'Necrosis', effect_type: 'DoT', element: 'Necrotic', tick_damage: '150-225', tick_speed: 2, duration: 8, max_stacks: 1, description: 'Necrotic damage over time.' },
+        { name: 'Chill', effect_type: 'Debuff', element: 'Cold', tick_damage: 0, tick_speed: 0, duration: 8, max_stacks: 1, description: '-20% Movement Speed.' },
+        { name: 'Shock', effect_type: 'Debuff', element: 'Lightning', tick_damage: 0, tick_speed: 0, duration: 4, max_stacks: 5, description: 'x1.04 Damage Taken per stack.' },
+        { name: 'Frostbite', effect_type: 'Debuff', element: 'Cold', tick_damage: 0, tick_speed: 0, duration: 4, max_stacks: 1, description: 'x1.25 Cold Damage Taken.' },
+        { name: 'Scorch', effect_type: 'Debuff', element: 'Fire', tick_damage: 0, tick_speed: 0, duration: 4, max_stacks: 1, description: 'x1.25 Fire Damage Taken.' },
+        { name: 'Zap', effect_type: 'Debuff', element: 'Lightning', tick_damage: 0, tick_speed: 0, duration: 4, max_stacks: 1, description: 'x1.25 Lightning Damage Taken.' },
+        { name: 'Toxic', effect_type: 'Debuff', element: 'Poison', tick_damage: 0, tick_speed: 0, duration: 4, max_stacks: 1, description: 'x1.25 Poison Damage Taken.' },
+      ];
+
+      // ── Weapons (8 from wiki — fire/cold/lightning spread) ──
+      const weapons = [
+        { name: 'Pyromancy Orb', category: 'Magic', damage_type: 'Fire', damage_min: 77, damage_max: 117, scaling_str: '-', scaling_dex: '-', scaling_int: 'B+', status_effect: 'Burn', description: 'Grants a flame orbital dealing fire damage and inflicting Burn. Pyromancer starting equipment.' },
+        { name: 'Fire Fang', category: 'Ranged', damage_type: 'Fire', damage_min: 175, damage_max: 200, scaling_str: '-', scaling_dex: 'B', scaling_int: '-', status_effect: 'Burn', description: 'Ranged fire weapon. Disables non-quiver offhand items.' },
+        { name: 'Firebomb Codex', category: 'Magic', damage_type: 'Fire', damage_min: 0, damage_max: 0, scaling_str: '-', scaling_dex: '-', scaling_int: 'A', status_effect: 'Burn', description: 'Spawns a firebomb totem that deals fire damage and inflicts Burn.' },
+        { name: 'Flameberge', category: 'Melee', damage_type: 'Fire', damage_min: 130, damage_max: 180, scaling_str: 'B+', scaling_dex: '-', scaling_int: '-', status_effect: 'Burn', description: 'Heavy fire sword. All fire damage is elemental and inflicts Burn.' },
+        { name: 'Inferno Orb Wand', category: 'Magic', damage_type: 'Fire', damage_min: 125, damage_max: 325, scaling_str: '-', scaling_dex: '-', scaling_int: 'A+', status_effect: 'Burn', description: 'Spawns inferno orbs that orbit and deal fire damage.' },
+        { name: 'Ice Fang', category: 'Ranged', damage_type: 'Cold', damage_min: 160, damage_max: 190, scaling_str: '-', scaling_dex: 'B', scaling_int: '-', status_effect: 'Chill', description: 'Ranged cold weapon. Inflicts Chill on hit.' },
+        { name: 'Frostbite Staff', category: 'Magic', damage_type: 'Cold', damage_min: 85, damage_max: 130, scaling_str: '-', scaling_dex: '-', scaling_int: 'B+', status_effect: 'Chill', description: 'Magic cold staff. All cold damage inflicts Chill.' },
+        { name: 'Arc Staff', category: 'Magic', damage_type: 'Lightning', damage_min: 90, damage_max: 150, scaling_str: '-', scaling_dex: '-', scaling_int: 'A', status_effect: 'Shock', description: 'Fires arcs of lightning that chain between enemies.' },
+      ];
+
+      // ── Classes (12 from wiki) ──
+      const classes = [
+        { name: 'Pyromancer', base_str: 0, base_dex: 0, base_int: 2, passive: 'Inner Flame — Gain +20% Tick Speed per Mana Container you have.', starting_weapon: 'Pyromancy Orb' },
+        { name: 'Sorcerer', base_str: 0, base_dex: 0, base_int: 2, passive: 'Elemental Affinity — Gain +20% Effect of Ailments per Mana Container you have.', starting_weapon: '' },
+        { name: 'Wizard', base_str: 0, base_dex: 0, base_int: 2, passive: 'Wisdom — You gain +1 Mana at level 2, 4 and 6.', starting_weapon: '' },
+        { name: 'Barbarian', base_str: 2, base_dex: 0, base_int: 0, passive: 'Berserker Strength — Each point of Strength grants more damage to STR-scaling weapons.', starting_weapon: '' },
+        { name: 'Ranger', base_str: 0, base_dex: 2, base_int: 0, passive: 'Hits deal x1.20 Damage at far range but x0.90 at close range.', starting_weapon: '' },
+        { name: 'Ninja', base_str: 0, base_dex: 2, base_int: 0, passive: 'Shadow Jutsu — On Dash, summon a Shadow Clone Companion for 8 seconds.', starting_weapon: '' },
+        { name: 'Necromancer', base_str: 0, base_dex: 0, base_int: 2, passive: 'Soul Reaper — Companions deal x1.01 Damage per Soul you have.', starting_weapon: '' },
+        { name: 'Paladin', base_str: 2, base_dex: 0, base_int: 0, passive: 'Crusader — Gain +15 to 30 Radiant damage. All radiant damage inflicts Glitter.', starting_weapon: '' },
+        { name: 'Mystic', base_str: 0, base_dex: 0, base_int: 2, passive: 'Enchanter — You gain +100% Stats from charms and Weapon Enchantments.', starting_weapon: '' },
+        { name: 'Soldier', base_str: 1, base_dex: 1, base_int: 1, passive: 'Preparation — Gain +20% Effect of Debuffs per Weapon Upgrade Level you have.', starting_weapon: '' },
+        { name: 'Samurai', base_str: 2, base_dex: 0, base_int: 0, passive: 'Ronin — Your Weapons inflict a stack of Retribution. Deals 60-115 Physical Damage. Inflicts Bleed.', starting_weapon: '' },
+        { name: 'Jester', base_str: 0, base_dex: 2, base_int: 0, passive: 'Deception — On Dash, your next 3 Attacks deal a guaranteed critical hit.', starting_weapon: '' },
+      ];
+
+      // ── Traits (12 from wiki — spread across STR/DEX/INT + elemental pillars) ──
+      const traits = [
+        { name: 'Beef', trait_category: 'Strength', effect: 'Gain +100% Stats from Strength. Strength grants more damage dealt, equip load capacity.' },
+        { name: 'Barbarism', trait_category: 'Strength', effect: 'Each point of Strength grants more damage to STR-scaling weapons and equip load.' },
+        { name: 'Battle Rush', trait_category: 'Strength', effect: 'Grants Power if you meet the breakpoint for STR scaling.' },
+        { name: 'Adrenaline', trait_category: 'Strength', effect: 'Gain +1 missing Heart. Gain +25% Effect of Emotions per missing Heart.' },
+        { name: 'Fire and Blood', trait_category: 'Strength', effect: 'You can stack Burn up to 3 times. Additional stacks refresh duration.' },
+        { name: 'Alacrity', trait_category: 'Dexterity', effect: 'Grants +40% Attack Speed with Weapons that scale with Dexterity.' },
+        { name: 'Electric City', trait_category: 'Dexterity', effect: 'Each stack of Shock additionally adds +25% Critical Hit Damage.' },
+        { name: 'Deadly Toxins', trait_category: 'Dexterity', effect: 'Each stack of Poison additionally reduces enemy healing by 5%.' },
+        { name: 'Chill Aura', trait_category: 'Dexterity', effect: 'Grants a Chill Aura that deals 40-70 Cold Damage 4 times per second and inflicts Chill.' },
+        { name: 'Combustion', trait_category: 'Intelligence', effect: 'Burn deals increased damage. On tick, Burn has a chance to trigger an explosion.' },
+        { name: 'Cold Blood', trait_category: 'Intelligence', effect: 'Chill additionally adds +20% chance to take a Critical Hit.' },
+        { name: 'Burn Aura', trait_category: 'Intelligence', effect: 'Grants a Burn Aura that deals 15-45 Fire Damage 4 times per second and inflicts Burn.' },
+      ];
+
+      // ── Enchantments (10 from wiki) ──
+      const enchantments = [
+        { name: 'Fiery', enchant_category: 'Positive', effect: '+20 to 35 Fire Damage' },
+        { name: 'Icy', enchant_category: 'Positive', effect: '+20 to 30 Cold Damage' },
+        { name: 'Electric', enchant_category: 'Positive', effect: '+5 to 75 Lightning Damage' },
+        { name: 'Contaminated', enchant_category: 'Positive', effect: '+20 to 30 Poison Damage' },
+        { name: 'Incinerating', enchant_category: 'Positive', effect: 'x1.25 Burn Damage (requires Fire Damage on weapon)' },
+        { name: 'Glacial', enchant_category: 'Positive', effect: 'x1.25 Chill Effect (requires Cold Damage on weapon)' },
+        { name: 'Charged', enchant_category: 'Positive', effect: 'x1.25 Shock Effect (requires Lightning Damage on weapon)' },
+        { name: 'Almighty', enchant_category: 'Legendary', effect: '+30% Damage' },
+        { name: 'Merciless', enchant_category: 'Legendary', effect: '+125% Critical Hit Damage' },
+        { name: 'Blazing', enchant_category: 'Special', effect: 'x2.00 Burn Damage (Dragon Trophy Room)' },
+      ];
+
+      // Position entities in elemental clusters for visual clarity
+      const svgEl = document.getElementById('graph-svg');
+      const cx = (svgEl.clientWidth || 900) / 2, cy = (svgEl.clientHeight || 600) / 2;
+      const jitter = () => (Math.random() - 0.5) * 60;
+
+      // Fire cluster: top-left, Cold: top-right, Lightning: bottom-left, General: bottom-right, Misc: center
+      const clusterPos = {
+        fire:      { x: cx - 250, y: cy - 150 },
+        cold:      { x: cx + 250, y: cy - 150 },
+        lightning: { x: cx - 250, y: cy + 150 },
+        poison:    { x: cx + 250, y: cy + 150 },
+        general:   { x: cx,       y: cy },
+      };
+
+      function elementCluster(elem) {
+        if (['Fire'].includes(elem)) return clusterPos.fire;
+        if (['Cold'].includes(elem)) return clusterPos.cold;
+        if (['Lightning'].includes(elem)) return clusterPos.lightning;
+        if (['Poison','Necrotic'].includes(elem)) return clusterPos.poison;
+        return clusterPos.general;
+      }
+
+      // Add all entities
+      effects.forEach(d => {
+        const pos = elementCluster(d.element);
+        entities.push({ id: nextId++, type: 'effect', data: d, x: pos.x + jitter(), y: pos.y + jitter() });
+      });
+      weapons.forEach(d => {
+        const pos = elementCluster(d.damage_type);
+        entities.push({ id: nextId++, type: 'weapon', data: d, x: pos.x + jitter(), y: pos.y + 80 + jitter() });
+      });
+      classes.forEach(d => {
+        let pos;
+        if (['Mystic','Sorcerer','Wizard','Necromancer','Pyromancer'].includes(d.name)) pos = clusterPos.fire;
+        else if (['Ranger','Ninja','Jester'].includes(d.name)) pos = clusterPos.lightning;
+        else if (['Soldier'].includes(d.name)) pos = clusterPos.cold;
+        else pos = clusterPos.general;
+        entities.push({ id: nextId++, type: 'cls', data: d, x: pos.x + 100 + jitter(), y: pos.y + jitter() });
+      });
+      traits.forEach(d => {
+        let pos;
+        if (['Fire and Blood','Combustion','Burn Aura'].includes(d.name)) pos = clusterPos.fire;
+        else if (['Cold Blood','Chill Aura'].includes(d.name)) pos = clusterPos.cold;
+        else if (['Electric City','Alacrity'].includes(d.name)) pos = clusterPos.lightning;
+        else if (['Deadly Toxins'].includes(d.name)) pos = clusterPos.poison;
+        else pos = clusterPos.general;
+        entities.push({ id: nextId++, type: 'trait', data: d, x: pos.x + jitter(), y: pos.y - 90 + jitter() });
+      });
+      enchantments.forEach(d => {
+        const elem = d.name === 'Fiery' || d.name === 'Incinerating' || d.name === 'Blazing' ? 'Fire'
+          : d.name === 'Icy' || d.name === 'Glacial' ? 'Cold'
+          : d.name === 'Electric' || d.name === 'Charged' ? 'Lightning'
+          : d.name === 'Contaminated' ? 'Poison' : 'general';
+        const pos = clusterPos[elem.toLowerCase()] || clusterPos.general;
+        entities.push({ id: nextId++, type: 'enchantment', data: d, x: pos.x - 80 + jitter(), y: pos.y + jitter() });
+      });
+
+      // ── Wire dependencies (real game mechanics) ──
+      const byName = {};
+      entities.forEach(e => byName[e.data.name] = e.id);
+      function link(src, tgt) {
+        if (byName[src] && byName[tgt]) connections.push({ source: byName[src], target: byName[tgt] });
+      }
+
+      // Weapons → their status effects (weapon inflicts ailment)
+      link('Burn', 'Pyromancy Orb');
+      link('Burn', 'Fire Fang');
+      link('Burn', 'Firebomb Codex');
+      link('Burn', 'Flameberge');
+      link('Burn', 'Inferno Orb Wand');
+      link('Chill', 'Ice Fang');
+      link('Chill', 'Frostbite Staff');
+      link('Shock', 'Arc Staff');
+
+      // Elemental debuffs amplify their parent DoT element
+      link('Burn', 'Scorch');      // Scorch = x1.25 Fire Taken, synergizes with Burn
+      link('Chill', 'Frostbite');   // Frostbite = x1.25 Cold Taken
+      link('Shock', 'Zap');         // Zap = x1.25 Lightning Taken
+      link('Poison', 'Toxic');      // Toxic = x1.25 Poison Taken
+
+      // Classes → starting weapons / core effects
+      link('Pyromancy Orb', 'Pyromancer');  // Pyromancer starts with Pyromancy Orb
+      link('Burn', 'Pyromancer');            // Pyromancer passive boosts burn tick speed
+      link('Burn', 'Sorcerer');              // Sorcerer boosts ailment effects
+      link('Chill', 'Sorcerer');
+      link('Shock', 'Sorcerer');
+      link('Poison', 'Sorcerer');
+      link('Necrosis', 'Necromancer');       // Necromancer thematically tied to necrotic
+
+      // Enchantments → the effects they require or enhance
+      link('Burn', 'Fiery');           // Fiery adds fire damage (which inflicts Burn)
+      link('Chill', 'Icy');            // Icy adds cold damage
+      link('Shock', 'Electric');       // Electric adds lightning damage
+      link('Poison', 'Contaminated');  // Contaminated adds poison damage
+      link('Burn', 'Incinerating');    // Incinerating requires fire, boosts Burn
+      link('Chill', 'Glacial');        // Glacial requires cold, boosts Chill
+      link('Shock', 'Charged');        // Charged requires lightning, boosts Shock
+      link('Burn', 'Blazing');         // Blazing = x2.00 Burn Damage
+
+      // ── Classes → weapons they scale with (stat-based) ──
+      // STR classes use STR-scaling weapons (Flameberge B+ STR)
+      link('Flameberge', 'Barbarian');
+      link('Flameberge', 'Paladin');
+      link('Flameberge', 'Samurai');
+
+      // DEX classes use DEX-scaling weapons (Fire Fang B DEX, Ice Fang B DEX)
+      link('Fire Fang', 'Ranger');
+      link('Ice Fang', 'Ranger');
+      link('Fire Fang', 'Ninja');
+      link('Ice Fang', 'Ninja');
+      link('Fire Fang', 'Jester');
+      link('Ice Fang', 'Jester');
+
+      // INT classes use INT-scaling weapons
+      link('Pyromancy Orb', 'Wizard');
+      link('Frostbite Staff', 'Wizard');
+      link('Arc Staff', 'Wizard');
+      link('Inferno Orb Wand', 'Wizard');
+      link('Firebomb Codex', 'Sorcerer');
+      link('Arc Staff', 'Sorcerer');
+      link('Frostbite Staff', 'Sorcerer');
+      link('Arc Staff', 'Necromancer');
+      link('Frostbite Staff', 'Necromancer');
+      link('Inferno Orb Wand', 'Mystic');
+
+      // Samurai → Bleed (Retribution inflicts Bleed)
+      link('Bleed', 'Samurai');
+
+      // Soldier → all debuff ailments (passive boosts debuff effect)
+      link('Chill', 'Soldier');
+      link('Shock', 'Soldier');
+      link('Frostbite', 'Soldier');
+      link('Scorch', 'Soldier');
+      link('Zap', 'Soldier');
+      link('Toxic', 'Soldier');
+
+      // Jester → Merciless (guaranteed crits synergize with crit damage)
+      link('Merciless', 'Jester');
+
+      // Mystic → all enchantments (passive doubles enchantment stats)
+      link('Fiery', 'Mystic');
+      link('Icy', 'Mystic');
+      link('Electric', 'Mystic');
+      link('Contaminated', 'Mystic');
+      link('Incinerating', 'Mystic');
+      link('Glacial', 'Mystic');
+      link('Charged', 'Mystic');
+      link('Almighty', 'Mystic');
+      link('Merciless', 'Mystic');
+      link('Blazing', 'Mystic');
+
+      // ── Traits → classes they benefit ──
+      // STR traits → STR classes
+      link('Beef', 'Barbarian');
+      link('Barbarism', 'Barbarian');
+      link('Battle Rush', 'Barbarian');
+      link('Adrenaline', 'Barbarian');
+      link('Beef', 'Samurai');
+      link('Adrenaline', 'Samurai');
+      link('Beef', 'Paladin');
+      link('Adrenaline', 'Paladin');
+      link('Fire and Blood', 'Pyromancer');
+
+      // DEX traits → DEX classes
+      link('Alacrity', 'Ranger');
+      link('Alacrity', 'Ninja');
+      link('Alacrity', 'Jester');
+      link('Electric City', 'Jester');   // Crit synergy
+      link('Chill Aura', 'Ninja');       // Dash + chill aura synergy
+      link('Deadly Toxins', 'Ranger');   // Ranged poison application
+
+      // INT traits → INT classes
+      link('Combustion', 'Pyromancer');   // Fire synergy
+      link('Burn Aura', 'Pyromancer');    // Fire synergy
+      link('Cold Blood', 'Sorcerer');     // Elemental affinity
+      link('Burn Aura', 'Sorcerer');      // Elemental affinity
+
+      // ── Elemental traits → their ailments ──
+      link('Burn', 'Fire and Blood');
+      link('Burn', 'Combustion');
+      link('Burn', 'Burn Aura');
+      link('Chill', 'Cold Blood');
+      link('Chill', 'Chill Aura');
+      link('Shock', 'Electric City');
+      link('Poison', 'Deadly Toxins');
+
+      renderAll();
+    }
+
+    // Load sample data on start
+    loadSampleData();
+  </script>
+</body>
+</html>

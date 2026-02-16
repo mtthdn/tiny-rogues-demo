@@ -1,0 +1,323 @@
+{
+  "ailments": [
+    {
+      "name": "Burn",
+      "effect_type": "DoT",
+      "element": "Fire",
+      "tick_damage": "90-125",
+      "tick_speed": 2,
+      "duration": 8,
+      "max_stacks": 1,
+      "description": "Fire damage over time. All fire damage inflicts Burn."
+    },
+    {
+      "name": "Bleed",
+      "effect_type": "DoT",
+      "element": "Physical",
+      "tick_damage": "105-150",
+      "tick_speed": 2,
+      "duration": 8,
+      "max_stacks": 1,
+      "description": "Physical damage over time."
+    },
+    {
+      "name": "Poison",
+      "effect_type": "DoT",
+      "element": "Poison",
+      "tick_damage": "10-20",
+      "tick_speed": 2,
+      "duration": 4,
+      "max_stacks": "infinite",
+      "description": "Poison damage over time. Stacks infinitely."
+    },
+    {
+      "name": "Necrosis",
+      "effect_type": "DoT",
+      "element": "Necrotic",
+      "tick_damage": "150-225",
+      "tick_speed": 2,
+      "duration": 8,
+      "max_stacks": 1,
+      "description": "Necrotic damage over time."
+    },
+    {
+      "name": "Chill",
+      "effect_type": "Debuff",
+      "element": "Cold",
+      "tick_damage": 0,
+      "tick_speed": 0,
+      "duration": 8,
+      "max_stacks": 1,
+      "description": "-20% Movement Speed."
+    },
+    {
+      "name": "Shock",
+      "effect_type": "Debuff",
+      "element": "Lightning",
+      "tick_damage": 0,
+      "tick_speed": 0,
+      "duration": 4,
+      "max_stacks": 5,
+      "description": "x1.04 Damage Taken per stack."
+    },
+    {
+      "name": "Frostbite",
+      "effect_type": "Debuff",
+      "element": "Cold",
+      "tick_damage": 0,
+      "tick_speed": 0,
+      "duration": 4,
+      "max_stacks": 1,
+      "description": "x1.25 Cold Damage Taken."
+    },
+    {
+      "name": "Scorch",
+      "effect_type": "Debuff",
+      "element": "Fire",
+      "tick_damage": 0,
+      "tick_speed": 0,
+      "duration": 4,
+      "max_stacks": 1,
+      "description": "x1.25 Fire Damage Taken."
+    },
+    {
+      "name": "Zap",
+      "effect_type": "Debuff",
+      "element": "Lightning",
+      "tick_damage": 0,
+      "tick_speed": 0,
+      "duration": 4,
+      "max_stacks": 1,
+      "description": "x1.25 Lightning Damage Taken."
+    },
+    {
+      "name": "Toxic",
+      "effect_type": "Debuff",
+      "element": "Poison",
+      "tick_damage": 0,
+      "tick_speed": 0,
+      "duration": 4,
+      "max_stacks": 1,
+      "description": "x1.25 Poison Damage Taken."
+    }
+  ],
+  "classes": [
+    {
+      "name": "Barbarian",
+      "passive": "Berserker Strength Each point of StrengthStrength increases damage dealt by weapons that scale off strength. Additionally strength grants more damage ",
+      "stats_raw": "2"
+    },
+    {
+      "name": "Necromancer",
+      "passive": "Soul Reaper Your companions deal x1.01 Damage per Soul you have.",
+      "stats_raw": "2"
+    },
+    {
+      "name": "Ninja",
+      "passive": "Shadow Jutsu On Dash, summon a Shadow Clone Companion for 8 seconds.",
+      "stats_raw": "2"
+    },
+    {
+      "name": "Paladin",
+      "passive": "Crusader Gain +15 to 30 RadiantGlitter is a stackable radiant ailment that adds 2.5% chance to be lucky hit per stack. Stacks last 8 seconds decaying ",
+      "stats_raw": "2"
+    },
+    {
+      "name": "Pyromancer",
+      "passive": "Inner Flame Gain +20% Tick Speed per Mana ContainerMana grants stats to your mana-draining weapons. By default each point of mana\u272f grants 10% more dam",
+      "stats_raw": "2"
+    },
+    {
+      "name": "Ranger",
+      "passive": "Your Hits deal x1.20 Damage at far rangeFar Range is indicated by a little green ruler next to damage numbers. but x0.90 Damage at close rangeClose Ra",
+      "stats_raw": "2"
+    },
+    {
+      "name": "Sorcerer",
+      "passive": "Elemental Affinity Gain +20% Effect of Ailments per Mana ContainerMana grants stats to your mana-draining weapons. By default each point of mana\u272f gran",
+      "stats_raw": "2"
+    },
+    {
+      "name": "Wizard",
+      "passive": "Wisdom You gain +1 Mana Mana grants stats to your mana-draining weapons. By default each point of mana\u272f grants 10% more damage. at level 2, 4 and 6.",
+      "stats_raw": "2"
+    }
+  ],
+  "traits": [
+    {
+      "name": "Adrenaline",
+      "category": "Strength",
+      "description": "\u2022 Gain +1 missing Heart . \u2022 Gain +25% Effect of Emotions per missing Heart ."
+    },
+    {
+      "name": "Barbarism",
+      "category": "Strength",
+      "description": "Each point of Strength Strength increases damage dealt by weapons that scale off strength . Additionally strength grants more damage dealt, equip load"
+    },
+    {
+      "name": "Battle Rush",
+      "category": "Strength",
+      "description": "Grants Power Power increases damage and area radius. The value of each point of power slowly decreases as power gets higher. if you meet the breakpoin"
+    },
+    {
+      "name": "Beef",
+      "category": "Strength",
+      "description": "Gain +100% Stats from Strength Strength increases damage dealt by weapons that scale off strength . Additionally strength grants more damage dealt, eq"
+    },
+    {
+      "name": "Alacrity",
+      "category": "Dexterity",
+      "description": "Grants +40% Attack Speed with Weapons that scale with Dexterity Dexterity increases damage dealt by weapons that scale off dexterity . Additionally de"
+    }
+  ],
+  "weapons": [
+    {
+      "name": "Pyromancy Orb",
+      "category": "Magic",
+      "damage_type": "Fire",
+      "damage_min": 77,
+      "damage_max": 117,
+      "scaling_str": "-",
+      "scaling_dex": "-",
+      "scaling_int": "B+",
+      "status_effect": "Burn",
+      "description": "Grants a flame orbital dealing fire damage and inflicting Burn. Pyromancer starting equipment."
+    },
+    {
+      "name": "Fire Fang",
+      "category": "Ranged",
+      "damage_type": "Fire",
+      "damage_min": 175,
+      "damage_max": 200,
+      "scaling_str": "-",
+      "scaling_dex": "B",
+      "scaling_int": "-",
+      "status_effect": "Burn",
+      "description": "Ranged fire weapon. Disables non-quiver offhand items."
+    },
+    {
+      "name": "Firebomb Codex",
+      "category": "Magic",
+      "damage_type": "Fire",
+      "damage_min": 0,
+      "damage_max": 0,
+      "scaling_str": "-",
+      "scaling_dex": "-",
+      "scaling_int": "A",
+      "status_effect": "Burn",
+      "description": "Spawns a firebomb totem that deals fire damage and inflicts Burn."
+    },
+    {
+      "name": "Flameberge",
+      "category": "Melee",
+      "damage_type": "Fire",
+      "damage_min": 130,
+      "damage_max": 180,
+      "scaling_str": "B+",
+      "scaling_dex": "-",
+      "scaling_int": "-",
+      "status_effect": "Burn",
+      "description": "Heavy fire sword. All fire damage is elemental and inflicts Burn."
+    },
+    {
+      "name": "Inferno Orb Wand",
+      "category": "Magic",
+      "damage_type": "Fire",
+      "damage_min": 125,
+      "damage_max": 325,
+      "scaling_str": "-",
+      "scaling_dex": "-",
+      "scaling_int": "A+",
+      "status_effect": "Burn",
+      "description": "Spawns inferno orbs that orbit and deal fire damage."
+    },
+    {
+      "name": "Ice Fang",
+      "category": "Ranged",
+      "damage_type": "Cold",
+      "damage_min": 160,
+      "damage_max": 190,
+      "scaling_str": "-",
+      "scaling_dex": "B",
+      "scaling_int": "-",
+      "status_effect": "Chill",
+      "description": "Ranged cold weapon. Inflicts Chill on hit."
+    },
+    {
+      "name": "Frostbite Staff",
+      "category": "Magic",
+      "damage_type": "Cold",
+      "damage_min": 85,
+      "damage_max": 130,
+      "scaling_str": "-",
+      "scaling_dex": "-",
+      "scaling_int": "B+",
+      "status_effect": "Chill",
+      "description": "Magic cold staff. All cold damage inflicts Chill."
+    },
+    {
+      "name": "Arc Staff",
+      "category": "Magic",
+      "damage_type": "Lightning",
+      "damage_min": 90,
+      "damage_max": 150,
+      "scaling_str": "-",
+      "scaling_dex": "-",
+      "scaling_int": "A",
+      "status_effect": "Shock",
+      "description": "Fires arcs of lightning that chain between enemies."
+    }
+  ],
+  "enchantments": [
+    {
+      "name": "Fiery",
+      "category": "Positive",
+      "effect": "+20 to 35 Fire Damage"
+    },
+    {
+      "name": "Icy",
+      "category": "Positive",
+      "effect": "+20 to 30 Cold Damage"
+    },
+    {
+      "name": "Electric",
+      "category": "Positive",
+      "effect": "+5 to 75 Lightning Damage"
+    },
+    {
+      "name": "Contaminated",
+      "category": "Positive",
+      "effect": "+20 to 30 Poison Damage"
+    },
+    {
+      "name": "Incinerating",
+      "category": "Positive",
+      "effect": "x1.25 Burn Damage (requires Fire Damage on weapon)"
+    },
+    {
+      "name": "Glacial",
+      "category": "Positive",
+      "effect": "x1.25 Chill Effect (requires Cold Damage on weapon)"
+    },
+    {
+      "name": "Charged",
+      "category": "Positive",
+      "effect": "x1.25 Shock Effect (requires Lightning Damage on weapon)"
+    },
+    {
+      "name": "Almighty",
+      "category": "Legendary",
+      "effect": "+30% Damage"
+    },
+    {
+      "name": "Merciless",
+      "category": "Legendary",
+      "effect": "+125% Critical Hit Damage"
+    },
+    {
+      "name": "Blazing",
+      "category": "Special",
+      "effect": "x2.00 Burn Damage (Dragon Trophy Room)"
+    }
+  ]
+}

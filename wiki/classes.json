@@ -1,0 +1,206 @@
+[
+  {
+    "name": "Alchemist",
+    "passive_name": "",
+    "passive": "Transmutation Guild Find locked entrances to alchemy labs that allow you to transmute items.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Bandit",
+    "passive_name": "",
+    "passive": "Organised Crime You encounter more Shops and in every Shop you can take 1 item for Free.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Barbarian",
+    "passive_name": "",
+    "passive": "Berserker Strength Each point of StrengthStrength increases damage dealt by weapons that scale off strength. Additionally strength grants more damage dealt, equip load capacity and potentially other s",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Bard",
+    "passive_name": "",
+    "passive": "Party Time  Gain +10% Effect of Emotions per Actor in the Room.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Chaos",
+    "passive_name": "",
+    "passive": "Chimera Gets a random Ability, Equipment, Weapon, Stats and Skill from other classes.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Cleric",
+    "passive_name": "",
+    "passive": "Blessed Gain x2.00 Lucky Hit Chance Lucky Hits have x2.00 chance for Hit Effects to happen.",
+    "stats_raw": "3"
+  },
+  {
+    "name": "Cyborg",
+    "passive_name": "",
+    "passive": "Cybernetic Augementation At Level 1 you get to choose a Cybernetic Core Trait.",
+    "stats_raw": "1"
+  },
+  {
+    "name": "Dancer",
+    "passive_name": "",
+    "passive": "Double Flourish When you dash, you can immediately dash again without it costing any Stamina Stamina  takes 3 seconds to start recovery (stamina recovery speed) and 0.5 seconds to regenerate per point",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Demon Hunter",
+    "passive_name": "",
+    "passive": "Path of Vengeance Rooms can appear tainted, adding additional enemies but also x2.00 the reward.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Deprived",
+    "passive_name": "",
+    "passive": "Cursed Might  Gain 10% increased stats from StrengthStrength increases damage dealt by weapons that scale off strength. Additionally strength grants more damage dealt, equip load capacity and potentia",
+    "stats_raw": "1"
+  },
+  {
+    "name": "Doppelganger",
+    "passive_name": "",
+    "passive": "Shapechanger Choose a form and gain a unique class ability at the mirror in the spawn room on each floor.",
+    "stats_raw": "1"
+  },
+  {
+    "name": "Dragoon",
+    "passive_name": "",
+    "passive": "Lancer You always count as being at Close Range Close Range is indicated by a little red ruler next to damage numbers.  and at Far Range Far Range is indicated by a little green ruler next to damage n",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Druid",
+    "passive_name": "",
+    "passive": "Druidic Rite Summon and level up spirit animal companions at druid shrines.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Esper",
+    "passive_name": "",
+    "passive": "Psychokinesis At Level 1 you get to choose a Psychic Ability Trait.",
+    "stats_raw": "1"
+  },
+  {
+    "name": "Gunslinger",
+    "passive_name": "",
+    "passive": "Lucky Draw  Lucky Hits Lucky Hits have x2.00 chance for Hit Effects to happen. with Attacks or Skills make you Repeat your next Attack.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Jester",
+    "passive_name": "",
+    "passive": "Deception On Dash, your next 3 Attacks deal a guaranteed critical hit The damage from critical hits  is multiplied with your critical hit  multiplier..",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Knight",
+    "passive_name": "",
+    "passive": "Defiance Deal x1.10 physicalWound, Striking, Slashing and Thrusting are considered physical damage. Damage per Armor Container  you have.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Monk",
+    "passive_name": "",
+    "passive": "Master of Ki Your Fist Attacks grant you a Ki-ChargeKi-Charge is a stackable buff that adds +5 to +10 damage to body damage and 2% increased movement speed per stack. Up to 10 stacks. on Hit",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Mystic",
+    "passive_name": "",
+    "passive": "Enchanter You gain +100% Stats from charms and Weapon Enchantments.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Necromancer",
+    "passive_name": "",
+    "passive": "Soul Reaper Your companions  deal x1.01 Damage per Soul  you have.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Ninja",
+    "passive_name": "",
+    "passive": "Shadow Jutsu On Dash, summon a Shadow Clone Companion  for 8 seconds.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Paladin",
+    "passive_name": "",
+    "passive": "Crusader Gain +15 to 30 RadiantGlitter is a stackable radiant ailment that adds 2.5% chance to be lucky hit per stack. Stacks last 8 seconds decaying at the same time. Up to 10 stacks. All radiant dam",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Pirate",
+    "passive_name": "",
+    "passive": "Landlubber Piratey deeds increase your bounty. Rise up through the ranks of piracy and gain powerful effects.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Pyromancer",
+    "passive_name": "",
+    "passive": "Inner Flame Gain +20% Tick Speed per Mana ContainerMana  grants stats to your mana-draining weapons. By default each point of mana\u272f grants 10% more damage. you have.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Ranger",
+    "passive_name": "",
+    "passive": "Your Hits deal x1.20 Damage at far rangeFar Range is indicated by a little green ruler next to damage numbers. but x0.90 Damage at close rangeClose Range is indicated by a little red ruler next to dam",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Samurai",
+    "passive_name": "",
+    "passive": "Ronin Your Weapons inflict a stack of RetributionRetribution Deals 60 to 115 Physical Damage per stack after not being refreshed for 1 second. Damage Scaling:  0/50\u00a0: 0/50\u00a0: 0/50 Inflicts: Bleed Bonus",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Soldier",
+    "passive_name": "",
+    "passive": "Preparation Gain +20% Effect of Debuffs per Weapon Upgrade Level you have.",
+    "stats_raw": "3"
+  },
+  {
+    "name": "Sorcerer",
+    "passive_name": "",
+    "passive": "Elemental Affinity  Gain +20% Effect of Ailments per Mana ContainerMana  grants stats to your mana-draining weapons. By default each point of mana\u272f grants 10% more damage. you have.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Super Hero",
+    "passive_name": "",
+    "passive": "Super Power At Level 1 you get to choose a Super Power Trait.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "The Hero",
+    "passive_name": "",
+    "passive": "Lucky Star You gain   +1 Luck   Lucky Hits have x2.00 chance for Hit Effects to happen.   Luck Chance For: \u21b3Upgrading Room Reward \u21b3Win in Arcade \u21b3Extra Trait offered \u21b3Roll lowest price in Shop Grants ",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Thief",
+    "passive_name": "",
+    "passive": "Reliable Talent Gain +1% Critical Hit Chance The damage from critical hits  is multiplied with your critical hit  multiplier. per 10 Gold  you have. (Up to 100%)",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Wanderer",
+    "passive_name": "",
+    "passive": "Sightseer You will encounter an event room on every floor.",
+    "stats_raw": "2"
+  },
+  {
+    "name": "Warrior",
+    "passive_name": "",
+    "passive": "Steadfast Gain 10% Attack Speed per heart container  you have.",
+    "stats_raw": "3"
+  },
+  {
+    "name": "Wizard",
+    "passive_name": "",
+    "passive": "Wisdom You gain +1 Mana Mana  grants stats to your mana-draining weapons. By default each point of mana\u272f grants 10% more damage. at level 2, 4 and 6.",
+    "stats_raw": "2"
+  }
+]

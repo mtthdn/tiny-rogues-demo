@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiny Rogues — Data Graph Analysis</title>
+  <style>
+    /* ── Catppuccin Mocha ── */
+    :root {
+      --base: #1e1e2e; --mantle: #181825; --surface0: #313244;
+      --surface1: #45475a; --surface2: #585b70;
+      --text: #cdd6f4; --subtext0: #a6adc8; --subtext1: #bac2de;
+      --overlay0: #6c7086;
+      --blue: #89b4fa; --lavender: #b4befe; --sapphire: #74c7ec;
+      --sky: #89dceb; --teal: #94e2d5; --green: #a6e3a1;
+      --yellow: #f9e2af; --peach: #fab387; --maroon: #eba0ac;
+      --red: #f38ba8; --mauve: #cba6f7; --pink: #f5c2e7;
+      --flamingo: #f2cdcd; --rosewater: #f5e0dc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+      background: var(--base); color: var(--text); overflow: hidden; height: 100vh;
+      display: flex; flex-direction: column;
+    }
+    header {
+      padding: 12px 20px 0; flex-shrink: 0;
+    }
+    header h1 { font-size: 18px; color: var(--blue); font-weight: 600; }
+    header .subtitle { font-size: 12px; color: var(--subtext0); margin-top: 2px; }
+    header .credit { font-size: 11px; color: var(--overlay0); margin-top: 2px; }
+    header .credit a { color: var(--overlay0); text-decoration: underline; }
+    .landing-bar {
+      display: flex; align-items: center; gap: 16px;
+      padding: 8px 20px; background: var(--surface0);
+      border-bottom: 1px solid var(--surface1); flex-shrink: 0; flex-wrap: wrap;
+    }
+    .landing-bar p { font-size: 12px; color: var(--subtext1); }
+    .landing-bar a {
+      display: inline-block; background: var(--blue); color: var(--base);
+      padding: 4px 14px; border-radius: 4px; font-size: 12px; font-weight: 600;
+      text-decoration: none; white-space: nowrap;
+    }
+    .landing-bar a:hover { filter: brightness(1.1); }
+    .landing-bar a.secondary {
+      background: transparent; color: var(--blue); border: 1px solid var(--surface1);
+    }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex; gap: 4px; padding: 10px 20px 0; flex-shrink: 0;
+    }
+    .tabs button {
+      background: var(--surface0); color: var(--subtext0); border: 1px solid var(--surface1);
+      border-bottom: none; padding: 8px 16px; font-size: 13px; cursor: pointer;
+      border-radius: 6px 6px 0 0; font-family: inherit; transition: all 0.15s;
+    }
+    .tabs button:hover { background: var(--surface1); color: var(--text); }
+    .tabs button.active {
+      background: var(--mantle); color: var(--blue); border-color: var(--surface1);
+      font-weight: 600;
+    }
+
+    /* ── Layout ── */
+    .container {
+      display: flex; flex: 1; border-top: 1px solid var(--surface1);
+      background: var(--mantle); overflow: hidden;
+    }
+    .graph-area { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+    .graph-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px; flex-shrink: 0;
+    }
+    .graph-header h2 { font-size: 15px; color: var(--text); font-weight: 500; }
+    .graph-header .sub { font-size: 12px; color: var(--subtext0); margin-left: 12px; }
+    .view-toggle { display: flex; gap: 4px; }
+    .view-toggle button {
+      background: var(--surface0); color: var(--subtext0); border: 1px solid var(--surface1);
+      padding: 4px 12px; font-size: 12px; cursor: pointer; border-radius: 4px;
+      font-family: inherit; transition: all 0.15s;
+    }
+    .view-toggle button:hover { color: var(--text); }
+    .view-toggle button.active { background: var(--blue); color: var(--base); border-color: var(--blue); }
+
+    svg { flex: 1; width: 100%; }
+    .edge { stroke: var(--surface2); stroke-width: 1.5; fill: none; }
+    .edge.highlighted { stroke: var(--yellow); stroke-width: 2.5; }
+    .edge.faded { opacity: 0.15; }
+    .node-circle { stroke-width: 2; cursor: pointer; transition: r 0.15s; }
+    .node-circle:hover { r: 12; }
+    .node-circle.selected { stroke: var(--yellow) !important; stroke-width: 3; }
+    .node-circle.faded { opacity: 0.2; }
+    .node-label {
+      font-size: 10px; fill: var(--subtext1); pointer-events: none;
+      text-anchor: middle; dominant-baseline: middle;
+    }
+    .node-label.faded { opacity: 0.15; }
+    marker path { fill: var(--surface2); }
+
+    /* ── Detail Panel ── */
+    .detail-panel {
+      width: 320px; flex-shrink: 0; background: var(--base);
+      border-left: 1px solid var(--surface1); padding: 16px;
+      overflow-y: auto; font-size: 12px;
+    }
+    .detail-panel h3 { font-size: 14px; color: var(--blue); margin-bottom: 8px; }
+    .detail-panel .desc { color: var(--subtext0); margin-bottom: 12px; line-height: 1.5; }
+    .detail-panel .field { margin-bottom: 6px; }
+    .detail-panel .field-label { color: var(--overlay0); font-size: 11px; }
+    .detail-panel .field-value { color: var(--text); }
+    .detail-panel .tag {
+      display: inline-block; background: var(--surface0); color: var(--subtext1);
+      padding: 2px 8px; border-radius: 3px; font-size: 11px; margin: 2px 2px 2px 0;
+    }
+    .detail-panel .section-title {
+      font-size: 11px; color: var(--overlay0); text-transform: uppercase;
+      letter-spacing: 0.5px; margin: 14px 0 6px; padding-top: 10px;
+      border-top: 1px solid var(--surface0);
+    }
+    .detail-panel .dep-link {
+      color: var(--blue); cursor: pointer; text-decoration: none;
+    }
+    .detail-panel .dep-link:hover { text-decoration: underline; }
+    .detail-panel .impact-num { color: var(--peach); font-weight: 600; }
+    .detail-panel .empty { color: var(--overlay0); font-style: italic; }
+    .detail-panel .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+    .detail-panel .stat-card {
+      background: var(--surface0); padding: 8px; border-radius: 4px; text-align: center;
+    }
+    .detail-panel .stat-val { font-size: 20px; font-weight: 600; color: var(--blue); }
+    .detail-panel .stat-label { font-size: 10px; color: var(--subtext0); margin-top: 2px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tiny Rogues — Data Graph Analysis</h1>
+    <p class="subtitle">What dependency graphs reveal about data-driven game design</p>
+    <p class="credit">Built with <a href="https://quicue.ca">quicue.ca</a> typed graph patterns</p>
+  </header>
+
+  <div class="landing-bar">
+    <p>52 real wiki entities mapped as a typed dependency graph. Click any node to see what depends on it.</p>
+    <a href="editor.html">Mod Data Editor</a>
+    <a href="explore.html">Explore API</a>
+    <a href="#modding" class="secondary" onclick="loadGraph('modding')">Mod Pipeline</a>
+    <a href="#builddata" class="secondary" onclick="loadGraph('builddata')">Build Data</a>
+    <a href="#" class="secondary" onclick="downloadKit(event)" style="border-color:var(--green);color:var(--green)">Download Kit</a>
+  </div>
+
+  <nav class="tabs" id="tabs"></nav>
+
+  <div class="container">
+    <div class="graph-area">
+      <div class="graph-header">
+        <div>
+          <h2 id="graph-title"></h2>
+          <span class="sub" id="graph-subtitle"></span>
+        </div>
+        <div class="view-toggle">
+          <button id="btn-layered" class="active" onclick="setView('layered')">Layered</button>
+          <button id="btn-force" onclick="setView('force')">Force</button>
+        </div>
+      </div>
+      <svg id="graph-svg"></svg>
+    </div>
+    <div class="detail-panel" id="detail">
+      <h3>Tiny Rogues Graph Demo</h3>
+      <p class="desc">Select a tab above, then click any node to see its dependencies, impact analysis, and metadata.</p>
+      <p class="desc">Two scenarios show how graph analysis applies to game data:</p>
+      <p class="desc"><strong>Mod Pipeline</strong> — the 14-step dependency chain from concept to Steam Workshop.</p>
+      <p class="desc"><strong>Build Data</strong> — what JSON entries must exist for a fire mage build path to work.</p>
+    </div>
+  </div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script>
+    // ── Graph metadata ──
+    const GRAPH_META = {
+      modding: {
+        title: 'Mod Creation Pipeline',
+        subtitle: 'Weapon Mod — Concept to Steam Workshop',
+        file: 'modding.json',
+        nodeLabel: 'step',
+        detailFields: ['owner', 'duration_hours', 'difficulty', 'file_format']
+      },
+      builddata: {
+        title: 'Fire Mage Build Data',
+        subtitle: 'Data Dependencies for a Fire Mage Build Path',
+        file: 'builddata.json',
+        nodeLabel: 'entry',
+        detailFields: ['data_file', 'fields', 'balance_notes']
+      }
+    };
+
+    // ── Type → color mapping (Catppuccin Mocha palette) ──
+    const TYPE_COLORS = {
+      Creative: '#cba6f7', Asset: '#89dceb', Art: '#89dceb', Audio: '#74c7ec',
+      GameData: '#89b4fa', Balance: '#89b4fa', UIText: '#f9e2af',
+      Localization: '#f9e2af', Quality: '#a6e3a1', Validation: '#a6e3a1',
+      Distribution: '#fab387',
+      ClassDef: '#cba6f7', ElementDef: '#f38ba8', WeaponData: '#89b4fa',
+      TraitData: '#94e2d5', Synergy: '#f5c2e7', StatusEffect: '#fab387',
+      CompatRule: '#f9e2af', TriggerRule: '#f9e2af', SynergyDef: '#f5c2e7',
+      ItemData: '#a6e3a1', ProgressionData: '#b4befe', EnemyVariant: '#eba0ac'
+    };
+    const DEFAULT_COLOR = '#6c7086';
+
+    function nodeColor(types) {
+      if (!types || !types.length) return DEFAULT_COLOR;
+      return TYPE_COLORS[types[0]] || DEFAULT_COLOR;
+    }
+
+    // ── State ──
+    let currentKey = null, currentData = null, currentMeta = null;
+    let nodes = [], edges = [], nodeMap = {};
+    let simulation = null, currentView = 'layered';
+    let svgG, linkG, nodeG, labelG;
+    const nodeRadius = 9;
+
+    // ── Build tabs ──
+    const tabsEl = document.getElementById('tabs');
+    Object.entries(GRAPH_META).forEach(([key, m]) => {
+      const btn = document.createElement('button');
+      btn.textContent = m.title;
+      btn.dataset.graph = key;
+      btn.onclick = () => loadGraph(key);
+      tabsEl.appendChild(btn);
+    });
+
+    // ── SVG setup ──
+    const svg = d3.select('#graph-svg');
+    const defs = svg.append('defs');
+    defs.append('marker')
+      .attr('id', 'arrow').attr('viewBox', '0 0 10 6')
+      .attr('refX', 10).attr('refY', 3)
+      .attr('markerWidth', 8).attr('markerHeight', 6)
+      .attr('orient', 'auto')
+      .append('path').attr('d', 'M0,0 L10,3 L0,6 Z');
+    defs.append('marker')
+      .attr('id', 'arrow-hl').attr('viewBox', '0 0 10 6')
+      .attr('refX', 10).attr('refY', 3)
+      .attr('markerWidth', 8).attr('markerHeight', 6)
+      .attr('orient', 'auto')
+      .append('path').attr('d', 'M0,0 L10,3 L0,6 Z').attr('fill', '#f9e2af');
+
+    svgG = svg.append('g');
+    linkG = svgG.append('g');
+    nodeG = svgG.append('g');
+    labelG = svgG.append('g');
+
+    // Zoom
+    const zoom = d3.zoom().scaleExtent([0.3, 4]).on('zoom', e => svgG.attr('transform', e.transform));
+    svg.call(zoom);
+
+    // ── Load graph ──
+    async function loadGraph(key) {
+      if (currentKey === key) return;
+      currentKey = key;
+      currentMeta = GRAPH_META[key];
+
+      // Update tabs
+      tabsEl.querySelectorAll('button').forEach(b =>
+        b.classList.toggle('active', b.dataset.graph === key));
+      document.getElementById('graph-title').textContent = currentMeta.title;
+      document.getElementById('graph-subtitle').textContent = currentMeta.subtitle;
+
+      // Fetch data
+      const resp = await fetch(currentMeta.file);
+      currentData = await resp.json();
+      const vizData = currentData.data;
+
+      // Build node/edge arrays
+      nodes = vizData.nodes.map(n => ({
+        id: n.name, name: n.name, types: n.types || [],
+        depth: n.depth, dependents: n.dependents || 0,
+        ancestors: n.ancestors || [], description: n.description || ''
+      }));
+      edges = vizData.edges.map(e => ({ source: e.source, target: e.target }));
+      nodeMap = {};
+      nodes.forEach(n => nodeMap[n.id] = n);
+
+      // Reset view
+      currentView = 'layered';
+      document.getElementById('btn-layered').classList.add('active');
+      document.getElementById('btn-force').classList.remove('active');
+
+      renderGraph();
+      showSummary(vizData);
+      window.location.hash = key;
+    }
+
+    // ── Render ──
+    function renderGraph() {
+      const svgEl = document.getElementById('graph-svg');
+      const w = svgEl.clientWidth, h = svgEl.clientHeight;
+
+      // Compute layered positions
+      const maxLayer = d3.max(nodes, n => n.depth) || 0;
+      const layerGroups = d3.group(nodes, n => n.depth);
+      const padX = 80, padY = 50;
+      const layerH = (h - padY * 2) / Math.max(maxLayer, 1);
+
+      nodes.forEach(n => {
+        const group = layerGroups.get(n.depth);
+        const arr = Array.from(group);
+        const idx = arr.indexOf(n);
+        const count = arr.length;
+        const slotW = (w - padX * 2) / Math.max(count, 1);
+        n.lx = padX + slotW * (idx + 0.5);
+        n.ly = padY + layerH * n.depth;
+        if (currentView === 'layered') { n.x = n.lx; n.y = n.ly; }
+      });
+
+      // Stop old simulation
+      if (simulation) simulation.stop();
+
+      // Edges
+      const edgeData = edges.map(e => ({
+        source: typeof e.source === 'string' ? e.source : e.source.id,
+        target: typeof e.target === 'string' ? e.target : e.target.id
+      }));
+
+      const links = linkG.selectAll('line').data(edgeData, d => d.source + '-' + d.target);
+      links.exit().remove();
+      const linksEnter = links.enter().append('line')
+        .attr('class', 'edge').attr('marker-end', 'url(#arrow)');
+      const allLinks = linksEnter.merge(links);
+
+      // Nodes
+      const circles = nodeG.selectAll('circle').data(nodes, d => d.id);
+      circles.exit().remove();
+      const circlesEnter = circles.enter().append('circle')
+        .attr('class', 'node-circle').attr('r', nodeRadius)
+        .on('click', (ev, d) => selectNode(d));
+      const allCircles = circlesEnter.merge(circles)
+        .attr('fill', d => nodeColor(d.types))
+        .attr('stroke', d => d3.color(nodeColor(d.types)).darker(0.5));
+
+      // Labels
+      const labels = labelG.selectAll('text').data(nodes, d => d.id);
+      labels.exit().remove();
+      const labelsEnter = labels.enter().append('text')
+        .attr('class', 'node-label').attr('dy', nodeRadius + 14);
+      const allLabels = labelsEnter.merge(labels)
+        .text(d => d.name);
+
+      // Position update function
+      function tick() {
+        allLinks
+          .attr('x1', d => nodeMap[d.source]?.x ?? 0)
+          .attr('y1', d => nodeMap[d.source]?.y ?? 0)
+          .attr('x2', d => {
+            const s = nodeMap[d.source], t = nodeMap[d.target];
+            if (!s || !t) return 0;
+            const dx = t.x - s.x, dy = t.y - s.y;
+            const dist = Math.sqrt(dx*dx + dy*dy) || 1;
+            return t.x - (dx / dist) * (nodeRadius + 6);
+          })
+          .attr('y2', d => {
+            const s = nodeMap[d.source], t = nodeMap[d.target];
+            if (!s || !t) return 0;
+            const dx = t.x - s.x, dy = t.y - s.y;
+            const dist = Math.sqrt(dx*dx + dy*dy) || 1;
+            return t.y - (dy / dist) * (nodeRadius + 6);
+          });
+        allCircles.attr('cx', d => d.x).attr('cy', d => d.y);
+        allLabels.attr('x', d => d.x).attr('y', d => d.y);
+      }
+
+      if (currentView === 'layered') {
+        tick();
+      } else {
+        // Force simulation
+        const nCount = nodes.length;
+        const linkDist = Math.max(60, Math.min(140, 600 / nCount));
+        const chargeStr = -Math.max(200, Math.min(800, nCount * 30));
+        const collisionR = nodeRadius + Math.max(14, Math.min(28, 300 / nCount));
+        const numLayers = maxLayer + 1;
+        const arcSpan = numLayers <= 3 ? Math.PI * 1.2 : Math.PI * 0.8;
+        const arcRadius = Math.min(w, h) * (numLayers <= 3 ? 0.34 : 0.28);
+        const arcStart = -Math.PI / 2 - arcSpan / 2;
+
+        const layerCenters = {};
+        for (let l = 0; l <= maxLayer; l++) {
+          const angle = arcStart + (arcSpan * l / Math.max(maxLayer, 1));
+          layerCenters[l] = { x: w / 2 + Math.cos(angle) * arcRadius, y: h / 2 + Math.sin(angle) * arcRadius };
+        }
+        const clusterStr = numLayers <= 3 ? 0.08 : 0.15;
+        function clusterForce(alpha) {
+          const strength = clusterStr * alpha;
+          for (const n of nodes) {
+            const c = layerCenters[n.depth];
+            if (c) { n.vx += (c.x - n.x) * strength; n.vy += (c.y - n.y) * strength; }
+          }
+        }
+
+        // Seed positions from layered
+        nodes.forEach(n => { n.x = n.lx; n.y = n.ly; });
+
+        const simEdges = edgeData.map(e => ({ source: e.source, target: e.target }));
+        simulation = d3.forceSimulation(nodes)
+          .force('link', d3.forceLink(simEdges).id(d => d.id).distance(linkDist))
+          .force('charge', d3.forceManyBody().strength(chargeStr))
+          .force('collide', d3.forceCollide(collisionR))
+          .force('center', d3.forceCenter(w / 2, h / 2))
+          .force('cluster', clusterForce)
+          .on('tick', tick);
+      }
+
+      // Reset selection
+      allLinks.attr('class', 'edge').attr('marker-end', 'url(#arrow)');
+      allCircles.classed('selected', false).classed('faded', false);
+      allLabels.classed('faded', false);
+    }
+
+    // ── View toggle ──
+    function setView(view) {
+      currentView = view;
+      document.getElementById('btn-layered').classList.toggle('active', view === 'layered');
+      document.getElementById('btn-force').classList.toggle('active', view === 'force');
+      renderGraph();
+    }
+
+    // ── Node selection ──
+    function selectNode(d) {
+      // Find connected nodes
+      const connSources = new Set(), connTargets = new Set();
+      edges.forEach(e => {
+        const s = typeof e.source === 'string' ? e.source : e.source.id;
+        const t = typeof e.target === 'string' ? e.target : e.target.id;
+        if (s === d.id) connTargets.add(t);
+        if (t === d.id) connSources.add(s);
+      });
+      const connected = new Set([d.id, ...connSources, ...connTargets]);
+
+      // Highlight
+      linkG.selectAll('line').each(function(e) {
+        const s = typeof e.source === 'string' ? e.source : e.source.id;
+        const t = typeof e.target === 'string' ? e.target : e.target.id;
+        const isConn = (s === d.id || t === d.id);
+        d3.select(this)
+          .attr('class', isConn ? 'edge highlighted' : 'edge faded')
+          .attr('marker-end', isConn ? 'url(#arrow-hl)' : 'url(#arrow)');
+      });
+      nodeG.selectAll('circle')
+        .classed('selected', n => n.id === d.id)
+        .classed('faded', n => !connected.has(n.id));
+      labelG.selectAll('text')
+        .classed('faded', n => !connected.has(n.id));
+
+      // Detail panel
+      showNodeDetail(d, connSources, connTargets);
+    }
+
+    // ── Detail panel: node ──
+    function showNodeDetail(d, deps, dependents) {
+      const res = currentData.resources[d.id] || {};
+      const panel = document.getElementById('detail');
+      let html = `<h3>${d.name}</h3>`;
+      html += `<p class="desc">${res.description || d.description || ''}</p>`;
+
+      // Types
+      html += '<div class="field">';
+      (d.types || []).forEach(t => {
+        const c = TYPE_COLORS[t] || DEFAULT_COLOR;
+        html += `<span class="tag" style="border-left:3px solid ${c}">${t}</span> `;
+      });
+      html += '</div>';
+
+      // Detail fields
+      const fields = currentMeta.detailFields || [];
+      fields.forEach(f => {
+        const val = res[f];
+        if (val !== undefined && val !== null && val !== '') {
+          const label = f.replace(/_/g, ' ');
+          html += `<div class="field"><span class="field-label">${label}:</span> <span class="field-value">${formatValue(val)}</span></div>`;
+        }
+      });
+
+      // Dependencies
+      html += '<div class="section-title">Dependencies (must exist first)</div>';
+      if (deps.size) {
+        Array.from(deps).forEach(name => {
+          html += `<div><span class="dep-link" onclick="clickNodeByName('${name}')">${name}</span></div>`;
+        });
+      } else {
+        html += '<div class="empty">None — this is a root entry</div>';
+      }
+
+      // Dependents
+      html += '<div class="section-title">Direct Dependents</div>';
+      if (dependents.size) {
+        Array.from(dependents).forEach(name => {
+          html += `<div><span class="dep-link" onclick="clickNodeByName('${name}')">${name}</span></div>`;
+        });
+      } else {
+        html += '<div class="empty">None — this is a leaf / final output</div>';
+      }
+
+      // Impact
+      html += '<div class="section-title">Impact Analysis</div>';
+      html += `<div class="field">Transitive dependents: <span class="impact-num">${d.dependents}</span></div>`;
+      html += `<div class="field">Transitive ancestors: <span class="impact-num">${d.ancestors.length}</span></div>`;
+      html += `<div class="field">Depth layer: ${d.depth}</div>`;
+
+      panel.innerHTML = html;
+    }
+
+    function clickNodeByName(name) {
+      const n = nodeMap[name];
+      if (n) selectNode(n);
+    }
+
+    function formatValue(val) {
+      if (typeof val === 'object' && !Array.isArray(val)) {
+        return Object.keys(val).join(', ');
+      }
+      if (Array.isArray(val)) return val.join(', ');
+      return String(val);
+    }
+
+    // ── Detail panel: summary ──
+    function showSummary(vizData) {
+      const m = vizData.metrics;
+      const panel = document.getElementById('detail');
+      let html = `<h3>${currentMeta.title}</h3>`;
+      html += `<p class="desc">${currentMeta.subtitle}</p>`;
+      html += '<div class="summary-grid">';
+      html += statCard(m.total, 'Nodes');
+      html += statCard(m.edges, 'Edges');
+      html += statCard(m.maxDepth + 1, 'Layers');
+      html += statCard(m.roots, 'Roots');
+      html += statCard(m.leaves, 'Leaves');
+      html += statCard(vizData.spof?.summary?.spof_count ?? '—', 'SPOFs');
+      html += '</div>';
+      html += '<div class="section-title">Topology</div>';
+      if (vizData.topology) {
+        Object.entries(vizData.topology).sort((a,b) => {
+          const na = parseInt(a[0].replace('layer_',''));
+          const nb = parseInt(b[0].replace('layer_',''));
+          return na - nb;
+        }).forEach(([layer, members]) => {
+          const names = Object.keys(members);
+          html += `<div class="field"><span class="field-label">${layer}:</span> <span class="field-value">${names.join(', ')}</span></div>`;
+        });
+      }
+      html += '<div class="section-title">Click a node for details</div>';
+      html += '<p class="desc">Select any node to see its dependencies, dependents, and impact analysis.</p>';
+      panel.innerHTML = html;
+    }
+
+    function statCard(val, label) {
+      return `<div class="stat-card"><div class="stat-val">${val}</div><div class="stat-label">${label}</div></div>`;
+    }
+
+    // ── Download self-contained kit ──
+    async function downloadKit(e) {
+      if (e) e.preventDefault();
+      const btn = e?.target;
+      if (btn) { btn.textContent = 'Bundling...'; btn.style.pointerEvents = 'none'; }
+
+      const files = [
+        'index.html', 'editor.html', 'explore.html',
+        'mod-data.json', 'modding.json', 'builddata.json',
+        'modding-summary.json', 'builddata-summary.json'
+      ];
+
+      const zip = new JSZip();
+      const folder = zip.folder('tiny-rogues-demo');
+
+      // Fetch all files
+      const results = await Promise.all(files.map(f =>
+        fetch(f).then(r => r.text()).then(text => ({ name: f, text })).catch(() => null)
+      ));
+      results.filter(Boolean).forEach(r => folder.file(r.name, r.text));
+
+      // Add run script
+      folder.file('run.sh', [
+        '#!/usr/bin/env bash',
+        '# Start a local server for the Tiny Rogues demo',
+        'cd "$(dirname "$0")"',
+        'echo "Open http://localhost:8084 in your browser"',
+        'python3 -m http.server 8084',
+      ].join('\n'));
+
+      folder.file('run.bat', [
+        '@echo off',
+        'cd /d "%~dp0"',
+        'echo Open http://localhost:8084 in your browser',
+        'python -m http.server 8084',
+      ].join('\r\n'));
+
+      folder.file('Dockerfile', [
+        'FROM nginx:alpine',
+        'COPY . /usr/share/nginx/html/',
+        'EXPOSE 80',
+      ].join('\n'));
+
+      folder.file('README.txt', [
+        'Tiny Rogues — Mod Data Graph Demo',
+        '==================================',
+        '',
+        'Run locally:',
+        '  bash run.sh        (Mac/Linux — needs Python 3)',
+        '  run.bat             (Windows — needs Python)',
+        '  docker build -t tr-demo . && docker run -p 8080:80 tr-demo',
+        '',
+        'Then open http://localhost:8084 (or :8080 for Docker)',
+        '',
+        'Pages:',
+        '  index.html    — D3.js graph explorer (layered + force views)',
+        '  editor.html   — Interactive mod data editor (JSON + XML import)',
+        '  explore.html  — Entity browser with dependency chains',
+        '',
+        'The editor accepts XML files — drop in your game data XML',
+        'and it will auto-detect entity types from tag names.',
+        '',
+        'All data exports as standard JSON. The mod-data.json file',
+        'is the 52-entity dataset in JSON-LD format.',
+      ].join('\n'));
+
+      const blob = await zip.generateAsync({ type: 'blob' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'tiny-rogues-demo.zip';
+      a.click();
+      URL.revokeObjectURL(a.href);
+
+      if (btn) { btn.textContent = 'Download Kit'; btn.style.pointerEvents = ''; }
+    }
+
+    // ── Init from hash ──
+    const hash = window.location.hash.replace('#', '');
+    loadGraph(GRAPH_META[hash] ? hash : 'modding');
+  </script>
+</body>
+</html>

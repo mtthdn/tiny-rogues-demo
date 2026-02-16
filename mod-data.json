@@ -1,0 +1,746 @@
+{
+  "@context": {
+    "game": "https://quique.ca/tiny-rogues-demo/vocab/",
+    "name": "game:name",
+    "depends_on": {
+      "@id": "game:dependsOn",
+      "@type": "@id"
+    },
+    "element": "game:element",
+    "description": "game:description"
+  },
+  "@graph": [
+    {
+      "name": "Burn",
+      "@type": [
+        "StatusEffect",
+        "DoT"
+      ],
+      "element": "Fire",
+      "tick_damage": "90-125",
+      "tick_speed": 2,
+      "duration": 8,
+      "max_stacks": 1,
+      "description": "Fire damage over time. All fire damage inflicts Burn.",
+      "@id": "game:burn",
+      "depends_on": []
+    },
+    {
+      "name": "Bleed",
+      "@type": [
+        "StatusEffect",
+        "DoT"
+      ],
+      "element": "Physical",
+      "tick_damage": "105-150",
+      "tick_speed": 2,
+      "duration": 8,
+      "max_stacks": 1,
+      "description": "Physical damage over time.",
+      "@id": "game:bleed",
+      "depends_on": []
+    },
+    {
+      "name": "Poison",
+      "@type": [
+        "StatusEffect",
+        "DoT"
+      ],
+      "element": "Poison",
+      "tick_damage": "10-20",
+      "tick_speed": 2,
+      "duration": 4,
+      "max_stacks": "infinite",
+      "description": "Poison damage over time. Stacks infinitely.",
+      "@id": "game:poison",
+      "depends_on": []
+    },
+    {
+      "name": "Necrosis",
+      "@type": [
+        "StatusEffect",
+        "DoT"
+      ],
+      "element": "Necrotic",
+      "tick_damage": "150-225",
+      "tick_speed": 2,
+      "duration": 8,
+      "max_stacks": 1,
+      "description": "Necrotic damage over time.",
+      "@id": "game:necrosis",
+      "depends_on": []
+    },
+    {
+      "name": "Chill",
+      "@type": [
+        "StatusEffect",
+        "Debuff"
+      ],
+      "element": "Cold",
+      "duration": 8,
+      "max_stacks": 1,
+      "description": "-20% Movement Speed.",
+      "@id": "game:chill",
+      "depends_on": []
+    },
+    {
+      "name": "Shock",
+      "@type": [
+        "StatusEffect",
+        "Debuff"
+      ],
+      "element": "Lightning",
+      "duration": 4,
+      "max_stacks": 5,
+      "description": "x1.04 Damage Taken per stack.",
+      "@id": "game:shock",
+      "depends_on": []
+    },
+    {
+      "name": "Frostbite",
+      "@type": [
+        "StatusEffect",
+        "Debuff"
+      ],
+      "element": "Cold",
+      "duration": 4,
+      "max_stacks": 1,
+      "description": "x1.25 Cold Damage Taken.",
+      "@id": "game:frostbite",
+      "depends_on": [
+        "Chill"
+      ]
+    },
+    {
+      "name": "Scorch",
+      "@type": [
+        "StatusEffect",
+        "Debuff"
+      ],
+      "element": "Fire",
+      "duration": 4,
+      "max_stacks": 1,
+      "description": "x1.25 Fire Damage Taken.",
+      "@id": "game:scorch",
+      "depends_on": [
+        "Burn"
+      ]
+    },
+    {
+      "name": "Zap",
+      "@type": [
+        "StatusEffect",
+        "Debuff"
+      ],
+      "element": "Lightning",
+      "duration": 4,
+      "max_stacks": 1,
+      "description": "x1.25 Lightning Damage Taken.",
+      "@id": "game:zap",
+      "depends_on": [
+        "Shock"
+      ]
+    },
+    {
+      "name": "Toxic",
+      "@type": [
+        "StatusEffect",
+        "Debuff"
+      ],
+      "element": "Poison",
+      "duration": 4,
+      "max_stacks": 1,
+      "description": "x1.25 Poison Damage Taken.",
+      "@id": "game:toxic",
+      "depends_on": [
+        "Poison"
+      ]
+    },
+    {
+      "name": "Pyromancy Orb",
+      "@type": [
+        "Weapon",
+        "Magic"
+      ],
+      "element": "Fire",
+      "damage": "77-117",
+      "scaling": "\u2014/\u2014/B+",
+      "status_effect": "Burn",
+      "description": "Grants a flame orbital dealing fire damage and inflicting Burn. Pyromancer starting equipment.",
+      "@id": "game:pyromancy-orb",
+      "depends_on": [
+        "Burn"
+      ]
+    },
+    {
+      "name": "Fire Fang",
+      "@type": [
+        "Weapon",
+        "Ranged"
+      ],
+      "element": "Fire",
+      "damage": "175-200",
+      "scaling": "\u2014/B/\u2014",
+      "status_effect": "Burn",
+      "description": "Ranged fire weapon. Disables non-quiver offhand items.",
+      "@id": "game:fire-fang",
+      "depends_on": [
+        "Burn"
+      ]
+    },
+    {
+      "name": "Firebomb Codex",
+      "@type": [
+        "Weapon",
+        "Magic"
+      ],
+      "element": "Fire",
+      "damage": "Summon",
+      "scaling": "\u2014/\u2014/A",
+      "status_effect": "Burn",
+      "description": "Spawns a firebomb totem that deals fire damage and inflicts Burn.",
+      "@id": "game:firebomb-codex",
+      "depends_on": [
+        "Burn"
+      ]
+    },
+    {
+      "name": "Flameberge",
+      "@type": [
+        "Weapon",
+        "Melee"
+      ],
+      "element": "Fire",
+      "damage": "130-180",
+      "scaling": "B+/\u2014/\u2014",
+      "status_effect": "Burn",
+      "description": "Heavy fire sword. All fire damage is elemental and inflicts Burn.",
+      "@id": "game:flameberge",
+      "depends_on": [
+        "Burn"
+      ]
+    },
+    {
+      "name": "Inferno Orb Wand",
+      "@type": [
+        "Weapon",
+        "Magic"
+      ],
+      "element": "Fire",
+      "damage": "125-325",
+      "scaling": "\u2014/\u2014/A+",
+      "status_effect": "Burn",
+      "description": "Spawns inferno orbs that orbit and deal fire damage.",
+      "@id": "game:inferno-orb-wand",
+      "depends_on": [
+        "Burn"
+      ]
+    },
+    {
+      "name": "Ice Fang",
+      "@type": [
+        "Weapon",
+        "Ranged"
+      ],
+      "element": "Cold",
+      "damage": "160-190",
+      "scaling": "\u2014/B/\u2014",
+      "status_effect": "Chill",
+      "description": "Ranged cold weapon. Inflicts Chill on hit.",
+      "@id": "game:ice-fang",
+      "depends_on": [
+        "Chill"
+      ]
+    },
+    {
+      "name": "Frostbite Staff",
+      "@type": [
+        "Weapon",
+        "Magic"
+      ],
+      "element": "Cold",
+      "damage": "85-130",
+      "scaling": "\u2014/\u2014/B+",
+      "status_effect": "Chill",
+      "description": "Magic cold staff. All cold damage inflicts Chill.",
+      "@id": "game:frostbite-staff",
+      "depends_on": [
+        "Chill"
+      ]
+    },
+    {
+      "name": "Arc Staff",
+      "@type": [
+        "Weapon",
+        "Magic"
+      ],
+      "element": "Lightning",
+      "damage": "90-150",
+      "scaling": "\u2014/\u2014/A",
+      "status_effect": "Shock",
+      "description": "Fires arcs of lightning that chain between enemies.",
+      "@id": "game:arc-staff",
+      "depends_on": [
+        "Shock"
+      ]
+    },
+    {
+      "name": "Pyromancer",
+      "@type": [
+        "Class",
+        "INT"
+      ],
+      "base_stats": "0/0/2",
+      "passive": "Inner Flame \u2014 Gain +20% Tick Speed per Mana Container you have.",
+      "starting_weapon": "Pyromancy Orb",
+      "@id": "game:pyromancer",
+      "depends_on": [
+        "Pyromancy Orb",
+        "Burn",
+        "Fire and Blood",
+        "Combustion",
+        "Burn Aura"
+      ]
+    },
+    {
+      "name": "Sorcerer",
+      "@type": [
+        "Class",
+        "INT"
+      ],
+      "base_stats": "0/0/2",
+      "passive": "Elemental Affinity \u2014 Gain +20% Effect of Ailments per Mana Container you have.",
+      "@id": "game:sorcerer",
+      "depends_on": [
+        "Burn",
+        "Chill",
+        "Shock",
+        "Poison",
+        "Firebomb Codex",
+        "Arc Staff",
+        "Frostbite Staff",
+        "Cold Blood",
+        "Burn Aura"
+      ]
+    },
+    {
+      "name": "Wizard",
+      "@type": [
+        "Class",
+        "INT"
+      ],
+      "base_stats": "0/0/2",
+      "passive": "Wisdom \u2014 You gain +1 Mana at level 2, 4 and 6.",
+      "@id": "game:wizard",
+      "depends_on": [
+        "Pyromancy Orb",
+        "Frostbite Staff",
+        "Arc Staff",
+        "Inferno Orb Wand"
+      ]
+    },
+    {
+      "name": "Barbarian",
+      "@type": [
+        "Class",
+        "STR"
+      ],
+      "base_stats": "2/0/0",
+      "passive": "Berserker Strength \u2014 Each point of Strength grants more damage to STR-scaling weapons.",
+      "@id": "game:barbarian",
+      "depends_on": [
+        "Flameberge",
+        "Beef",
+        "Barbarism",
+        "Battle Rush",
+        "Adrenaline"
+      ]
+    },
+    {
+      "name": "Ranger",
+      "@type": [
+        "Class",
+        "DEX"
+      ],
+      "base_stats": "0/2/0",
+      "passive": "Hits deal x1.20 Damage at far range but x0.90 at close range.",
+      "@id": "game:ranger",
+      "depends_on": [
+        "Fire Fang",
+        "Ice Fang",
+        "Alacrity",
+        "Deadly Toxins"
+      ]
+    },
+    {
+      "name": "Ninja",
+      "@type": [
+        "Class",
+        "DEX"
+      ],
+      "base_stats": "0/2/0",
+      "passive": "Shadow Jutsu \u2014 On Dash, summon a Shadow Clone Companion for 8 seconds.",
+      "@id": "game:ninja",
+      "depends_on": [
+        "Fire Fang",
+        "Ice Fang",
+        "Alacrity",
+        "Chill Aura"
+      ]
+    },
+    {
+      "name": "Necromancer",
+      "@type": [
+        "Class",
+        "INT"
+      ],
+      "base_stats": "0/0/2",
+      "passive": "Soul Reaper \u2014 Companions deal x1.01 Damage per Soul you have.",
+      "@id": "game:necromancer",
+      "depends_on": [
+        "Necrosis",
+        "Arc Staff",
+        "Frostbite Staff"
+      ]
+    },
+    {
+      "name": "Paladin",
+      "@type": [
+        "Class",
+        "STR"
+      ],
+      "base_stats": "2/0/0",
+      "passive": "Crusader \u2014 Gain +15 to 30 Radiant damage. All radiant damage inflicts Glitter.",
+      "@id": "game:paladin",
+      "depends_on": [
+        "Flameberge",
+        "Beef",
+        "Adrenaline"
+      ]
+    },
+    {
+      "name": "Mystic",
+      "@type": [
+        "Class",
+        "INT"
+      ],
+      "base_stats": "0/0/2",
+      "passive": "Enchanter \u2014 You gain +100% Stats from charms and Weapon Enchantments.",
+      "@id": "game:mystic",
+      "depends_on": [
+        "Fiery",
+        "Icy",
+        "Electric",
+        "Contaminated",
+        "Incinerating",
+        "Glacial",
+        "Charged",
+        "Almighty",
+        "Merciless",
+        "Blazing",
+        "Inferno Orb Wand"
+      ]
+    },
+    {
+      "name": "Soldier",
+      "@type": [
+        "Class",
+        "Hybrid"
+      ],
+      "base_stats": "1/1/1",
+      "passive": "Preparation \u2014 Gain +20% Effect of Debuffs per Weapon Upgrade Level you have.",
+      "@id": "game:soldier",
+      "depends_on": [
+        "Chill",
+        "Shock",
+        "Frostbite",
+        "Scorch",
+        "Zap",
+        "Toxic"
+      ]
+    },
+    {
+      "name": "Samurai",
+      "@type": [
+        "Class",
+        "STR"
+      ],
+      "base_stats": "2/0/0",
+      "passive": "Ronin \u2014 Your Weapons inflict a stack of Retribution. Deals 60-115 Physical Damage. Inflicts Bleed.",
+      "@id": "game:samurai",
+      "depends_on": [
+        "Flameberge",
+        "Bleed",
+        "Beef",
+        "Adrenaline"
+      ]
+    },
+    {
+      "name": "Jester",
+      "@type": [
+        "Class",
+        "DEX"
+      ],
+      "base_stats": "0/2/0",
+      "passive": "Deception \u2014 On Dash, your next 3 Attacks deal a guaranteed critical hit.",
+      "@id": "game:jester",
+      "depends_on": [
+        "Fire Fang",
+        "Ice Fang",
+        "Alacrity",
+        "Electric City",
+        "Merciless"
+      ]
+    },
+    {
+      "name": "Beef",
+      "@type": [
+        "Trait",
+        "Strength"
+      ],
+      "description": "Gain +100% Stats from Strength. Strength grants more damage dealt, equip load capacity.",
+      "@id": "game:beef",
+      "depends_on": []
+    },
+    {
+      "name": "Barbarism",
+      "@type": [
+        "Trait",
+        "Strength"
+      ],
+      "description": "Each point of Strength grants more damage to STR-scaling weapons and equip load.",
+      "@id": "game:barbarism",
+      "depends_on": []
+    },
+    {
+      "name": "Battle Rush",
+      "@type": [
+        "Trait",
+        "Strength"
+      ],
+      "description": "Grants Power if you meet the breakpoint for STR scaling.",
+      "@id": "game:battle-rush",
+      "depends_on": []
+    },
+    {
+      "name": "Adrenaline",
+      "@type": [
+        "Trait",
+        "Strength"
+      ],
+      "description": "Gain +1 missing Heart. Gain +25% Effect of Emotions per missing Heart.",
+      "@id": "game:adrenaline",
+      "depends_on": []
+    },
+    {
+      "name": "Fire and Blood",
+      "@type": [
+        "Trait",
+        "Strength"
+      ],
+      "description": "You can stack Burn up to 3 times. Additional stacks refresh duration.",
+      "@id": "game:fire-and-blood",
+      "depends_on": [
+        "Burn"
+      ]
+    },
+    {
+      "name": "Alacrity",
+      "@type": [
+        "Trait",
+        "Dexterity"
+      ],
+      "description": "Grants +40% Attack Speed with Weapons that scale with Dexterity.",
+      "@id": "game:alacrity",
+      "depends_on": []
+    },
+    {
+      "name": "Electric City",
+      "@type": [
+        "Trait",
+        "Dexterity"
+      ],
+      "description": "Each stack of Shock additionally adds +25% Critical Hit Damage.",
+      "@id": "game:electric-city",
+      "depends_on": [
+        "Shock"
+      ]
+    },
+    {
+      "name": "Deadly Toxins",
+      "@type": [
+        "Trait",
+        "Dexterity"
+      ],
+      "description": "Each stack of Poison additionally reduces enemy healing by 5%.",
+      "@id": "game:deadly-toxins",
+      "depends_on": [
+        "Poison"
+      ]
+    },
+    {
+      "name": "Chill Aura",
+      "@type": [
+        "Trait",
+        "Dexterity"
+      ],
+      "description": "Grants a Chill Aura that deals 40-70 Cold Damage 4 times per second and inflicts Chill.",
+      "@id": "game:chill-aura",
+      "depends_on": [
+        "Chill"
+      ]
+    },
+    {
+      "name": "Combustion",
+      "@type": [
+        "Trait",
+        "Intelligence"
+      ],
+      "description": "Burn deals increased damage. On tick, Burn has a chance to trigger an explosion.",
+      "@id": "game:combustion",
+      "depends_on": [
+        "Burn"
+      ]
+    },
+    {
+      "name": "Cold Blood",
+      "@type": [
+        "Trait",
+        "Intelligence"
+      ],
+      "description": "Chill additionally adds +20% chance to take a Critical Hit.",
+      "@id": "game:cold-blood",
+      "depends_on": [
+        "Chill"
+      ]
+    },
+    {
+      "name": "Burn Aura",
+      "@type": [
+        "Trait",
+        "Intelligence"
+      ],
+      "description": "Grants a Burn Aura that deals 15-45 Fire Damage 4 times per second and inflicts Burn.",
+      "@id": "game:burn-aura",
+      "depends_on": [
+        "Burn"
+      ]
+    },
+    {
+      "name": "Fiery",
+      "@type": [
+        "Enchantment",
+        "Positive"
+      ],
+      "description": "+20 to 35 Fire Damage",
+      "@id": "game:fiery",
+      "depends_on": [
+        "Burn"
+      ]
+    },
+    {
+      "name": "Icy",
+      "@type": [
+        "Enchantment",
+        "Positive"
+      ],
+      "description": "+20 to 30 Cold Damage",
+      "@id": "game:icy",
+      "depends_on": [
+        "Chill"
+      ]
+    },
+    {
+      "name": "Electric",
+      "@type": [
+        "Enchantment",
+        "Positive"
+      ],
+      "description": "+5 to 75 Lightning Damage",
+      "@id": "game:electric",
+      "depends_on": [
+        "Shock"
+      ]
+    },
+    {
+      "name": "Contaminated",
+      "@type": [
+        "Enchantment",
+        "Positive"
+      ],
+      "description": "+20 to 30 Poison Damage",
+      "@id": "game:contaminated",
+      "depends_on": [
+        "Poison"
+      ]
+    },
+    {
+      "name": "Incinerating",
+      "@type": [
+        "Enchantment",
+        "Positive"
+      ],
+      "description": "x1.25 Burn Damage (requires Fire Damage on weapon)",
+      "@id": "game:incinerating",
+      "depends_on": [
+        "Burn"
+      ]
+    },
+    {
+      "name": "Glacial",
+      "@type": [
+        "Enchantment",
+        "Positive"
+      ],
+      "description": "x1.25 Chill Effect (requires Cold Damage on weapon)",
+      "@id": "game:glacial",
+      "depends_on": [
+        "Chill"
+      ]
+    },
+    {
+      "name": "Charged",
+      "@type": [
+        "Enchantment",
+        "Positive"
+      ],
+      "description": "x1.25 Shock Effect (requires Lightning Damage on weapon)",
+      "@id": "game:charged",
+      "depends_on": [
+        "Shock"
+      ]
+    },
+    {
+      "name": "Almighty",
+      "@type": [
+        "Enchantment",
+        "Legendary"
+      ],
+      "description": "+30% Damage",
+      "@id": "game:almighty",
+      "depends_on": []
+    },
+    {
+      "name": "Merciless",
+      "@type": [
+        "Enchantment",
+        "Legendary"
+      ],
+      "description": "+125% Critical Hit Damage",
+      "@id": "game:merciless",
+      "depends_on": []
+    },
+    {
+      "name": "Blazing",
+      "@type": [
+        "Enchantment",
+        "Special"
+      ],
+      "description": "x2.00 Burn Damage (Dragon Trophy Room)",
+      "@id": "game:blazing",
+      "depends_on": [
+        "Burn"
+      ]
+    }
+  ]
+}

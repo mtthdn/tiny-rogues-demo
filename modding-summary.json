@@ -1,0 +1,16 @@
+{
+    "pipeline_type": "Weapon Mod — Concept to Steam Workshop",
+    "game": "Tiny Rogues",
+    "total_steps": 14,
+    "starting_points": 1,
+    "final_deliverables": 1,
+    "pipeline_phases": 7,
+    "dependency_links": 13,
+    "spof_count": 7,
+    "graph_valid": true,
+    "validation_issues": {
+        "missing_dependencies": [],
+        "self_references": [],
+        "empty_types": []
+    }
+}

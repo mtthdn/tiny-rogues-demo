@@ -1,0 +1,7 @@
+# CUE module (local dev only)
+cue.mod/
+# Raw source data
+source/
+# Build intermediaries
+builddata/
+modding/

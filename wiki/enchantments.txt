@@ -1,0 +1,65 @@
+These are the modifiers that enchanted weapons can have. Most weapons can only have a single modifier applied to them at any one time.
+Contents
+
+    1 Negative
+    2 Positive
+    3 Legendary
+    4 Special
+    5 Removed
+
+Negative
+Name     Effect
+Trash     -1 to all scaling
+Crappy     -10% Damage
+Godawful     -20% Damage
+Slow     -10% Attack Speed
+Tortoiselike     -20% Attack Speed
+Positive
+Name     Effect
+Precise     +10% Critical Hit Chance
+Dragonslayer's     x2.00 Damage against Dragons
+Deadly     +75% Critical Hit Damage
+Contaminated     +20 to 30 Poison Damage
+Quick     +10% Attack Speed
+Electric     +5 to 75 Lightning Damage
+Fierce     +10% Damage
+Icy     +20 to 30 Cold Damage
+Happy     +10% Lucky Hit Chance
+Potent     x1.20 Top End Damage
+Fiery     +20 to 35 Fire Damage
+Steady     x1.20 Damage with Non Critical Hits
+Witchhunter's     x2.00 Damage against Fiends
+Sly     +5 Dexterity
+Clever     +5 Intelligence
+Brutal     +5 Strength
+Incinerating     x1.25 Burn Damage (requires Fire Damage on weapon)
+Glacial     x1.25 Chill Effect (requires Cold Damage on weapon)
+Charged     x1.25 Shock Effect (requires Lightning Damage on weapon)
+Legendary
+Name     Effect
+Almighty     +30% Damage
+Baleful     +25 to 50 necrotic damage
+Divine     +25 to 50 Radiant Damage
+Lucky     +25% Lucky Hit Chance
+Headhunter's     1.20x damage against Bosses
+Occult     +15 to 85 dark Damage
+Unreal     +25% Attack Speed
+Sniper's     +20% Critical Hit Chance
+Merciless     +125% Critical Hit Damage
+Twinkling     +1 Upgrade Level
+Special
+Name     Effect     Location
+Dwarven     +1 to all scaling     Dwarf Hideout Event
+Illegal     Either: 20% increased damage, +15% Critical Hit Chance, or +20% attack speed     Black Market Shop
+Shining     +3 Upgrade Level     Star Breath from Dragon Trophy Room Event
+Blazing     x2.00 Burn Damage     Fire Breath from Dragon Trophy Room Event
+Freezing     x2.00 Chill Effect     Ice Breath from Dragon Trophy Room Event
+Thundering     x2.00 Shock Effect     Lightning Breath from Dragon Trophy Room Event
+Scorched     -50% Damage     Dragon Trophy Room Event
+Arcane     +5% Damage per Mana Container you have     Fairy Tale Branch
+Removed
+Name     Effect
+Disenchanting     25% increased damage dealt to enchanted enemies
+Legendary     25% increased damage
+Brutal     +10% super effective damage multiplier
+Unstoppable     +25% not very effective multiplier

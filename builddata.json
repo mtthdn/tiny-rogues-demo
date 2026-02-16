@@ -1,0 +1,678 @@
+{
+    "data": {
+        "nodes": [
+            {
+                "id": "mage-class",
+                "name": "mage-class",
+                "types": [
+                    "ClassDef"
+                ],
+                "depth": 0,
+                "ancestors": [],
+                "dependents": 5,
+                "risk_score": 30
+            },
+            {
+                "id": "fire-element",
+                "name": "fire-element",
+                "types": [
+                    "ElementDef"
+                ],
+                "depth": 0,
+                "ancestors": [],
+                "dependents": 10,
+                "risk_score": 110
+            },
+            {
+                "id": "fire-staff",
+                "name": "fire-staff",
+                "types": [
+                    "WeaponData"
+                ],
+                "depth": 1,
+                "ancestors": [
+                    "fire-element"
+                ],
+                "dependents": 1,
+                "risk_score": 2
+            },
+            {
+                "id": "fire-trait",
+                "name": "fire-trait",
+                "types": [
+                    "TraitData"
+                ],
+                "depth": 1,
+                "ancestors": [
+                    "fire-element"
+                ],
+                "dependents": 6,
+                "risk_score": 42
+            },
+            {
+                "id": "spell-amplifier",
+                "name": "spell-amplifier",
+                "types": [
+                    "TraitData"
+                ],
+                "depth": 1,
+                "ancestors": [
+                    "mage-class"
+                ],
+                "dependents": 4,
+                "risk_score": 20
+            },
+            {
+                "id": "area-effect",
+                "name": "area-effect",
+                "types": [
+                    "TraitData",
+                    "Synergy"
+                ],
+                "depth": 2,
+                "ancestors": [
+                    "spell-amplifier",
+                    "fire-trait",
+                    "mage-class",
+                    "fire-element"
+                ],
+                "dependents": 3,
+                "risk_score": 12
+            },
+            {
+                "id": "burn-effect",
+                "name": "burn-effect",
+                "types": [
+                    "StatusEffect"
+                ],
+                "depth": 1,
+                "ancestors": [
+                    "fire-element"
+                ],
+                "dependents": 5,
+                "risk_score": 30
+            },
+            {
+                "id": "fire-compat",
+                "name": "fire-compat",
+                "types": [
+                    "CompatRule"
+                ],
+                "depth": 2,
+                "ancestors": [
+                    "fire-trait",
+                    "fire-staff",
+                    "fire-element"
+                ],
+                "dependents": 0,
+                "risk_score": 0
+            },
+            {
+                "id": "burn-on-hit",
+                "name": "burn-on-hit",
+                "types": [
+                    "TriggerRule"
+                ],
+                "depth": 2,
+                "ancestors": [
+                    "burn-effect",
+                    "fire-trait",
+                    "fire-element"
+                ],
+                "dependents": 0,
+                "risk_score": 0
+            },
+            {
+                "id": "inferno-synergy",
+                "name": "inferno-synergy",
+                "types": [
+                    "SynergyDef"
+                ],
+                "depth": 3,
+                "ancestors": [
+                    "fire-trait",
+                    "burn-effect",
+                    "area-effect",
+                    "fire-element",
+                    "spell-amplifier",
+                    "mage-class"
+                ],
+                "dependents": 2,
+                "risk_score": 6
+            },
+            {
+                "id": "phoenix-ring",
+                "name": "phoenix-ring",
+                "types": [
+                    "ItemData"
+                ],
+                "depth": 4,
+                "ancestors": [
+                    "inferno-synergy",
+                    "fire-trait",
+                    "burn-effect",
+                    "area-effect",
+                    "fire-element",
+                    "spell-amplifier",
+                    "mage-class"
+                ],
+                "dependents": 0,
+                "risk_score": 0
+            },
+            {
+                "id": "fire-mastery",
+                "name": "fire-mastery",
+                "types": [
+                    "ProgressionData"
+                ],
+                "depth": 4,
+                "ancestors": [
+                    "mage-class",
+                    "inferno-synergy",
+                    "fire-trait",
+                    "burn-effect",
+                    "area-effect",
+                    "fire-element",
+                    "spell-amplifier"
+                ],
+                "dependents": 0,
+                "risk_score": 0
+            },
+            {
+                "id": "fire-boss",
+                "name": "fire-boss",
+                "types": [
+                    "EnemyVariant"
+                ],
+                "depth": 2,
+                "ancestors": [
+                    "fire-element",
+                    "burn-effect"
+                ],
+                "dependents": 0,
+                "risk_score": 0
+            }
+        ],
+        "edges": [
+            {
+                "source": "fire-element",
+                "target": "fire-staff"
+            },
+            {
+                "source": "fire-element",
+                "target": "fire-trait"
+            },
+            {
+                "source": "mage-class",
+                "target": "spell-amplifier"
+            },
+            {
+                "source": "spell-amplifier",
+                "target": "area-effect"
+            },
+            {
+                "source": "fire-trait",
+                "target": "area-effect"
+            },
+            {
+                "source": "fire-element",
+                "target": "burn-effect"
+            },
+            {
+                "source": "fire-trait",
+                "target": "fire-compat"
+            },
+            {
+                "source": "fire-staff",
+                "target": "fire-compat"
+            },
+            {
+                "source": "burn-effect",
+                "target": "burn-on-hit"
+            },
+            {
+                "source": "fire-trait",
+                "target": "burn-on-hit"
+            },
+            {
+                "source": "fire-trait",
+                "target": "inferno-synergy"
+            },
+            {
+                "source": "burn-effect",
+                "target": "inferno-synergy"
+            },
+            {
+                "source": "area-effect",
+                "target": "inferno-synergy"
+            },
+            {
+                "source": "inferno-synergy",
+                "target": "phoenix-ring"
+            },
+            {
+                "source": "mage-class",
+                "target": "fire-mastery"
+            },
+            {
+                "source": "inferno-synergy",
+                "target": "fire-mastery"
+            },
+            {
+                "source": "fire-element",
+                "target": "fire-boss"
+            },
+            {
+                "source": "burn-effect",
+                "target": "fire-boss"
+            }
+        ],
+        "topology": {
+            "layer_0": [
+                "mage-class",
+                "fire-element"
+            ],
+            "layer_1": [
+                "fire-staff",
+                "fire-trait",
+                "spell-amplifier",
+                "burn-effect"
+            ],
+            "layer_2": [
+                "area-effect",
+                "fire-compat",
+                "burn-on-hit",
+                "fire-boss"
+            ],
+            "layer_3": [
+                "inferno-synergy"
+            ],
+            "layer_4": [
+                "phoenix-ring",
+                "fire-mastery"
+            ]
+        },
+        "roots": [
+            "mage-class",
+            "fire-element"
+        ],
+        "leaves": [
+            "fire-compat",
+            "burn-on-hit",
+            "phoenix-ring",
+            "fire-mastery",
+            "fire-boss"
+        ],
+        "criticality": [
+            {
+                "name": "mage-class",
+                "dependents": 5
+            },
+            {
+                "name": "fire-element",
+                "dependents": 10
+            },
+            {
+                "name": "fire-staff",
+                "dependents": 1
+            },
+            {
+                "name": "fire-trait",
+                "dependents": 6
+            },
+            {
+                "name": "spell-amplifier",
+                "dependents": 4
+            },
+            {
+                "name": "area-effect",
+                "dependents": 3
+            },
+            {
+                "name": "burn-effect",
+                "dependents": 5
+            },
+            {
+                "name": "fire-compat",
+                "dependents": 0
+            },
+            {
+                "name": "burn-on-hit",
+                "dependents": 0
+            },
+            {
+                "name": "inferno-synergy",
+                "dependents": 2
+            },
+            {
+                "name": "phoenix-ring",
+                "dependents": 0
+            },
+            {
+                "name": "fire-mastery",
+                "dependents": 0
+            },
+            {
+                "name": "fire-boss",
+                "dependents": 0
+            }
+        ],
+        "byType": {
+            "ClassDef": [
+                "mage-class"
+            ],
+            "ElementDef": [
+                "fire-element"
+            ],
+            "WeaponData": [
+                "fire-staff"
+            ],
+            "TraitData": [
+                "fire-trait",
+                "spell-amplifier",
+                "area-effect"
+            ],
+            "Synergy": [
+                "area-effect"
+            ],
+            "StatusEffect": [
+                "burn-effect"
+            ],
+            "CompatRule": [
+                "fire-compat"
+            ],
+            "TriggerRule": [
+                "burn-on-hit"
+            ],
+            "SynergyDef": [
+                "inferno-synergy"
+            ],
+            "ItemData": [
+                "phoenix-ring"
+            ],
+            "ProgressionData": [
+                "fire-mastery"
+            ],
+            "EnemyVariant": [
+                "fire-boss"
+            ]
+        },
+        "spof": [
+            {
+                "name": "mage-class",
+                "dependents": 5,
+                "types": [
+                    "ClassDef"
+                ],
+                "depth": 0
+            },
+            {
+                "name": "fire-element",
+                "dependents": 10,
+                "types": [
+                    "ElementDef"
+                ],
+                "depth": 0
+            },
+            {
+                "name": "fire-staff",
+                "dependents": 1,
+                "types": [
+                    "WeaponData"
+                ],
+                "depth": 1
+            },
+            {
+                "name": "area-effect",
+                "dependents": 3,
+                "types": [
+                    "TraitData",
+                    "Synergy"
+                ],
+                "depth": 2
+            },
+            {
+                "name": "burn-effect",
+                "dependents": 5,
+                "types": [
+                    "StatusEffect"
+                ],
+                "depth": 1
+            },
+            {
+                "name": "inferno-synergy",
+                "dependents": 2,
+                "types": [
+                    "SynergyDef"
+                ],
+                "depth": 3
+            }
+        ],
+        "coupling": [
+            {
+                "name": "mage-class",
+                "dependents": 5,
+                "percentage": 38.46153846153846153846153846153846
+            },
+            {
+                "name": "fire-element",
+                "dependents": 10,
+                "percentage": 76.92307692307692307692307692307692
+            },
+            {
+                "name": "fire-trait",
+                "dependents": 6,
+                "percentage": 46.15384615384615384615384615384615
+            },
+            {
+                "name": "spell-amplifier",
+                "dependents": 4,
+                "percentage": 30.76923076923076923076923076923077
+            },
+            {
+                "name": "burn-effect",
+                "dependents": 5,
+                "percentage": 38.46153846153846153846153846153846
+            }
+        ],
+        "metrics": {
+            "total": 13,
+            "maxDepth": 4,
+            "edges": 18,
+            "roots": 2,
+            "leaves": 5,
+            "spofCount": 6,
+            "couplingCount": 5
+        },
+        "validation": {
+            "valid": true,
+            "issues": []
+        }
+    },
+    "resources": {
+        "mage-class": {
+            "@id": "https://tiny-rogues-demo.example/builddata/mage-class",
+            "name": "mage-class",
+            "description": "Mage class definition — base stats, spell slots, mana pool, passive ability",
+            "@type": {
+                "ClassDef": true
+            },
+            "data_file": "classes/mage.json",
+            "fields": "hp, mana, spell_power, base_speed, passive",
+            "balance_notes": "Spell power scaling defines the entire archetype"
+        },
+        "fire-element": {
+            "@id": "https://tiny-rogues-demo.example/builddata/fire-element",
+            "name": "fire-element",
+            "description": "Fire damage element type — color, particle effect, damage tag, resistance key",
+            "@type": {
+                "ElementDef": true
+            },
+            "data_file": "elements/fire.json",
+            "fields": "damage_tag, color, particle_id, resist_key",
+            "balance_notes": "Foundation for all fire content — changing this cascades everywhere"
+        },
+        "fire-staff": {
+            "@id": "https://tiny-rogues-demo.example/builddata/fire-staff",
+            "name": "fire-staff",
+            "description": "Fire Staff weapon — damage, speed, range, projectile type, base fire scaling",
+            "@type": {
+                "WeaponData": true
+            },
+            "data_file": "weapons/fire_staff.json",
+            "fields": "damage, speed, range, projectile, element_scaling",
+            "depends_on": {
+                "fire-element": true
+            },
+            "balance_notes": "Primary fire weapon — must be competitive with ice-staff and lightning-rod"
+        },
+        "fire-trait": {
+            "@id": "https://tiny-rogues-demo.example/builddata/fire-trait",
+            "name": "fire-trait",
+            "description": "Fire Enchantment trait — adds fire damage to weapon hits, scales with spell power",
+            "@type": {
+                "TraitData": true
+            },
+            "data_file": "traits/fire_enchant.json",
+            "fields": "flat_damage, scaling_stat, scaling_ratio, element_tag",
+            "depends_on": {
+                "fire-element": true
+            },
+            "balance_notes": "Core trait — enables all fire builds"
+        },
+        "spell-amplifier": {
+            "@id": "https://tiny-rogues-demo.example/builddata/spell-amplifier",
+            "name": "spell-amplifier",
+            "description": "Spell Amplifier trait — increases spell damage by percentage, mage-only",
+            "@type": {
+                "TraitData": true
+            },
+            "data_file": "traits/spell_amplifier.json",
+            "fields": "damage_mult, class_restriction, stacking_rule",
+            "depends_on": {
+                "mage-class": true
+            },
+            "balance_notes": "Generic mage power trait — must work with all elements, not just fire"
+        },
+        "area-effect": {
+            "@id": "https://tiny-rogues-demo.example/builddata/area-effect",
+            "name": "area-effect",
+            "description": "Area of Effect trait — spell hits explode, AoE radius scales with spell power",
+            "@type": {
+                "TraitData": true,
+                "Synergy": true
+            },
+            "data_file": "traits/area_effect.json",
+            "fields": "base_radius, scaling_stat, damage_falloff, element_inherit",
+            "depends_on": {
+                "spell-amplifier": true,
+                "fire-trait": true
+            },
+            "balance_notes": "Build-defining trait — fire AoE is the core identity of fire mage"
+        },
+        "burn-effect": {
+            "@id": "https://tiny-rogues-demo.example/builddata/burn-effect",
+            "name": "burn-effect",
+            "description": "Burn DoT status effect — ticks fire damage over time, stacks up to 3",
+            "@type": {
+                "StatusEffect": true
+            },
+            "data_file": "effects/burn.json",
+            "fields": "tick_damage, tick_rate, duration, max_stacks, element_tag",
+            "depends_on": {
+                "fire-element": true
+            },
+            "balance_notes": "Must not stack infinitely — cap prevents degenerate builds"
+        },
+        "fire-compat": {
+            "@id": "https://tiny-rogues-demo.example/builddata/fire-compat",
+            "name": "fire-compat",
+            "description": "Fire trait + Fire Staff compatibility rule — enables the enchantment pairing",
+            "@type": {
+                "CompatRule": true
+            },
+            "data_file": "rules/fire_compat.json",
+            "fields": "weapon_id, trait_id, bonus_effect, restriction",
+            "depends_on": {
+                "fire-trait": true,
+                "fire-staff": true
+            },
+            "balance_notes": "Matching element weapon + trait should give bonus — not mandatory"
+        },
+        "burn-on-hit": {
+            "@id": "https://tiny-rogues-demo.example/builddata/burn-on-hit",
+            "name": "burn-on-hit",
+            "description": "Trigger rule — fire damage hits have chance to apply burn status",
+            "@type": {
+                "TriggerRule": true
+            },
+            "data_file": "rules/burn_on_hit.json",
+            "fields": "trigger_chance, damage_threshold, element_req, effect_id",
+            "depends_on": {
+                "burn-effect": true,
+                "fire-trait": true
+            },
+            "balance_notes": "Chance-based, not guaranteed — keeps burn from being always-on"
+        },
+        "inferno-synergy": {
+            "@id": "https://tiny-rogues-demo.example/builddata/inferno-synergy",
+            "name": "inferno-synergy",
+            "description": "Inferno synergy bonus — fire trait + burn + AoE unlocks screen-wide fire nova",
+            "@type": {
+                "SynergyDef": true
+            },
+            "data_file": "synergies/inferno.json",
+            "fields": "required_traits, bonus_ability, cooldown, visual_effect",
+            "depends_on": {
+                "fire-trait": true,
+                "burn-effect": true,
+                "area-effect": true
+            },
+            "balance_notes": "The reward for going full fire — must justify 3-trait investment"
+        },
+        "phoenix-ring": {
+            "@id": "https://tiny-rogues-demo.example/builddata/phoenix-ring",
+            "name": "phoenix-ring",
+            "description": "Phoenix Ring — grants fire resistance and burn immunity, drops from fire synergy builds",
+            "@type": {
+                "ItemData": true
+            },
+            "data_file": "items/phoenix_ring.json",
+            "fields": "stats, equip_slot, drop_condition, flavour_text",
+            "depends_on": {
+                "inferno-synergy": true
+            },
+            "balance_notes": "Build-reward item — only appears when running fire synergy"
+        },
+        "fire-mastery": {
+            "@id": "https://tiny-rogues-demo.example/builddata/fire-mastery",
+            "name": "fire-mastery",
+            "description": "Fire Mage mastery track — meta-progression unlocking fire-specific permanent bonuses",
+            "@type": {
+                "ProgressionData": true
+            },
+            "data_file": "mastery/fire_mage.json",
+            "fields": "milestones, rewards, xp_curve, class_req, synergy_req",
+            "depends_on": {
+                "mage-class": true,
+                "inferno-synergy": true
+            },
+            "balance_notes": "Long-term goal for fire mage mains — months of play to complete"
+        },
+        "fire-boss": {
+            "@id": "https://tiny-rogues-demo.example/builddata/fire-boss",
+            "name": "fire-boss",
+            "description": "Fire-resistant boss variant — immune to burn, reduced fire damage, counters fire builds",
+            "@type": {
+                "EnemyVariant": true
+            },
+            "data_file": "enemies/fire_boss_variant.json",
+            "fields": "resist_element, resist_pct, immune_effects, counter_mechanic",
+            "depends_on": {
+                "fire-element": true,
+                "burn-effect": true
+            },
+            "balance_notes": "Prevents fire builds from being universally dominant — forces adaptation"
+        }
+    }
+}

@@ -1,0 +1,782 @@
+{
+    "data": {
+        "nodes": [
+            {
+                "id": "concept-design",
+                "name": "concept-design",
+                "types": [
+                    "Creative"
+                ],
+                "depth": 0,
+                "ancestors": [],
+                "dependents": 13,
+                "risk_score": 182
+            },
+            {
+                "id": "sprite-sheet",
+                "name": "sprite-sheet",
+                "types": [
+                    "Asset",
+                    "Art"
+                ],
+                "depth": 1,
+                "ancestors": [
+                    "concept-design"
+                ],
+                "dependents": 5,
+                "risk_score": 30
+            },
+            {
+                "id": "animation-frames",
+                "name": "animation-frames",
+                "types": [
+                    "Asset",
+                    "Art"
+                ],
+                "depth": 2,
+                "ancestors": [
+                    "sprite-sheet",
+                    "concept-design"
+                ],
+                "dependents": 2,
+                "risk_score": 6
+            },
+            {
+                "id": "sound-effects",
+                "name": "sound-effects",
+                "types": [
+                    "Asset",
+                    "Audio"
+                ],
+                "depth": 1,
+                "ancestors": [
+                    "concept-design"
+                ],
+                "dependents": 2,
+                "risk_score": 6
+            },
+            {
+                "id": "base-stats",
+                "name": "base-stats",
+                "types": [
+                    "GameData"
+                ],
+                "depth": 1,
+                "ancestors": [
+                    "concept-design"
+                ],
+                "dependents": 9,
+                "risk_score": 90
+            },
+            {
+                "id": "scaling-config",
+                "name": "scaling-config",
+                "types": [
+                    "GameData",
+                    "Balance"
+                ],
+                "depth": 2,
+                "ancestors": [
+                    "base-stats",
+                    "concept-design"
+                ],
+                "dependents": 5,
+                "risk_score": 30
+            },
+            {
+                "id": "trait-compat",
+                "name": "trait-compat",
+                "types": [
+                    "GameData"
+                ],
+                "depth": 2,
+                "ancestors": [
+                    "base-stats",
+                    "concept-design"
+                ],
+                "dependents": 4,
+                "risk_score": 20
+            },
+            {
+                "id": "drop-table",
+                "name": "drop-table",
+                "types": [
+                    "GameData",
+                    "Balance"
+                ],
+                "depth": 3,
+                "ancestors": [
+                    "base-stats",
+                    "scaling-config",
+                    "concept-design"
+                ],
+                "dependents": 3,
+                "risk_score": 12
+            },
+            {
+                "id": "synergy-rules",
+                "name": "synergy-rules",
+                "types": [
+                    "GameData",
+                    "Balance"
+                ],
+                "depth": 3,
+                "ancestors": [
+                    "trait-compat",
+                    "scaling-config",
+                    "base-stats",
+                    "concept-design"
+                ],
+                "dependents": 3,
+                "risk_score": 12
+            },
+            {
+                "id": "tooltip-text",
+                "name": "tooltip-text",
+                "types": [
+                    "UIText"
+                ],
+                "depth": 2,
+                "ancestors": [
+                    "base-stats",
+                    "sprite-sheet",
+                    "concept-design"
+                ],
+                "dependents": 3,
+                "risk_score": 12
+            },
+            {
+                "id": "localization",
+                "name": "localization",
+                "types": [
+                    "UIText",
+                    "Localization"
+                ],
+                "depth": 3,
+                "ancestors": [
+                    "tooltip-text",
+                    "base-stats",
+                    "sprite-sheet",
+                    "concept-design"
+                ],
+                "dependents": 2,
+                "risk_score": 6
+            },
+            {
+                "id": "balance-test",
+                "name": "balance-test",
+                "types": [
+                    "Quality",
+                    "Validation"
+                ],
+                "depth": 4,
+                "ancestors": [
+                    "synergy-rules",
+                    "drop-table",
+                    "scaling-config",
+                    "trait-compat",
+                    "base-stats",
+                    "concept-design"
+                ],
+                "dependents": 2,
+                "risk_score": 6
+            },
+            {
+                "id": "mod-manifest",
+                "name": "mod-manifest",
+                "types": [
+                    "Distribution"
+                ],
+                "depth": 5,
+                "ancestors": [
+                    "balance-test",
+                    "animation-frames",
+                    "sound-effects",
+                    "localization",
+                    "synergy-rules",
+                    "drop-table",
+                    "scaling-config",
+                    "sprite-sheet",
+                    "concept-design",
+                    "tooltip-text",
+                    "trait-compat",
+                    "base-stats"
+                ],
+                "dependents": 1,
+                "risk_score": 2
+            },
+            {
+                "id": "workshop-upload",
+                "name": "workshop-upload",
+                "types": [
+                    "Distribution"
+                ],
+                "depth": 6,
+                "ancestors": [
+                    "mod-manifest",
+                    "balance-test",
+                    "animation-frames",
+                    "sound-effects",
+                    "localization",
+                    "synergy-rules",
+                    "drop-table",
+                    "scaling-config",
+                    "sprite-sheet",
+                    "concept-design",
+                    "tooltip-text",
+                    "trait-compat",
+                    "base-stats"
+                ],
+                "dependents": 0,
+                "risk_score": 0
+            }
+        ],
+        "edges": [
+            {
+                "source": "concept-design",
+                "target": "sprite-sheet"
+            },
+            {
+                "source": "sprite-sheet",
+                "target": "animation-frames"
+            },
+            {
+                "source": "concept-design",
+                "target": "sound-effects"
+            },
+            {
+                "source": "concept-design",
+                "target": "base-stats"
+            },
+            {
+                "source": "base-stats",
+                "target": "scaling-config"
+            },
+            {
+                "source": "base-stats",
+                "target": "trait-compat"
+            },
+            {
+                "source": "base-stats",
+                "target": "drop-table"
+            },
+            {
+                "source": "scaling-config",
+                "target": "drop-table"
+            },
+            {
+                "source": "trait-compat",
+                "target": "synergy-rules"
+            },
+            {
+                "source": "scaling-config",
+                "target": "synergy-rules"
+            },
+            {
+                "source": "base-stats",
+                "target": "tooltip-text"
+            },
+            {
+                "source": "sprite-sheet",
+                "target": "tooltip-text"
+            },
+            {
+                "source": "tooltip-text",
+                "target": "localization"
+            },
+            {
+                "source": "synergy-rules",
+                "target": "balance-test"
+            },
+            {
+                "source": "drop-table",
+                "target": "balance-test"
+            },
+            {
+                "source": "scaling-config",
+                "target": "balance-test"
+            },
+            {
+                "source": "balance-test",
+                "target": "mod-manifest"
+            },
+            {
+                "source": "animation-frames",
+                "target": "mod-manifest"
+            },
+            {
+                "source": "sound-effects",
+                "target": "mod-manifest"
+            },
+            {
+                "source": "localization",
+                "target": "mod-manifest"
+            },
+            {
+                "source": "mod-manifest",
+                "target": "workshop-upload"
+            }
+        ],
+        "topology": {
+            "layer_0": [
+                "concept-design"
+            ],
+            "layer_1": [
+                "sprite-sheet",
+                "sound-effects",
+                "base-stats"
+            ],
+            "layer_2": [
+                "animation-frames",
+                "scaling-config",
+                "trait-compat",
+                "tooltip-text"
+            ],
+            "layer_3": [
+                "drop-table",
+                "synergy-rules",
+                "localization"
+            ],
+            "layer_4": [
+                "balance-test"
+            ],
+            "layer_5": [
+                "mod-manifest"
+            ],
+            "layer_6": [
+                "workshop-upload"
+            ]
+        },
+        "roots": [
+            "concept-design"
+        ],
+        "leaves": [
+            "workshop-upload"
+        ],
+        "criticality": [
+            {
+                "name": "concept-design",
+                "dependents": 13
+            },
+            {
+                "name": "sprite-sheet",
+                "dependents": 5
+            },
+            {
+                "name": "animation-frames",
+                "dependents": 2
+            },
+            {
+                "name": "sound-effects",
+                "dependents": 2
+            },
+            {
+                "name": "base-stats",
+                "dependents": 9
+            },
+            {
+                "name": "scaling-config",
+                "dependents": 5
+            },
+            {
+                "name": "trait-compat",
+                "dependents": 4
+            },
+            {
+                "name": "drop-table",
+                "dependents": 3
+            },
+            {
+                "name": "synergy-rules",
+                "dependents": 3
+            },
+            {
+                "name": "tooltip-text",
+                "dependents": 3
+            },
+            {
+                "name": "localization",
+                "dependents": 2
+            },
+            {
+                "name": "balance-test",
+                "dependents": 2
+            },
+            {
+                "name": "mod-manifest",
+                "dependents": 1
+            },
+            {
+                "name": "workshop-upload",
+                "dependents": 0
+            }
+        ],
+        "byType": {
+            "Creative": [
+                "concept-design"
+            ],
+            "Asset": [
+                "sprite-sheet",
+                "animation-frames",
+                "sound-effects"
+            ],
+            "Art": [
+                "sprite-sheet",
+                "animation-frames"
+            ],
+            "Audio": [
+                "sound-effects"
+            ],
+            "GameData": [
+                "base-stats",
+                "scaling-config",
+                "trait-compat",
+                "drop-table",
+                "synergy-rules"
+            ],
+            "Balance": [
+                "scaling-config",
+                "drop-table",
+                "synergy-rules"
+            ],
+            "UIText": [
+                "tooltip-text",
+                "localization"
+            ],
+            "Localization": [
+                "localization"
+            ],
+            "Quality": [
+                "balance-test"
+            ],
+            "Validation": [
+                "balance-test"
+            ],
+            "Distribution": [
+                "mod-manifest",
+                "workshop-upload"
+            ]
+        },
+        "spof": [
+            {
+                "name": "concept-design",
+                "dependents": 13,
+                "types": [
+                    "Creative"
+                ],
+                "depth": 0
+            },
+            {
+                "name": "animation-frames",
+                "dependents": 2,
+                "types": [
+                    "Asset",
+                    "Art"
+                ],
+                "depth": 2
+            },
+            {
+                "name": "base-stats",
+                "dependents": 9,
+                "types": [
+                    "GameData"
+                ],
+                "depth": 1
+            },
+            {
+                "name": "tooltip-text",
+                "dependents": 3,
+                "types": [
+                    "UIText"
+                ],
+                "depth": 2
+            },
+            {
+                "name": "localization",
+                "dependents": 2,
+                "types": [
+                    "UIText",
+                    "Localization"
+                ],
+                "depth": 3
+            },
+            {
+                "name": "balance-test",
+                "dependents": 2,
+                "types": [
+                    "Quality",
+                    "Validation"
+                ],
+                "depth": 4
+            },
+            {
+                "name": "mod-manifest",
+                "dependents": 1,
+                "types": [
+                    "Distribution"
+                ],
+                "depth": 5
+            }
+        ],
+        "coupling": [
+            {
+                "name": "concept-design",
+                "dependents": 13,
+                "percentage": 92.85714285714285714285714285714286
+            },
+            {
+                "name": "sprite-sheet",
+                "dependents": 5,
+                "percentage": 35.71428571428571428571428571428571
+            },
+            {
+                "name": "base-stats",
+                "dependents": 9,
+                "percentage": 64.28571428571428571428571428571429
+            },
+            {
+                "name": "scaling-config",
+                "dependents": 5,
+                "percentage": 35.71428571428571428571428571428571
+            }
+        ],
+        "metrics": {
+            "total": 14,
+            "maxDepth": 6,
+            "edges": 21,
+            "roots": 1,
+            "leaves": 1,
+            "spofCount": 7,
+            "couplingCount": 4
+        },
+        "validation": {
+            "valid": true,
+            "issues": []
+        }
+    },
+    "resources": {
+        "concept-design": {
+            "@id": "https://tiny-rogues-demo.example/modding/concept-design",
+            "name": "concept-design",
+            "description": "Design the weapon concept — theme, role in meta, target player fantasy, reference art",
+            "@type": {
+                "Creative": true
+            },
+            "owner": "Modder",
+            "duration_hours": 4,
+            "difficulty": "easy",
+            "file_format": "notes / reference images"
+        },
+        "sprite-sheet": {
+            "@id": "https://tiny-rogues-demo.example/modding/sprite-sheet",
+            "name": "sprite-sheet",
+            "description": "Create pixel art sprite sheet — idle, equipped, and ground-drop states (16×16 or 32×32)",
+            "@type": {
+                "Asset": true,
+                "Art": true
+            },
+            "owner": "Modder (Artist)",
+            "duration_hours": 8,
+            "difficulty": "medium",
+            "file_format": "PNG sprite sheet",
+            "depends_on": {
+                "concept-design": true
+            }
+        },
+        "animation-frames": {
+            "@id": "https://tiny-rogues-demo.example/modding/animation-frames",
+            "name": "animation-frames",
+            "description": "Create attack animation frames — swing arc, projectile path, impact VFX sprites",
+            "@type": {
+                "Asset": true,
+                "Art": true
+            },
+            "owner": "Modder (Artist)",
+            "duration_hours": 6,
+            "difficulty": "medium",
+            "file_format": "PNG frame sequence",
+            "depends_on": {
+                "sprite-sheet": true
+            }
+        },
+        "sound-effects": {
+            "@id": "https://tiny-rogues-demo.example/modding/sound-effects",
+            "name": "sound-effects",
+            "description": "Record or source weapon SFX — swing, impact, equip, and special ability sounds",
+            "@type": {
+                "Asset": true,
+                "Audio": true
+            },
+            "owner": "Modder (Audio)",
+            "duration_hours": 3,
+            "difficulty": "easy",
+            "file_format": "WAV / OGG",
+            "depends_on": {
+                "concept-design": true
+            }
+        },
+        "base-stats": {
+            "@id": "https://tiny-rogues-demo.example/modding/base-stats",
+            "name": "base-stats",
+            "description": "Define weapon base stats — damage, speed, range, crit chance, knockback, projectile count",
+            "@type": {
+                "GameData": true
+            },
+            "owner": "Modder",
+            "duration_hours": 2,
+            "difficulty": "medium",
+            "file_format": "JSON",
+            "depends_on": {
+                "concept-design": true
+            }
+        },
+        "scaling-config": {
+            "@id": "https://tiny-rogues-demo.example/modding/scaling-config",
+            "name": "scaling-config",
+            "description": "Define how stats scale with floor depth and mastery level — curves, caps, breakpoints",
+            "@type": {
+                "GameData": true,
+                "Balance": true
+            },
+            "owner": "Modder",
+            "duration_hours": 3,
+            "difficulty": "hard",
+            "file_format": "JSON",
+            "depends_on": {
+                "base-stats": true
+            }
+        },
+        "trait-compat": {
+            "@id": "https://tiny-rogues-demo.example/modding/trait-compat",
+            "name": "trait-compat",
+            "description": "List which traits can enchant this weapon — whitelist/blacklist, synergy tags, slot count",
+            "@type": {
+                "GameData": true
+            },
+            "owner": "Modder",
+            "duration_hours": 2,
+            "difficulty": "medium",
+            "file_format": "JSON",
+            "depends_on": {
+                "base-stats": true
+            }
+        },
+        "drop-table": {
+            "@id": "https://tiny-rogues-demo.example/modding/drop-table",
+            "name": "drop-table",
+            "description": "Configure drop rules — floor range, rarity tier, boss-only flag, class affinity weighting",
+            "@type": {
+                "GameData": true,
+                "Balance": true
+            },
+            "owner": "Modder",
+            "duration_hours": 2,
+            "difficulty": "medium",
+            "file_format": "JSON",
+            "depends_on": {
+                "base-stats": true,
+                "scaling-config": true
+            }
+        },
+        "synergy-rules": {
+            "@id": "https://tiny-rogues-demo.example/modding/synergy-rules",
+            "name": "synergy-rules",
+            "description": "Define synergy triggers — trait combinations that unlock bonus effects, build-defining interactions",
+            "@type": {
+                "GameData": true,
+                "Balance": true
+            },
+            "owner": "Modder",
+            "duration_hours": 4,
+            "difficulty": "hard",
+            "file_format": "JSON",
+            "depends_on": {
+                "trait-compat": true,
+                "scaling-config": true
+            }
+        },
+        "tooltip-text": {
+            "@id": "https://tiny-rogues-demo.example/modding/tooltip-text",
+            "name": "tooltip-text",
+            "description": "Write tooltip template — weapon name, flavour text, stat display format, keyword highlighting",
+            "@type": {
+                "UIText": true
+            },
+            "owner": "Modder",
+            "duration_hours": 1,
+            "difficulty": "easy",
+            "file_format": "JSON (template strings)",
+            "depends_on": {
+                "base-stats": true,
+                "sprite-sheet": true
+            }
+        },
+        "localization": {
+            "@id": "https://tiny-rogues-demo.example/modding/localization",
+            "name": "localization",
+            "description": "Create i18n translation keys — name, description, flavour text, tooltip for all target languages",
+            "@type": {
+                "UIText": true,
+                "Localization": true
+            },
+            "owner": "Modder (Translator)",
+            "duration_hours": 4,
+            "difficulty": "medium",
+            "file_format": "JSON (i18n key-value)",
+            "depends_on": {
+                "tooltip-text": true
+            }
+        },
+        "balance-test": {
+            "@id": "https://tiny-rogues-demo.example/modding/balance-test",
+            "name": "balance-test",
+            "description": "Run automated balance validation — DPS within tier bounds, no broken synergy loops, drop rate sanity",
+            "@type": {
+                "Quality": true,
+                "Validation": true
+            },
+            "owner": "Automated / Modder",
+            "duration_hours": 1,
+            "difficulty": "easy",
+            "file_format": "test output",
+            "depends_on": {
+                "synergy-rules": true,
+                "drop-table": true,
+                "scaling-config": true
+            }
+        },
+        "mod-manifest": {
+            "@id": "https://tiny-rogues-demo.example/modding/mod-manifest",
+            "name": "mod-manifest",
+            "description": "Package mod — manifest.json with metadata, version, dependencies, file list, compatibility tag",
+            "@type": {
+                "Distribution": true
+            },
+            "owner": "Modder",
+            "duration_hours": 1,
+            "difficulty": "easy",
+            "file_format": "JSON (manifest)",
+            "depends_on": {
+                "balance-test": true,
+                "animation-frames": true,
+                "sound-effects": true,
+                "localization": true
+            }
+        },
+        "workshop-upload": {
+            "@id": "https://tiny-rogues-demo.example/modding/workshop-upload",
+            "name": "workshop-upload",
+            "description": "Publish to Steam Workshop — upload package, set tags, write description, add screenshots",
+            "@type": {
+                "Distribution": true
+            },
+            "owner": "Modder",
+            "duration_hours": 1,
+            "difficulty": "easy",
+            "file_format": "Steam Workshop package",
+            "depends_on": {
+                "mod-manifest": true
+            }
+        }
+    }
+}

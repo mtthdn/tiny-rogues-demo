@@ -1,0 +1,818 @@
+[
+  {
+    "name": "Adrenaline",
+    "category": "Strength",
+    "description": "\u2022 Gain +1 missing Heart . \u2022 Gain +25% Effect of Emotions per missing Heart .",
+    "conditions": "???"
+  },
+  {
+    "name": "An Honest Day of Work",
+    "category": "Strength",
+    "description": "Modifiers to your Stamina Recovery Speed also apply to Skill Effect ( ).",
+    "conditions": "???"
+  },
+  {
+    "name": "Ancestral Aid",
+    "category": "Strength",
+    "description": "Grants 2 Ancestral Spirit Companions . APS: 2.00 DMG: 80 to 110 Slashing All slashing damage is physical damage. Each grants: +10% Attack Speed",
+    "conditions": "???"
+  },
+  {
+    "name": "Arrogance",
+    "category": "Strength",
+    "description": "On inflicting Taunt Taunt x1.35 Damage Taken at Close Range Duration: 8 seconds Max Stacks: 1 [ Emotion ] [ Debuff ] or Charm Charm x1.25 Damage Taken at Far Range Duration: 8 seconds Max Stacks: 1 [ ",
+    "conditions": "???"
+  },
+  {
+    "name": "Attack of Opportunity",
+    "category": "Strength",
+    "description": "After not having attacked for 2 seconds, your next Attack grants you Courage Courage x1.50 Attack Speed with Melee x1.25 Attack Speed with Ranged x1.25 Attack Speed with Magic Duration: 8 seconds Max ",
+    "conditions": "???"
+  },
+  {
+    "name": "Barbarism",
+    "category": "Strength",
+    "description": "Each point of Strength Strength increases damage dealt by weapons that scale off strength . Additionally strength grants more damage dealt, equip load capacity and potentially other stats. additionall",
+    "conditions": "???"
+  },
+  {
+    "name": "Battle Rush",
+    "category": "Strength",
+    "description": "Grants Power Power increases damage and area radius. The value of each point of power slowly decreases as power gets higher. if you meet the breakpoint: \u21aa10% increased Movement Speed: +25 Power Power ",
+    "conditions": "???"
+  },
+  {
+    "name": "Beef",
+    "category": "Strength",
+    "description": "Gain +100% Stats from Strength Strength increases damage dealt by weapons that scale off strength . Additionally strength grants more damage dealt, equip load capacity and potentially other stats. , b",
+    "conditions": "???"
+  },
+  {
+    "name": "Berserk",
+    "category": "Strength",
+    "description": "On Skill Used , grants Berserk Berserk x1.30 Attack Speed x1.30 Movement Speed Duration: 10 seconds Max Stacks: 1 [ Emotion ] [ Buff ] .",
+    "conditions": "???"
+  },
+  {
+    "name": "Blessed Hammer",
+    "category": "Strength",
+    "description": "Your Attack and Skill gain a 25% chance to trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales w",
+    "conditions": "???"
+  },
+  {
+    "name": "Blunt Trauma",
+    "category": "Strength",
+    "description": "Striking All striking damage is physical damage. damage from you and your Companions inflicts Instability Instability x1.40 Top End Damage Taken Duration: 4 seconds Max Stacks: 1 [ Hex ] [ Debuff ] .",
+    "conditions": "???"
+  },
+  {
+    "name": "Bone Crusher",
+    "category": "Strength",
+    "description": "\u2022 Your Atacks inflict a stack of Crush Crush Deals 525 to 1275 Physical Damage on Max Stacks Damage Scaling: 0/50 &#160;: 0/0 &#160;: 0/0 Maximum Stacks: 5 Duration: 4 seconds [ Ailment ] with Crushin",
+    "conditions": "???"
+  },
+  {
+    "name": "Boozer",
+    "category": "Strength",
+    "description": "Booze Buffs are permanent and have +100% Effect.",
+    "conditions": "???"
+  },
+  {
+    "name": "Brawler",
+    "category": "Strength",
+    "description": "Grants +20 Power Power increases damage and area radius. The value of each point of power slowly decreases as power gets higher. per actor in the room. (up to +100) (Actors are you, your Companions an",
+    "conditions": "???"
+  },
+  {
+    "name": "Brawn Over Brain",
+    "category": "Strength",
+    "description": "Grants +25% Mana Mana grants stats to your mana-draining weapons . By default each point of mana\u272f grants 10% more damage. Recovery per Strength Trait you have.",
+    "conditions": "???"
+  },
+  {
+    "name": "Close Combat",
+    "category": "Strength",
+    "description": "Grants +100% Ruthless Hit Chance Ruthless Hits gain x2.00 Top End Damage. at Close Range Hits at Close Range deal x1.20 Damage. .",
+    "conditions": "???"
+  },
+  {
+    "name": "Explosive Force",
+    "category": "Strength",
+    "description": "Your Attacks and Skill gain a 25% chance to trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales ",
+    "conditions": "???"
+  },
+  {
+    "name": "Fire and Blood",
+    "category": "Strength",
+    "description": "You can stack Burn Burn Damage: 90 to 125 Fire Damage Scaling: 0/40 &#160;: 0/40 &#160;: 0/40 Maximum Stacks: 1 Tick Speed: 2 Duration: 8 seconds [ Damage Over Time ] [ Ailment ] [ E l e m e n t a l ]",
+    "conditions": "???"
+  },
+  {
+    "name": "Hand Of Hearts",
+    "category": "Strength",
+    "description": "Grants +10% Lucky Hit Chance Lucky Hits have x2.00 chance for Hit Effects to happen. per Heart Container you have.",
+    "conditions": "???"
+  },
+  {
+    "name": "Heavy Draw",
+    "category": "Strength",
+    "description": "Half your Strength Strength increases damage dealt by weapons that scale off strength . Additionally strength grants more damage dealt, equip load capacity and potentially other stats. also applies to",
+    "conditions": "???"
+  },
+  {
+    "name": "Holy Fire",
+    "category": "Strength",
+    "description": "Radiant Glitter +5% Damage Taken from Lucky Hits Duration: 4 seconds Max Stacks: 10 [ Ailment ] All radiant damage inflicts Glitter . Damage from you and your Companions , grants you Burning Passion B",
+    "conditions": "???"
+  },
+  {
+    "name": "Momentum",
+    "category": "Strength",
+    "description": "\u2022 Gain +50% Stamina Recovery Speed . \u2022 On Dash , your next 5 Attacks or Skills deal guaranteed Crushing Hits Crushing Hits deal guaranteed Top End Damage. .",
+    "conditions": "???"
+  },
+  {
+    "name": "No Pain No Gain",
+    "category": "Strength",
+    "description": "Modifiers to your Cursed Hit Chance Cursed Hits have x0.50 chance for Hit Effects to happen. also apply to your Critical Hit Chance The damage from critical hits is multiplied with your critical hit m",
+    "conditions": "???"
+  },
+  {
+    "name": "Overwhelming Presence",
+    "category": "Strength",
+    "description": "Grants +0.25% Buff Effect per point of Equip Load Capacity you have.",
+    "conditions": "???"
+  },
+  {
+    "name": "Pack Mentality",
+    "category": "Strength",
+    "description": "\u2022 Your damage rolls twice and takes the lower value. \u2022 +1 Companion Capacity .",
+    "conditions": "???"
+  },
+  {
+    "name": "Pointy End",
+    "category": "Strength",
+    "description": "Thrusting All thrusting damage is physical damage. damage from you and your Companions inflicts Puncture Puncture +10 to 30 Physical Damage Taken Duration: 4 seconds Max Stacks: 5 [ Debuff ] .",
+    "conditions": "???"
+  },
+  {
+    "name": "Power is Power",
+    "category": "Strength",
+    "description": "Power Power increases damage and area radius. The value of each point of power slowly decreases as power gets higher. also increases effect of debuffs .",
+    "conditions": "???"
+  },
+  {
+    "name": "Pushing Through",
+    "category": "Strength",
+    "description": "Each point of Equip Load on you grants: \u21aa +0.5% Stamina Recovery Speed \u21aa +0.5% Movement Speed \u21aa +0.5% Damage",
+    "conditions": "???"
+  },
+  {
+    "name": "Rage",
+    "category": "Strength",
+    "description": "\u2022 Your Attacks grant you a stack of Rage Rage +4% Attack Speed Duration: 4 seconds Max Stacks: 10 [ Emotion ] [ Buff ] on hit . \u2022 Melee Attacks grant +1 stack.",
+    "conditions": "???"
+  },
+  {
+    "name": "Razors Edge",
+    "category": "Strength",
+    "description": "Slashing All slashing damage is physical damage. damage from you and your Companions inflicts Bleed Bleed Damage: 105 to 150 Physical Damage Scaling: 0/40 &#160;: 0/40 &#160;: 0/40 Maximum Stacks: 1 T",
+    "conditions": "???"
+  },
+  {
+    "name": "Resolute Technique",
+    "category": "Strength",
+    "description": "\u2022Your Critical Hit Chance The damage from critical hits is multiplied with your critical hit multiplier. is 0% . \u2022Grants +100% Crushing Hit Chance Crushing Hits deal guaranteed Top End Damage. .",
+    "conditions": "???"
+  },
+  {
+    "name": "Savage Wounds",
+    "category": "Strength",
+    "description": "On Tick , Bleed Bleed Damage: 105 to 150 Physical Damage Scaling: 0/40 &#160;: 0/40 &#160;: 0/40 Maximum Stacks: 1 Tick Speed: 2 Duration: 8 seconds [ Damage Over Time ] [ Ailment ] [ Tick ] inflicts ",
+    "conditions": "???"
+  },
+  {
+    "name": "Shrouded In Shadows",
+    "category": "Strength",
+    "description": "\u2022 Grants 3 Shadow Orbitals that deal 105 to 175 Dark Gloom +10% Damage Taken from Cursed Hits Duration: 4 seconds Max Stacks: 10 [ Ailment ] All dark damage inflicts Gloom . Damage . \u2022 Shadow Orbitals",
+    "conditions": "???"
+  },
+  {
+    "name": "Steady Strikes",
+    "category": "Strength",
+    "description": "\u2022 Attack Speed Modifiers have x0.50 value. \u2022 Modifiers to Attack Speed also apply to your Attack Damage at 200% value.",
+    "conditions": "???"
+  },
+  {
+    "name": "Testudo",
+    "category": "Strength",
+    "description": "Gain x1.20 Melee Damage per point of Block Block prevents one hit of damage taken. Refreshes each floor. you have.",
+    "conditions": "???"
+  },
+  {
+    "name": "Threat Reckoning",
+    "category": "Strength",
+    "description": "\u2022 Your Attacks with One-Handed Weapons inflict Taunt Taunt x1.35 Damage Taken at Close Range Duration: 8 seconds Max Stacks: 1 [ Emotion ] [ Debuff ] . \u2022 Your Attacks with Two-Handed Weapons inflict I",
+    "conditions": "???"
+  },
+  {
+    "name": "Titan Grip",
+    "category": "Strength",
+    "description": "\u2022 You can wear an Offhand with Two-Handed Weapons . \u2022 Two-Handed Weapons also count as One-Handed",
+    "conditions": "???"
+  },
+  {
+    "name": "Unforgiving",
+    "category": "Strength",
+    "description": "Ailments and Debuffs inflicted by Skills have +100% effect.",
+    "conditions": "???"
+  },
+  {
+    "name": "Advanced Ballistics",
+    "category": "Dexterity",
+    "description": "Your Ranged damage is always considered to be at Close Range Hits at Close Range deal x1.20 Damage. .",
+    "conditions": "???"
+  },
+  {
+    "name": "Agility",
+    "category": "Dexterity",
+    "description": "Modifiers to your movement speed also apply to your Attack Speed.",
+    "conditions": "???"
+  },
+  {
+    "name": "Alacrity",
+    "category": "Dexterity",
+    "description": "Grants +40% Attack Speed with Weapons that scale with Dexterity Dexterity increases damage dealt by weapons that scale off dexterity . Additionally dexterity grants attack speed, movement speed and po",
+    "conditions": "???"
+  },
+  {
+    "name": "Ascetic's Discipline",
+    "category": "Dexterity",
+    "description": "Gain +20% Skill Effect ( ) per Stamina Stamina takes 3 seconds to start recovery (stamina recovery speed) and 0.5 seconds to regenerate per point (stamina regeneration speed) . you have.",
+    "conditions": "???"
+  },
+  {
+    "name": "Best Friends Forever",
+    "category": "Dexterity",
+    "description": "Companions grant increased stats depending on how many you have: \u21aa1: +300% stats from Companions \u21aa2: +200% stats from Companions \u21aa3: +100% stats from Companions",
+    "conditions": "???"
+  },
+  {
+    "name": "Blood Infection",
+    "category": "Dexterity",
+    "description": "On Tick , Bleed Bleed Damage: 105 to 150 Physical Damage Scaling: 0/40 &#160;: 0/40 &#160;: 0/40 Maximum Stacks: 1 Tick Speed: 2 Duration: 8 seconds [ Damage Over Time ] [ Ailment ] [ Tick ] inflicts ",
+    "conditions": "???"
+  },
+  {
+    "name": "Cheap Shot",
+    "category": "Dexterity",
+    "description": "Your Lucky Hits Lucky Hits have x2.00 chance for Hit Effects to happen. are also guaranteed Lethal hits Lethal Hits deal x1.01 Damage per 1% Health the target is missing. .",
+    "conditions": "???"
+  },
+  {
+    "name": "Chill Aura",
+    "category": "Dexterity",
+    "description": "Grants a Chill Aura that deals 40 to 70 Cold Chill -20% Movement Speed Duration: 8 seconds Max Stacks: 1 [ Ailment ] All cold damage is elemental damage and inflicts Chill . Damage 4 times per second ",
+    "conditions": "???"
+  },
+  {
+    "name": "Cull the Weak",
+    "category": "Dexterity",
+    "description": "Enemies take more damage equal to the reduction of their movement speed. (multiplicative)",
+    "conditions": "???"
+  },
+  {
+    "name": "Deadly Toxins",
+    "category": "Dexterity",
+    "description": "Each Stack of Poison Poison Damage: 10 to 20 Poison Damage Scaling: 0/40 &#160;: 0/40 &#160;: 0/40 Maximum Stacks: infinite Tick Speed: 2 Duration: 4 seconds [ Damage Over Time ] [ Ailment ] [ E l e m",
+    "conditions": "???"
+  },
+  {
+    "name": "Dynamo",
+    "category": "Dexterity",
+    "description": "Modifiers to your Movement Speed also apply to your Stamina Recovery Speed and Mana Recovery at 200% value.",
+    "conditions": "???"
+  },
+  {
+    "name": "Earned Luck",
+    "category": "Dexterity",
+    "description": "Each point of Dexterity Dexterity increases damage dealt by weapons that scale off dexterity . Additionally dexterity grants attack speed, movement speed and potentially other stats. additionally gran",
+    "conditions": "???"
+  },
+  {
+    "name": "Electric City",
+    "category": "Dexterity",
+    "description": "Each stack of Shock Shock x1.04 Damage Taken Duration: 4 seconds Maximum Stacks: 5 [ Ailment ] additionally adds +25% Critical Hit Damage The damage from critical hits is multiplied with your critical",
+    "conditions": "???"
+  },
+  {
+    "name": "Exit Strategy",
+    "category": "Dexterity",
+    "description": "On Dash , refresh the duration of all Damage Over Time effects on all Enemies.",
+    "conditions": "???"
+  },
+  {
+    "name": "Exploitative Explosives",
+    "category": "Dexterity",
+    "description": "Your Explosion Damage inflicts Vulnerability Vulnerability x1.20 Damage Taken Duration: 4 seconds Max Stacks: 1 [ Hex ] [ Debuff ] .",
+    "conditions": "???"
+  },
+  {
+    "name": "Grenadier",
+    "category": "Dexterity",
+    "description": "Every 3 seconds trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales with each point of EXP , up ",
+    "conditions": "???"
+  },
+  {
+    "name": "Harmony",
+    "category": "Dexterity",
+    "description": "Your Weapon gains +50 to 75 Radiant Glitter +5% Damage Taken from Lucky Hits Duration: 4 seconds Max Stacks: 10 [ Ailment ] All radiant damage inflicts Glitter . Damage with Cursed Hits Cursed Hits ha",
+    "conditions": "???"
+  },
+  {
+    "name": "Influence",
+    "category": "Dexterity",
+    "description": "You and your Companions gain +30% Attack Speed per Aura you have.",
+    "conditions": "???"
+  },
+  {
+    "name": "Illusion Of Control",
+    "category": "Dexterity",
+    "description": "Your modifier to Lucky Hit Chance Lucky Hits have x2.00 chance for Hit Effects to happen. also applies to your Critical Hit Damage The damage from critical hits is multiplied with your critical hit mu",
+    "conditions": "???"
+  },
+  {
+    "name": "Intuition",
+    "category": "Dexterity",
+    "description": "Gain +100% Stats from Dexterity Dexterity increases damage dealt by weapons that scale off dexterity . Additionally dexterity grants attack speed, movement speed and potentially other stats. , but gai",
+    "conditions": "???"
+  },
+  {
+    "name": "Lethality",
+    "category": "Dexterity",
+    "description": "The Damage Bonus from Lethal hits Lethal Hits deal x1.01 Damage per 1% Health the target is missing. is affected by your Critical Hit Damage The damage from critical hits is multiplied with your criti",
+    "conditions": "???"
+  },
+  {
+    "name": "Lightning Conductor",
+    "category": "Dexterity",
+    "description": "Your Attacks and Skill gain a 35% chance to trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales ",
+    "conditions": "???"
+  },
+  {
+    "name": "Like Clockwork",
+    "category": "Dexterity",
+    "description": "Modifiers to your Attack Speed also apply to Tick Speed.",
+    "conditions": "???"
+  },
+  {
+    "name": "Opportunistic",
+    "category": "Dexterity",
+    "description": "Damage from your Skill inflicts Fatigue Fatigue is a debuff that reduces movement speed by up to 25% and increases damage taken from critical hits\u2757 by 50% and lasts 4 seconds. .",
+    "conditions": "???"
+  },
+  {
+    "name": "Pet The Dog",
+    "category": "Dexterity",
+    "description": "Grants a Puppy Companion . APS: 2.00 DMG: 160 to 220 Slashing All slashing damage is physical damage. Each Grants: +50% Buff Effect.",
+    "conditions": "???"
+  },
+  {
+    "name": "Point Blank",
+    "category": "Dexterity",
+    "description": "Grants +100% Crushing Hit Chance Crushing Hits deal guaranteed Top End Damage. with Ranged Damage at Close Range Hits at Close Range deal x1.20 Damage. .",
+    "conditions": "???"
+  },
+  {
+    "name": "Poison Aura",
+    "category": "Dexterity",
+    "description": "Grants a Poison Aura that deals 10 to 20 Poison Poison Damage: 10 to 20 Poison Damage Scaling: 0/40 &#160;: 0/40 &#160;: 0/40 Maximum Stacks: infinite Tick Speed: 2 Duration: 4 seconds [ Damage Over T",
+    "conditions": "???"
+  },
+  {
+    "name": "Precision",
+    "category": "Dexterity",
+    "description": "Grants +5% Critical Hit Chance The damage from critical hits is multiplied with your critical hit multiplier. per Dexterity Dexterity increases damage dealt by weapons that scale off dexterity . Addit",
+    "conditions": "???"
+  },
+  {
+    "name": "Raised Morale",
+    "category": "Dexterity",
+    "description": "On completing a Combat Encounter room without taking damage, gain 1 stack of Morale Tip: Avoid taking damage by using evades and block . Morale is a stackable buff that permanently grants +10 power pe",
+    "conditions": "???"
+  },
+  {
+    "name": "Repeat Offender",
+    "category": "Dexterity",
+    "description": "Grants +100% Effect of Debuffs if you have repeat Repeated attacks deal 25% less damage. ed an Attack in the past 4 seconds.",
+    "conditions": "???"
+  },
+  {
+    "name": "Rogue's Tally",
+    "category": "Dexterity",
+    "description": "On the Tally of 3 Attacks , your next Attack or Skill deals a guaranteed Critical Hit The damage from critical hits is multiplied with your critical hit multiplier. .",
+    "conditions": "???"
+  },
+  {
+    "name": "Sharpshooter",
+    "category": "Dexterity",
+    "description": "Grants +100% Lethal Hit Chance Lethal Hits deal x1.01 Damage per 1% Health the target is missing. at Far Range Hits at Far Range deal x0.90 Damage. .",
+    "conditions": "???"
+  },
+  {
+    "name": "Spellblade",
+    "category": "Dexterity",
+    "description": "Grants +20% Attack Speed per Mana Container Mana grants stats to your mana-draining weapons . By default each point of mana\u272f grants 10% more damage. you have.",
+    "conditions": "???"
+  },
+  {
+    "name": "Spinning Blades",
+    "category": "Dexterity",
+    "description": "Grants 2 Spinning Blade Orbital Orbital damage scales with each point of EXP , up to 5x damage at level 6. s that deal 105 to 190 Slashing All slashing damage is physical damage. Damage and inflict Ru",
+    "conditions": "???"
+  },
+  {
+    "name": "Step of the Wind",
+    "category": "Dexterity",
+    "description": "On Dash , grants 5 stacks of Tailwind Tailwind x1.05 Attack Speed x1.05 Movement Speed x1.05 Orbital Speed x1.05 Tick Speed Duration: 8 seconds Max Stacks: 4 [ Buff ] .",
+    "conditions": "???"
+  },
+  {
+    "name": "Swagger",
+    "category": "Dexterity",
+    "description": "Every 4 seconds trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales with each point of EXP , up ",
+    "conditions": "???"
+  },
+  {
+    "name": "Transcendence",
+    "category": "Dexterity",
+    "description": "Infusion Buffs are permanent . (Note: Rerolling with an Obsidian Die will remove active infusions)",
+    "conditions": "???"
+  },
+  {
+    "name": "Trigger Maniac",
+    "category": "Dexterity",
+    "description": "Gain x1.10 Trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales with each point of EXP , up to 7x",
+    "conditions": "???"
+  },
+  {
+    "name": "Two Steps Ahead",
+    "category": "Dexterity",
+    "description": "\u2022 On Dash , repeat Repeated attacks deal 25% less damage. your next 2 Attacks . \u2022Your Repeat Repeated attacks deal 25% less damage. s deal x2.00 Damage.",
+    "conditions": "???"
+  },
+  {
+    "name": "Anatomical Knowledge",
+    "category": "Intelligence",
+    "description": "Gain +200% Critical Hit Damage The damage from critical hits is multiplied with your critical hit multiplier. against Bleed Bleed Damage: 105 to 150 Physical Damage Scaling: 0/40 &#160;: 0/40 &#160;: ",
+    "conditions": "???"
+  },
+  {
+    "name": "Apocalypse",
+    "category": "Intelligence",
+    "description": "On Skill used , trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales with each point of EXP , up ",
+    "conditions": "???"
+  },
+  {
+    "name": "Arcane Familiar",
+    "category": "Intelligence",
+    "description": "Grants an Arcane Familiar Companion . APS: 2.00 DMG: 215 to 290 Thrusting All thrusting damage is physical damage. Each Grants: +1 Mana Mana grants stats to your mana-draining weapons . By default eac",
+    "conditions": "???"
+  },
+  {
+    "name": "Astromancy",
+    "category": "Intelligence",
+    "description": "Your Lucky Hits Lucky Hits have x2.00 chance for Hit Effects to happen. now x4.00 the chance to trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.",
+    "conditions": "???"
+  },
+  {
+    "name": "Bramble Growth",
+    "category": "Intelligence",
+    "description": "Your Nature Nettles Deals 5 to 10 Nature Damage when target takes damage Damage Scaling: 0/40 &#160;: 0/40 &#160;: 0/40 Maximum Stacks: 5 Duration: 4 seconds [ Ailment ] All nature damage is considere",
+    "conditions": "???"
+  },
+  {
+    "name": "Burn Aura",
+    "category": "Intelligence",
+    "description": "Grants a Burn Aura deals 15 to 45 Fire Burn Damage: 90 to 125 Fire Damage Scaling: 0/40 &#160;: 0/40 &#160;: 0/40 Maximum Stacks: 1 Tick Speed: 2 Duration: 8 seconds [ Damage Over Time ] [ Ailment ] [",
+    "conditions": "???"
+  },
+  {
+    "name": "Chrono Shift",
+    "category": "Intelligence",
+    "description": "On Skill Used , gain +100% Tick Speed for 10 seconds . [ Buff ]",
+    "conditions": "???"
+  },
+  {
+    "name": "Cold Blood",
+    "category": "Intelligence",
+    "description": "Chill Chill -20% Movement Speed Duration: 8 seconds Max Stacks: 1 [ Ailment ] additionally adds +20% chance to take a Critical Hit The damage from critical hits is multiplied with your critical hit mu",
+    "conditions": "???"
+  },
+  {
+    "name": "Combustion",
+    "category": "Intelligence",
+    "description": "Burn Burn Damage: 90 to 125 Fire Damage Scaling: 0/40 &#160;: 0/40 &#160;: 0/40 Maximum Stacks: 1 Tick Speed: 2 Duration: 8 seconds [ Damage Over Time ] [ Ailment ] [ E l e m e n t a l ] [ Tick ] deal",
+    "conditions": "???"
+  },
+  {
+    "name": "Corrosive Magic",
+    "category": "Intelligence",
+    "description": "Necrotic Necrosis Damage: 150 to 225 Necrotic Damage Scaling: 0/40 &#160;: 0/40 &#160;: 0/40 Maximum Stacks: 1 Tick Speed: 2 Duration: 8 seconds [ Damage Over Time ] [ Ailment ] [ Tick ] All necrotic ",
+    "conditions": "???"
+  },
+  {
+    "name": "Dominance",
+    "category": "Intelligence",
+    "description": "Each point of Intelligence Intelligence increases damage dealt by weapons that scale off intelligence . Additionally intelligence grants critical hit\u2757 chance , mana \u272f regeneration and potentially othe",
+    "conditions": "???"
+  },
+  {
+    "name": "Dreamer",
+    "category": "Intelligence",
+    "description": "Grants +20 Power Power increases damage and area radius. The value of each point of power slowly decreases as power gets higher. per Mana Container Mana grants stats to your mana-draining weapons . By",
+    "conditions": "???"
+  },
+  {
+    "name": "Elemental Balance",
+    "category": "Intelligence",
+    "description": "On dealing Ele2 Damage gain Buffs : \u21aa Lightning Shock x1.04 Damage Taken Duration: 4 seconds Maximum Stacks: 5 [ Ailment ] All lightning damage is elemental damage and inflicts Shock . \u2192 x1.30 Fire Bu",
+    "conditions": "???"
+  },
+  {
+    "name": "Elemental Focus",
+    "category": "Intelligence",
+    "description": "Fire Burn Damage: 90 to 125 Fire Damage Scaling: 0/40 &#160;: 0/40 &#160;: 0/40 Maximum Stacks: 1 Tick Speed: 2 Duration: 8 seconds [ Damage Over Time ] [ Ailment ] [ E l e m e n t a l ] [ Tick ] All ",
+    "conditions": "???"
+  },
+  {
+    "name": "Entropy",
+    "category": "Intelligence",
+    "description": "Modifiers to your Mana Recovery also apply to your Damage Over Time",
+    "conditions": "???"
+  },
+  {
+    "name": "Event Horizon",
+    "category": "Intelligence",
+    "description": "\u2022 Grants +100% Orbital Orbital damage scales with each point of EXP , up to 5x damage at level 6. Range. \u2022 Your Orbital Orbital damage scales with each point of EXP , up to 5x damage at level 6. s inf",
+    "conditions": "???"
+  },
+  {
+    "name": "Forethought",
+    "category": "Intelligence",
+    "description": "Gain +30% Attack Speed while missing Mana Mana grants stats to your mana-draining weapons . By default each point of mana\u272f grants 10% more damage. .",
+    "conditions": "???"
+  },
+  {
+    "name": "Hex Touch",
+    "category": "Intelligence",
+    "description": "Gain increased Effect of Debuffs equal to your Cursed Hit Chance Cursed Hits have x0.50 chance for Hit Effects to happen. . (up to +100%)",
+    "conditions": "???"
+  },
+  {
+    "name": "Ice Conjuration",
+    "category": "Intelligence",
+    "description": "Your Attacks and Skills gain a 35% chance to trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales",
+    "conditions": "???"
+  },
+  {
+    "name": "Ignition Burst",
+    "category": "Intelligence",
+    "description": "Grants +75 to 125 Fire Burn Damage: 90 to 125 Fire Damage Scaling: 0/40 &#160;: 0/40 &#160;: 0/40 Maximum Stacks: 1 Tick Speed: 2 Duration: 8 seconds [ Damage Over Time ] [ Ailment ] [ E l e m e n t a",
+    "conditions": "???"
+  },
+  {
+    "name": "Insight",
+    "category": "Intelligence",
+    "description": "Grants +20% increased Skill Effect ( ) per Intelligence Intelligence increases damage dealt by weapons that scale off intelligence . Additionally intelligence grants critical hit\u2757 chance , mana \u272f rege",
+    "conditions": "???"
+  },
+  {
+    "name": "Inspiring Presence",
+    "category": "Intelligence",
+    "description": "Power Power increases damage and area radius. The value of each point of power slowly decreases as power gets higher. also increases Companion Damage at 200% value.",
+    "conditions": "???"
+  },
+  {
+    "name": "Keen Mind",
+    "category": "Intelligence",
+    "description": "Gain +100% Stats from Intelligence Intelligence increases damage dealt by weapons that scale off intelligence . Additionally intelligence grants critical hit\u2757 chance , mana \u272f regeneration and potentia",
+    "conditions": "???"
+  },
+  {
+    "name": "Lightning Always Strikes Twice",
+    "category": "Intelligence",
+    "description": "Any time you trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales with each point of EXP , up to ",
+    "conditions": "???"
+  },
+  {
+    "name": "Mageblood",
+    "category": "Intelligence",
+    "description": "Potion buffs are permanent .",
+    "conditions": "???"
+  },
+  {
+    "name": "Mana Beacon",
+    "category": "Intelligence",
+    "description": "Grants x1.10 Companion Damage per Mana Container Mana grants stats to your mana-draining weapons . By default each point of mana\u272f grants 10% more damage. you have.",
+    "conditions": "???"
+  },
+  {
+    "name": "Nature's Boon",
+    "category": "Intelligence",
+    "description": "On the Tally of 2 Attacks , your next Attack triggers Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scale",
+    "conditions": "???"
+  },
+  {
+    "name": "Normal Distribution",
+    "category": "Intelligence",
+    "description": "Modifiers to your Lucky Hit Chance Lucky Hits have x2.00 chance for Hit Effects to happen. also apply to your Tick Speed and your Orbital Speed.",
+    "conditions": "???"
+  },
+  {
+    "name": "Pocket Magic",
+    "category": "Intelligence",
+    "description": "Every 1 second trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales with each point of EXP , up t",
+    "conditions": "???"
+  },
+  {
+    "name": "Power Hungry",
+    "category": "Intelligence",
+    "description": "Grants +20 Power Power increases damage and area radius. The value of each point of power slowly decreases as power gets higher. per Soul Heart you have. (up to +100)",
+    "conditions": "???"
+  },
+  {
+    "name": "Prodigy",
+    "category": "Intelligence",
+    "description": "You have +50% Lucky Hit Chance Lucky Hits have x2.00 chance for Hit Effects to happen. but other modifiers to Lucky Hit Chance Lucky Hits have x2.00 chance for Hit Effects to happen. have x0.50 effect",
+    "conditions": "???"
+  },
+  {
+    "name": "Shock Aura",
+    "category": "Intelligence",
+    "description": "Grants a Shock Aura that deals 15 to 60 Lightning Shock x1.04 Damage Taken Duration: 4 seconds Maximum Stacks: 5 [ Ailment ] All lightning damage is elemental damage and inflicts Shock . Damage 4 time",
+    "conditions": "???"
+  },
+  {
+    "name": "Static Blows",
+    "category": "Intelligence",
+    "description": "On inflicting the maximum stacks of Shock Shock x1.04 Damage Taken Duration: 4 seconds Maximum Stacks: 5 [ Ailment ] , the stacks are consumed to trigger Trigger damage is all damage that comes from e",
+    "conditions": "???"
+  },
+  {
+    "name": "Strong Together",
+    "category": "Intelligence",
+    "description": "\u2022 Grants +2 Companion Capacity . \u2022 Gain x0.50 stats from Companions .",
+    "conditions": "???"
+  },
+  {
+    "name": "Thaumaturgical Echo",
+    "category": "Intelligence",
+    "description": "On the Tally of 3 Attacks , repeat Repeated attacks deal 25% less damage. your next attack.",
+    "conditions": "???"
+  },
+  {
+    "name": "Trickery",
+    "category": "Intelligence",
+    "description": "Gain +20% Sneaky Hit Chance Sneaky Hits have x2.00 Critical Hit Damage per Common or Uncommon Equipment Item you are wearing.",
+    "conditions": "???"
+  },
+  {
+    "name": "Vision Quest",
+    "category": "Intelligence",
+    "description": "On the tally of 30 Attacks , trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales with each point",
+    "conditions": "???"
+  },
+  {
+    "name": "Zoo Utopia",
+    "category": "Intelligence",
+    "description": "You and your Companions deal x1.05 Damage per Companion you have.",
+    "conditions": "???"
+  },
+  {
+    "name": "Super Durability",
+    "category": "Super Power",
+    "description": "Gain +5 maximum inherent Armor .",
+    "conditions": "Super Hero only trait"
+  },
+  {
+    "name": "Super Luck",
+    "category": "Super Power",
+    "description": "Gain +10 Luck Lucky Hits have x2.00 chance for Hit Effects to happen. Luck Chance For: &#x21b3;Upgrading Room Reward &#x21b3;Win in Arcade &#x21b3;Extra Trait offered &#x21b3;Roll lowest price in Shop",
+    "conditions": "Super Hero only trait"
+  },
+  {
+    "name": "Super Reflexes",
+    "category": "Super Power",
+    "description": "Gain +30 Dexterity Dexterity increases damage dealt by weapons that scale off dexterity . Additionally dexterity grants attack speed, movement speed and potentially other stats. .",
+    "conditions": "Super Hero only trait"
+  },
+  {
+    "name": "Super Regeneration",
+    "category": "Super Power",
+    "description": "Recover all Hearts on completing a combat encounter.",
+    "conditions": "Super Hero only trait"
+  },
+  {
+    "name": "Super Rich",
+    "category": "Super Power",
+    "description": "You have infinite Gold . (Assumes 999 Gold for the purpose of effects that scale with Gold .)",
+    "conditions": "Super Hero only trait"
+  },
+  {
+    "name": "Super Smarts",
+    "category": "Super Power",
+    "description": "Gain +30 Intelligence Intelligence increases damage dealt by weapons that scale off intelligence . Additionally intelligence grants critical hit\u2757 chance , mana \u272f regeneration and potentially other sta",
+    "conditions": "Super Hero only trait"
+  },
+  {
+    "name": "Super Speed",
+    "category": "Super Power",
+    "description": "Gain 100% increased movement speed.",
+    "conditions": "Super Hero only trait"
+  },
+  {
+    "name": "Super Stamina",
+    "category": "Super Power",
+    "description": "Gain +5 Stamina Stamina takes 3 seconds to start recovery (stamina recovery speed) and 0.5 seconds to regenerate per point (stamina regeneration speed) . .",
+    "conditions": "Super Hero only trait"
+  },
+  {
+    "name": "Super Strength",
+    "category": "Super Power",
+    "description": "Gain +30 Strength Strength increases damage dealt by weapons that scale off strength . Additionally strength grants more damage dealt, equip load capacity and potentially other stats. .",
+    "conditions": "Super Hero only trait"
+  },
+  {
+    "name": "Disintegration Aura",
+    "category": "Psychic Ability",
+    "description": "Grants a Disintegration Aura that deals 25 to 50 Energy Damage 4 times per second . [ Tick ]",
+    "conditions": "Esper only trait"
+  },
+  {
+    "name": "Lightning Force",
+    "category": "Psychic Ability",
+    "description": "On the Tally of 4 Attacks , your next Attack triggers Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scale",
+    "conditions": "Esper only trait"
+  },
+  {
+    "name": "Mama's Stuff",
+    "category": "Psychic Ability",
+    "description": "Grants three Kitchen Knife Orbital Orbital damage scales with each point of EXP , up to 5x damage at level 6. s that deal 185 to 315 Thrusting All thrusting damage is physical damage. Damage and infli",
+    "conditions": "Esper only trait"
+  },
+  {
+    "name": "Mental Link",
+    "category": "Psychic Ability",
+    "description": "While you have exactly 1 Companion , that Companion deals x5,00 Damage.",
+    "conditions": "Esper only trait"
+  },
+  {
+    "name": "Papa's Stuff",
+    "category": "Psychic Ability",
+    "description": "Grants 2 Assault Rifle Companions . APS: 1.00 DMG: 135 - 255 Thrusting All thrusting damage is physical damage. Each Grants: +100% Critical Hit Damage The damage from critical hits is multiplied with ",
+    "conditions": "Esper only trait"
+  },
+  {
+    "name": "Psionic Blasts",
+    "category": "Psychic Ability",
+    "description": "Every 2 seconds triggers Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales with each point of EXP , up",
+    "conditions": "Esper only trait"
+  },
+  {
+    "name": "Spontaneous Combustion",
+    "category": "Psychic Ability",
+    "description": "Your Attacks and Skill gain a 25% chance to trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales ",
+    "conditions": "Esper only trait"
+  },
+  {
+    "name": "Freezing Core",
+    "category": "Cybernetic Augment",
+    "description": "Your Skill deals +90 to 100 Cold Chill -20% Movement Speed Duration: 8 seconds Max Stacks: 1 [ Ailment ] All cold damage is elemental damage and inflicts Chill . Damage .",
+    "conditions": "Cyborg only trait"
+  },
+  {
+    "name": "Laser Core",
+    "category": "Cybernetic Augment",
+    "description": "On Skill Used : Every 0.4 seconds trigger Trigger damage is all damage that comes from effects that explicitly use the trigger keyword. E.g.: On lucky hit , trigger... Trigger damage scales with each ",
+    "conditions": "Cyborg only trait"
+  },
+  {
+    "name": "Lucky Core",
+    "category": "Cybernetic Augment",
+    "description": "Your Skill gains +100% Lucky Hit Chance Lucky Hits have x2.00 chance for Hit Effects to happen. .",
+    "conditions": "Cyborg only trait"
+  },
+  {
+    "name": "Mana Core",
+    "category": "Cybernetic Augment",
+    "description": "Gain +20% Mana Mana grants stats to your mana-draining weapons . By default each point of mana\u272f grants 10% more damage. Recovery per Level. (Up to +120%)",
+    "conditions": "Cyborg only trait"
+  },
+  {
+    "name": "Power Core",
+    "category": "Cybernetic Augment",
+    "description": "Power Power increases damage and area radius. The value of each point of power slowly decreases as power gets higher. also grants Skill Effect ( ).",
+    "conditions": "Cyborg only trait"
+  }
+]
